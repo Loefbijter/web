@@ -110,6 +110,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "loefbijter-web"
+    }
+  },
+  "defaultProject": "loefbijter-web",
+  "cli": {
+    "analytics": false
+  }
 }

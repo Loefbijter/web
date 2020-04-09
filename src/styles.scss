@@ -26,7 +26,127 @@ $loefbijter-web-theme: mat-light-theme($loefbijter-web-primary, $loefbijter-web-
 // that you are using.
 @include angular-material-theme($loefbijter-web-theme);
 
-/* You can add global styles to this file, and also import other style files */
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@import '~@angular/material/theming';
+// Plus imports for other components in your app.
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+$md-palette-primary: (
+  50 : #eaf1f7,
+  100 : #cbddeb,
+  200 : #a8c6dd,
+  300 : #85afcf,
+  400 : #6a9ec5,
+  500 : #508dbb,
+  600 : #4985b5,
+  700 : #407aac,
+  800 : #3770a4,
+  900 : #275d96,
+  A100 : #d6e9ff,
+  A200 : #a3ceff,
+  A400 : #70b2ff,
+  A700 : #57a5ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+$md-palette-dark: (
+  50 : #e6e8f0,
+  100 : #c1c5da,
+  200 : #989fc1,
+  300 : #6f78a8,
+  400 : #505b96,
+  500 : #313e83,
+  600 : #2c387b,
+  700 : #253070,
+  800 : #1f2866,
+  900 : #131b53,
+  A100 : #8d99ff,
+  A200 : #5a6bff,
+  A400 : #273dff,
+  A700 : #0e27ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #ffffff,
+    400 : #ffffff,
+    500 : #ffffff,
+    600 : #ffffff,
+    700 : #ffffff,
+    800 : #ffffff,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #ffffff,
+    A400 : #ffffff,
+    A700 : #ffffff,
+  )
+);
+
+$md-palette-light: (50 : #edf5fa,
+  100 : #d2e6f2,
+  200 : #b4d6ea,
+  300 : #95c5e2,
+  400 : #7fb8db,
+  500 : #68acd5,
+  600 : #60a5d0,
+  700 : #559bca,
+  800 : #4b92c4,
+  900 : #3a82ba,
+  A100 : #ffffff,
+  A200 : #d4ebff,
+  A400 : #a1d4ff,
+  A700 : #87c9ff,
+  contrast: (
+    50 : #000000,
+    100 : #000000,
+    200 : #000000,
+    300 : #000000,
+    400 : #000000,
+    500 : #000000,
+    600 : #000000,
+    700 : #000000,
+    800 : #000000,
+    900 : #ffffff,
+    A100 : #000000,
+    A200 : #000000,
+    A400 : #000000,
+    A700 : #000000,
+  )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$loefbijter-web-primary: mat-palette($md-palette-dark);
+$loefbijter-web-accent: mat-palette($md-palette-light, A200, A100, A400);
+
+// The warn palette is optional (defaults to red).
+$loefbijter-web-warn: mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$loefbijter-web-theme: mat-light-theme($loefbijter-web-primary, $loefbijter-web-accent, $loefbijter-web-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($loefbijter-web-theme);

@@ -3,9 +3,8 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { LoginComponent } from './login/login.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { HomeComponent } from './home/home.component';
@@ -14,6 +13,7 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { MaterialModule } from './_helpers/material.module';
 import { FormErrorsModule } from './_modules/form-errors/form-errors.module';
 import { ContentModule } from './_modules/content/content.module';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [

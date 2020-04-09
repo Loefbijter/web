@@ -1,9 +1,48 @@
-<mat-toolbar color="primary" class="mat-elevation-z6">
-  <mat-toolbar-row>
-    <span>De Loefbijter</span>
-    <!-- The positioning of this button should change, but this is to demonstrate the logout functionality -->
-    <button *ngIf="loggedIn" mat-button (click)="logout()">Log uit</button>
-  </mat-toolbar-row>
-</mat-toolbar>
+<mat-sidenav-container fullscreen>
+  <mat-sidenav #sidenav [mode]="mobile ? 'over' : 'side'" [opened]="!mobile" role="navigation">
+    <mat-nav-list>
+      <div class="mat-drawer-header">
+        <img class="mat-drawer__logo" src="assets/logo-kleur-loefbijter.svg">
+      </div>
+    </mat-nav-list>
 
-<router-outlet></router-outlet>
+    <mat-nav-list *ngIf="loggedIn">
+      <a mat-list-item routerLink="/home" routerLinkActive="active">
+        <mat-icon color="primary">home</mat-icon>
+        Home
+      </a>
+      <a mat-list-item routerLink="/boats" routerLinkActive="active">
+        <mat-icon color="primary">directions_boat</mat-icon>
+        Boten
+      </a>
+
+      <mat-divider></mat-divider>
+      <div mat-subheader>Account</div>
+      <a mat-list-item routerLink="/account" routerLinkActive="active">
+        <mat-icon color="primary">person</mat-icon>
+        Account
+      </a>
+      <a mat-list-item (click)="logout()">
+        <mat-icon color="primary">open_in_browser</mat-icon>
+        Uitloggen
+      </a>
+    </mat-nav-list>
+  </mat-sidenav>
+
+  <mat-sidenav-content>
+    <mat-toolbar color="primary" class="mat-elevation-z6">
+      <mat-toolbar-row>
+        <button *ngIf="loggedIn && mobile" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()"
+                color="white">
+          <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+        </button>
+
+        <span>De Loefbijter</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <div style="margin: 20px">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
