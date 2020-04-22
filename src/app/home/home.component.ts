@@ -4,5 +4,4 @@ import { Component } from '@angular/core';
   selector: 'app-home',
   template: 'Home page (only visible when logged in)'
 })
-
 export class HomeComponent { }

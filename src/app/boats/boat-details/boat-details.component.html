@@ -1,0 +1,20 @@
+<div class="actions">
+  <button mat-mini-fab (click)="onEditClick()">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button mat-mini-fab color="warn" (click)="onDeleteClick()">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>
+
+<h2 class="mat-title">{{'boat-details.title' | content}}</h2>
+
+<!-- This table is temporary, until the details-page can be filled with damages -->
+<table *ngIf="boat" mat-table [dataSource]="boatData()">
+  <ng-container [matColumnDef]="column" *ngFor="let column of columns">
+    <td mat-cell *matCellDef="let element">{{element[column]}}</td>
+  </ng-container>
+
+  <tr mat-row *matRowDef="let row; columns: columns;"></tr>
+</table>
+<!-- end of temporary table -->

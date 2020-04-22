@@ -9,6 +9,10 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
+import { MatSelectModule } from '@angular/material/select';
 
 const MODULES: Type<object>[] = [
   MatToolbarModule,
@@ -22,6 +26,10 @@ const MODULES: Type<object>[] = [
   MatListModule,
   MatCardModule,
   MatToolbarModule,
+  MatDialogModule,
+  MatSnackBarModule,
+  MatTableModule,
+  MatSelectModule,
 ];
 
 /**

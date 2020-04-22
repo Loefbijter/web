@@ -1,0 +1,13 @@
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.actions>* {
+  margin: 0.5rem;
+}
+
+.key-value-holder {
+  display: flex;
+  justify-content: space-between;
+}

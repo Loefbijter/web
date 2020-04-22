@@ -22,7 +22,7 @@ export class AppComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    window.removeEventListener('resize', this.checkWindowResize);
+    window.removeEventListener('resize', this.checkWindowResize.bind(this));
   }
 
   private checkWindowResize(): void {

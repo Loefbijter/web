@@ -1,0 +1,25 @@
+{
+  "boats.title": "Boten",
+  "boats.no-boats-found": "Geen boten gevonden.",
+  "boats.button.show-details.text": "Details",
+  "boats.button.load-more.text": "Meer weergeven",
+  "boats.error.loading": "Er ging iets mis bij het laden van de boten, probeer het later opnieuw.",
+
+  "create-boat.title": "Boot toevoegen",
+  "create-boat.name.placeholder": "Naam",
+  "create-boat.name.error.required": "Naam is verplicht",
+  "create-boat.name.error.maxlength": "Naam is maximaal 255 tekens lang",
+  "create-boat.type.placeholder": "Type",
+  "create-boat.type.error.required": "Type is verplicht",
+  "create-boat.type.error.maxlength": "Type is maximaal 255 tekens lang",
+  "create-boat.image.placeholder": "Afbeelding URL",
+  "create-boat.image.error.required": "Afbeelding URL is verplicht",
+  "create-boat.image.error.pattern": "URL moet valide zijn, bijvoorbeeld: https://example.com/image.png",
+  "create-boat.certificate.placeholder": "Vereist certificaat",
+  "create-boat.certificate.error.required": "Certificaat is verplicht",
+  "create-boat.image-preview.text": "Afbeelding voorbeeld",
+  "create-boat.button.cancel.text": "Annuleren",
+  "create-boat.button.create.text": "Toevoegen",
+  "create-boat.success": "Boot succesvol toegevoegd.",
+  "create-boat.error": "Er ging iets mis bij het maken van de boot, probeer het later opnieuw."
+}

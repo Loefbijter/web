@@ -1,0 +1,53 @@
+<h2 class="mat-title">{{'edit-boat.title' | content}}</h2>
+
+<form [formGroup]="editBoatForm" (submit)="onSubmit()" novalidate>
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="{{'edit-boat.name.placeholder' | content}}" formControlName="name">
+    </mat-form-field>
+    <app-form-errors [targetFormControl]="editBoatForm.controls.name" [messages]="errors.name"
+      (errorChanges)="updateErrors('name', $event)">
+    </app-form-errors>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="{{'edit-boat.type.placeholder' | content}}" formControlName="type">
+    </mat-form-field>
+    <app-form-errors [targetFormControl]="editBoatForm.controls.type" [messages]="errors.type"
+      (errorChanges)="updateErrors('type', $event)">
+    </app-form-errors>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <mat-label>{{'edit-boat.certificate.placeholder' | content}}</mat-label>
+      <mat-select formControlName="certificate">
+        <mat-option *ngFor="let c of certificates" [value]="c.id">{{c.name}}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <app-form-errors [targetFormControl]="editBoatForm.controls.certificate" [messages]="errors.certificate"
+      (errorChanges)="updateErrors('certificate', $event)">
+    </app-form-errors>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <input type="url" matInput placeholder="{{'edit-boat.image.placeholder' | content}}" formControlName="image">
+    </mat-form-field>
+    <app-form-errors [targetFormControl]="editBoatForm.controls.image" [messages]="errors.image"
+      (errorChanges)="updateErrors('image', $event)">
+    </app-form-errors>
+    <img [src]="editBoatForm.controls.image.value" alt="{{'edit-boat.image-preview.text' | content}}">
+  </p>
+
+  <div class="form-actions">
+    <ng-container *ngIf="!loading; else spinner">
+      <button type="button" mat-button (click)="this.dialogRef.close()">{{'edit-boat.button.cancel.text' | content}}</button>
+      <button type="submit" mat-button>{{'edit-boat.button.save.text' | content}}</button>
+    </ng-container>
+    <ng-template #spinner>
+      <mat-spinner diameter="30"></mat-spinner>
+    </ng-template>
+  </div>
+</form>
