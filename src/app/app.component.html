@@ -15,6 +15,10 @@
         <mat-icon color="primary">directions_boat</mat-icon>
         Boten
       </a>
+      <a mat-list-item routerLink="/reservations" routerLinkActive="active">
+        <mat-icon color="primary">receipt</mat-icon>
+        Reserveringen
+      </a>
 
       <mat-divider></mat-divider>
       <div mat-subheader>Account</div>
@@ -32,8 +36,8 @@
   <mat-sidenav-content>
     <mat-toolbar color="primary" class="mat-elevation-z6">
       <mat-toolbar-row>
-        <button *ngIf="loggedIn && mobile" type="button" aria-label="Toggle sidenav" mat-icon-button (click)="sidenav.toggle()"
-                color="white">
+        <button *ngIf="loggedIn && mobile" type="button" aria-label="Toggle sidenav" mat-icon-button
+          (click)="sidenav.toggle()" color="white">
           <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
         </button>
 

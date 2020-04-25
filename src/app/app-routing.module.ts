@@ -9,7 +9,16 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
 
   // page routes
-  { path: 'boats', loadChildren: () => import('./boats/boats.module').then(m => m.BoatsModule), canActivate: [AuthGuard] },
+  {
+    path: 'boats',
+    loadChildren: () => import('./boats/boats.module').then(m => m.BoatsModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'reservations',
+    loadChildren: () => import('./reservations/reservations.module').then(m => m.ReservationsModule),
+    canActivate: [AuthGuard]
+  },
 
   // wildcard route, default when nothing else matches
   { path: '**', redirectTo: 'home' }

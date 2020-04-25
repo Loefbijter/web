@@ -1,0 +1,15 @@
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.action-btn{
+  margin-left: 10px;
+}
+
+.details-header {
+  margin: 0;
+  line-height: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -17,12 +17,14 @@ import { LoginComponent } from './login/login.component';
 import { BoatsModule } from './boats/boats.module';
 import { CommonModule } from '@angular/common';
 import { CertificatesModule } from './certificates/certificates.module';
+import { ReservationsModule } from './reservations/reservations.module';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
   ],
   imports: [
     CommonModule,
@@ -35,6 +37,8 @@ import { CertificatesModule } from './certificates/certificates.module';
     HttpClientModule,
     BoatsModule,
     CertificatesModule,
+    ReservationsModule,
+    FlexLayoutModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

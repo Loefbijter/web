@@ -1,0 +1,22 @@
+{
+  "reservations.title": "Reserveringen",
+  "reservations.widget.title": "Niet gereviewde reserveringen",
+  "reservations.no-reservations-found": "geen reserveringen",
+  "reservations.no-open-reservations-found": "geen nog niet beoordeelde reserveringen",
+  "reservations.button.show-details.text": "Details",
+  "reservations.button.load-more.text": "Meer weergeven",
+  "reservations.button.review.text": "Review",
+  "reservations.details.title.text": "Reservering details",
+  "reservations.details.date.text": "Reservering op",
+  "reservations.details.from-time.text": "Van",
+  "reservations.details.until-time.text": "tot",
+  "reservations.details.reason.text": "Reden",
+  "reservations.details.reservation-by.text": "Gereserveerd door",
+  "reservations.details.skipper.text": "Skipper",
+  "reservations.review.until.text": "tot",
+  "reservations.error.loading": "Er ging iets mis bij het laden van de reserveringen, probeer het later opnieuw.",
+  "accept-boat-reservation.button.confirm.text": "Accepteren",
+  "accept-boat-reservation.button.cancel.text": "Afwijzen",
+  "update-reservation-acceptance.success": "succesvol de review status aan gepast",
+  "update-reservation-acceptance.error": "Er ging iets mis bij het aanpassen van de review status, probeer het later opnieuw."
+}
