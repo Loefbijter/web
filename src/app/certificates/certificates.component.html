@@ -1,0 +1,35 @@
+<h2 class="mat-h2">{{'certificates.title' | content}}</h2>
+
+<table mat-table [dataSource]="certificates">
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>{{'certificates.table.name.colname' | content}}</th>
+    <td mat-cell *matCellDef="let element">{{element.name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="primary" (click)="showEditCertificateDialog(element)">
+        <mat-icon aria-hidden="false">edit</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="warn" (click)="showDeleteCertificateDialog(element)">
+        <mat-icon aria-hidden="false">delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+</table>
+
+<button mat-fab id="new-certificate-button" (click)="showCreateCertificateDialog()">
+  <mat-icon aria-hidden="false">add</mat-icon>
+</button>

@@ -7,6 +7,10 @@ mat-form-field {
   justify-content: flex-end;
 }
 
+.form-actions > * {
+  margin: 0 5px;
+}
+
 .form-actions mat-spinner {
   margin: auto;
 }

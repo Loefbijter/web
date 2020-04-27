@@ -150,3 +150,8 @@ $loefbijter-web-theme: mat-light-theme($loefbijter-web-primary, $loefbijter-web-
 // Alternatively, you can import and @include the theme mixins for each component
 // that you are using.
 @include angular-material-theme($loefbijter-web-theme);
+
+.mat-warn-text,
+.form-errors {
+  color: mat-color($loefbijter-web-warn) !important;
+}

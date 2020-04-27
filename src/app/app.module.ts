@@ -15,10 +15,15 @@ import { ContentModule } from './_modules/content/content.module';
 
 import { LoginComponent } from './login/login.component';
 import { BoatsModule } from './boats/boats.module';
-import { CommonModule } from '@angular/common';
+import { CommonModule, registerLocaleData } from '@angular/common';
 import { CertificatesModule } from './certificates/certificates.module';
 import { ReservationsModule } from './reservations/reservations.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+
+import localeNl from '@angular/common/locales/nl';
+import localeNlExtra from '@angular/common/locales/extra/nl';
+
+registerLocaleData(localeNl, 'nl-NL', localeNlExtra);
 
 @NgModule({
   declarations: [

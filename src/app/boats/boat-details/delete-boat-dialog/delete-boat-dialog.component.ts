@@ -9,7 +9,7 @@ import { TOAST_DURATION } from '../../../constants';
 @Component({
   selector: 'app-delete-boat-dialog',
   templateUrl: './delete-boat-dialog.component.html',
-  styles: ['.actions { display: flex; justify-content: flex-end; }']
+  styles: ['.actions { display: flex; justify-content: flex-end; } .actions>* { margin: 0 5px; }']
 })
 export class DeleteBoatDialogComponent {
 
