@@ -12,14 +12,13 @@ import { ErrorInterceptor } from './_helpers/error.interceptor';
 import { MaterialModule } from './_helpers/material.module';
 import { FormErrorsModule } from './_modules/form-errors/form-errors.module';
 import { ContentModule } from './_modules/content/content.module';
-
 import { LoginComponent } from './login/login.component';
 import { BoatsModule } from './boats/boats.module';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import { CertificatesModule } from './certificates/certificates.module';
+import { DamageModule } from './damage/damage.module';
 import { ReservationsModule } from './reservations/reservations.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
-
 import localeNl from '@angular/common/locales/nl';
 import localeNlExtra from '@angular/common/locales/extra/nl';
 import { MatPaginatorIntl } from '@angular/material/paginator';
@@ -44,6 +43,7 @@ registerLocaleData(localeNl, 'nl-NL', localeNlExtra);
     HttpClientModule,
     BoatsModule,
     CertificatesModule,
+    DamageModule,
     ReservationsModule,
     FlexLayoutModule,
   ],

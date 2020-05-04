@@ -11,3 +11,22 @@
   display: flex;
   justify-content: space-between;
 }
+
+.mat-cell,
+.mat-header-cell {
+  padding: 0px 8px;
+}
+
+.damages-table {
+  min-width: 100%;
+}
+
+.boat-information {
+  img {
+    width: 200px;
+  }
+
+  h2, h4 {
+    margin: 2px 0;
+  }
+}

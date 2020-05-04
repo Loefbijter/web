@@ -1,6 +1,10 @@
 {
   "boat-details.title": "Boot details",
   "boat-details.not-found": "Boot niet gevonden.",
+  "boat-details.name": "Naam:",
+  "boat-details.type": "Type:",
+  "boat-details.requiredCertificate": "Benodigd certificaat:",
+  "boat-details.image": "Afbeelding:",
 
   "delete-boat.title": "Boot verwijderen",
   "delete-boat.message": "Weet je zeker dat je \"${boatName}\" wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
@@ -24,6 +28,13 @@
   "edit-boat.image-preview.text": "Afbeelding voorbeeld",
   "edit-boat.button.cancel.text": "Annuleren",
   "edit-boat.button.save.text": "Opslaan",
-  "edit-boat.success": "Boot succesvol bewerkt.",
-  "edit-boat.error": "Er ging iets mis bij het bewerken van de boot, probeer het later opnieuw."
+  "edit-boat.success": "Boat succesvol bewerkt.",
+  "edit-boat.error": "Er ging iets mis bij het bewerken van de boot, probeer het later opnieuw.",
+
+  "boat-damage.title": "Beschadigingen",
+  "boat-damage.description": "Beschrijving",
+  "boat-damage.createdAt": "Aangemaakt op",
+  "boat-damage.resolvedAt": "Opgelost op",
+  "boat-damage.actions": "Acties",
+  "boat-damage.error.loading": "Er ging iets mis bij het laden van de beschadigingen, probeer het later opnieuw."
 }
