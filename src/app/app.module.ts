@@ -22,6 +22,8 @@ import { FlexLayoutModule } from '@angular/flex-layout';
 
 import localeNl from '@angular/common/locales/nl';
 import localeNlExtra from '@angular/common/locales/extra/nl';
+import { MatPaginatorIntl } from '@angular/material/paginator';
+import { getDutchPaginatorIntl } from './paginator-dutch-intl';
 
 registerLocaleData(localeNl, 'nl-NL', localeNlExtra);
 
@@ -47,7 +49,8 @@ registerLocaleData(localeNl, 'nl-NL', localeNlExtra);
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    { provide: MatPaginatorIntl, useValue: getDutchPaginatorIntl() }
   ],
   bootstrap: [AppComponent],
   exports: [
