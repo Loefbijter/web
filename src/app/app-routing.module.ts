@@ -3,12 +3,14 @@ import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './_helpers/auth.guard';
+import { SetPasswordComponent } from './set-password/set-password.component';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
-
-  // page routes
+  { path: 'forgot-password', component: ForgotPasswordComponent },
+  { path: 'set-password/:token', component: SetPasswordComponent },
   {
     path: 'boats',
     loadChildren: () => import('./boats/boats.module').then(m => m.BoatsModule),
@@ -22,6 +24,11 @@ const routes: Routes = [
   {
     path: 'reservations',
     loadChildren: () => import('./reservations/reservations.module').then(m => m.ReservationsModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'users',
+    loadChildren: () => import('./users/users.module').then(m => m.UsersModule),
     canActivate: [AuthGuard]
   },
 

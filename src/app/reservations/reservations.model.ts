@@ -1,4 +1,5 @@
 import { Boat } from '../boats/boats.model';
+import { User } from '../users/users.model';
 
 export interface Reservation {
   id: string;
@@ -13,11 +14,4 @@ export interface Reservation {
 
 export interface AcceptanceDto {
   status: boolean;
-}
-
-export interface User {
-  name: string;
-  email: string;
-  id: string;
-  role: number;
 }

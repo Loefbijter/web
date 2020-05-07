@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Tokens, RefreshResponse, UserRole } from '../_helpers/auth.model';
 import * as jwtDecode from 'jwt-decode';
+import { SetPasswordDto } from '../set-password/set-password.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -56,6 +57,14 @@ export class AuthService {
   public logout(): void {
     localStorage.removeItem('authTokens');
     this.currentUserSubject.next(null);
+  }
+
+  public setPassword(dto: SetPasswordDto): Observable<void> {
+    return this.http.post<void>(`${environment.apiUrl}/auth/set-password`, dto);
+  }
+
+  public resetPassword(userEmail: string): Observable<void> {
+    return this.http.post<void>(`${environment.apiUrl}/auth/reset-password`, { email: userEmail });
   }
 
   private storeTokens(tokens: Tokens): void {

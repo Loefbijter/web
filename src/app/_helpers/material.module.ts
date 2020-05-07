@@ -15,6 +15,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 const MODULES: Type<object>[] = [
   MatToolbarModule,
@@ -34,6 +35,7 @@ const MODULES: Type<object>[] = [
   MatSelectModule,
   MatPaginatorModule,
   MatGridListModule,
+  MatTooltipModule,
 ];
 
 /**

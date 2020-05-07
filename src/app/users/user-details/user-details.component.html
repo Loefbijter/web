@@ -1,0 +1,26 @@
+<div class="actions">
+  <button mat-mini-fab (click)="onResetPasswordClick()" matTooltip="{{'user-details.button.reset-password.tooltip' | content}}">
+    <mat-icon>vpn_key</mat-icon>
+  </button>
+  <button mat-mini-fab (click)="onEditClick()" matTooltip="{{'user-details.button.edit.tooltip' | content}}">
+    <mat-icon>edit</mat-icon>
+  </button>
+  <button mat-mini-fab color="warn" (click)="onDeleteClick()" matTooltip="{{'user-details.button.delete.tooltip' | content}}">
+    <mat-icon>delete</mat-icon>
+  </button>
+</div>
+
+<h2 class="mat-title">{{'user-details.title' | content}}</h2>
+
+<dl *ngIf="user">
+  <dt class="mat-body-strong">{{'user-details.name' | content}}</dt>
+  <dd>{{user.name}}</dd>
+  <dt class="mat-body-strong">{{'user-details.email' | content}}</dt>
+  <dd>{{user.email}}</dd>
+  <dt class="mat-body-strong">{{'user-details.role' | content}}</dt>
+  <dd>{{'user-details.role.' + user.role + '.text' | content}}</dd>
+</dl>
+
+<h2 class="mat-title">{{'user-details.section.certificates.title' | content}}</h2>
+
+<pre> << todo >> </pre>

@@ -21,6 +21,9 @@ import { ReservationsModule } from './reservations/reservations.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import localeNl from '@angular/common/locales/nl';
 import localeNlExtra from '@angular/common/locales/extra/nl';
+import { SetPasswordComponent } from './set-password/set-password.component';
+import { UsersModule } from './users/users.module';
+import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getDutchPaginatorIntl } from './paginator-dutch-intl';
 
@@ -31,6 +34,8 @@ registerLocaleData(localeNl, 'nl-NL', localeNlExtra);
     AppComponent,
     LoginComponent,
     HomeComponent,
+    SetPasswordComponent,
+    ForgotPasswordComponent,
   ],
   imports: [
     CommonModule,
@@ -45,6 +50,7 @@ registerLocaleData(localeNl, 'nl-NL', localeNlExtra);
     CertificatesModule,
     DamageModule,
     ReservationsModule,
+    UsersModule,
     FlexLayoutModule,
   ],
   providers: [
