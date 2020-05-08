@@ -35,6 +35,8 @@
   "boat-damage.description": "Beschrijving",
   "boat-damage.createdAt": "Aangemaakt op",
   "boat-damage.resolvedAt": "Opgelost op",
+  "boat-damage.createdByUser": "Aangemaakt door",
+  "boat-damage.lastUpdatedByUser": "Voor het laatst aangepast door",
   "boat-damage.actions": "Acties",
   "boat-damage.error.loading": "Er ging iets mis bij het laden van de beschadigingen, probeer het later opnieuw."
 }

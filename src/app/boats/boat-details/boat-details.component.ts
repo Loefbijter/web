@@ -31,7 +31,7 @@ export class BoatDetailsComponent implements OnInit, AfterViewInit {
   public boat: Boat;
   public boatId: string;
   public columns: string[];
-  public columnsToDisplay: string[] = ['description', 'createdAt', 'resolvedAt', 'actions'];
+  public columnsToDisplay: string[] = ['description', 'createdAt', 'resolvedAt', 'createdByUser', 'lastUpdatedByUser', 'actions'];
   public dataSource: MatTableDataSource<Damage>;
   public totalItemsCount: number;
 

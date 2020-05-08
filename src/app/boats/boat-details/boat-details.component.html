@@ -30,6 +30,14 @@
     <th mat-header-cell *matHeaderCellDef>{{'boat-damage.resolvedAt' | content}}</th>
     <td mat-cell *matCellDef="let element">{{element.resolvedAt | date:'dd/MM/yyyy'}} </td>
   </ng-container>
+  <ng-container matColumnDef="createdByUser">
+    <th mat-header-cell *matHeaderCellDef>{{'boat-damage.createdByUser' | content}}</th>
+    <td mat-cell *matCellDef="let element">{{element.createdByUser.name }} </td>
+  </ng-container>
+  <ng-container matColumnDef="lastUpdatedByUser">
+    <th mat-header-cell *matHeaderCellDef>{{'boat-damage.lastUpdatedByUser' | content}}</th>
+    <td mat-cell *matCellDef="let element">{{element.lastUpdatedByUser.name }} </td>
+  </ng-container>
   <ng-container matColumnDef="actions">
     <th mat-header-cell *matHeaderCellDef>{{'boat-damage.actions' | content}}</th>
     <td mat-cell *matCellDef="let element">
