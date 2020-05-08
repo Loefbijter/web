@@ -1,4 +1,4 @@
-import { User } from '../reservations/reservations.model';
+import { User } from '../users/users.model';
 
 export interface Damage {
   id: string;
