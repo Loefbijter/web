@@ -138,7 +138,7 @@ $md-palette-light: (50 : #edf5fa,
 // (imported above). For each palette, you can optionally specify a default, lighter, and darker
 // hue. Available color palettes: https://material.io/design/color/
 $loefbijter-web-primary: mat-palette($md-palette-dark);
-$loefbijter-web-accent: mat-palette($md-palette-light, A200, A100, A400);
+$loefbijter-web-accent: mat-palette($md-palette-light, A700, A100, A400);
 
 // The warn palette is optional (defaults to red).
 $loefbijter-web-warn: mat-palette($mat-red);
@@ -154,4 +154,8 @@ $loefbijter-web-theme: mat-light-theme($loefbijter-web-primary, $loefbijter-web-
 .mat-warn-text,
 .form-errors {
   color: mat-color($loefbijter-web-warn) !important;
+}
+
+.accent-color {
+  color: mat-color($loefbijter-web-accent) !important;
 }

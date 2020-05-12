@@ -1,11 +1,13 @@
 <div class="actions">
-  <button mat-mini-fab (click)="onResetPasswordClick()" matTooltip="{{'user-details.button.reset-password.tooltip' | content}}">
+  <button mat-mini-fab (click)="onResetPasswordClick()"
+    matTooltip="{{'user-details.button.reset-password.tooltip' | content}}">
     <mat-icon>vpn_key</mat-icon>
   </button>
   <button mat-mini-fab (click)="onEditClick()" matTooltip="{{'user-details.button.edit.tooltip' | content}}">
     <mat-icon>edit</mat-icon>
   </button>
-  <button mat-mini-fab color="warn" (click)="onDeleteClick()" matTooltip="{{'user-details.button.delete.tooltip' | content}}">
+  <button mat-mini-fab color="warn" (click)="onDeleteClick()"
+    matTooltip="{{'user-details.button.delete.tooltip' | content}}">
     <mat-icon>delete</mat-icon>
   </button>
 </div>
@@ -23,4 +25,32 @@
 
 <h2 class="mat-title">{{'user-details.section.certificates.title' | content}}</h2>
 
-<pre> << todo >> </pre>
+<ng-container *ngIf="userCertificates$ | async as certs; else certsLoading">
+  <ng-container *ngIf="certificates$ | async as allCerts; else certsLoading">
+    <ng-container *ngIf="allCerts.length > 0; else noCerts">
+      <mat-selection-list [compareWith]="compareCertificates" [formControl]="certificatesControl"
+        (selectionChange)="onSelectionChange($event)">
+        <mat-list-option *ngFor="let c of allCerts" [value]="c">
+          {{c.name}}
+        </mat-list-option>
+      </mat-selection-list>
+
+      <p *ngIf="saving; else doneSaving" class="d-flex">
+        <span class="accent-color">{{'user-details.certificates.saving' | content}} <mat-icon inline="true">
+            hourglass_empty</mat-icon></span>
+      </p>
+      <ng-template #doneSaving>
+        <span class="accent-color">{{'user-details.certificates.done-saving' | content}} <mat-icon inline="true">done
+          </mat-icon></span>
+      </ng-template>
+    </ng-container>
+
+    <ng-template #noCerts>
+      <p>{{'user-details.certificates.no-certificates' | content}}</p>
+    </ng-template>
+  </ng-container>
+</ng-container>
+
+<ng-template #certsLoading>
+  <mat-spinner diameter="30"></mat-spinner>
+</ng-template>

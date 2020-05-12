@@ -38,4 +38,12 @@ export class UsersService {
   public remove(id: string): Observable<void> {
     return this.http.delete<void>(`${environment.apiUrl}/users/${id}`);
   }
+
+  public linkCertificate(userId: string, certificateId: string): Observable<void> {
+    return this.http.post<void>(`${environment.apiUrl}/users/${userId}/certificates`, { certificateId });
+  }
+
+  public unlinkCertificate(userId: string, certificateId: string): Observable<void> {
+    return this.http.delete<void>(`${environment.apiUrl}/users/${userId}/certificates/${certificateId}`);
+  }
 }

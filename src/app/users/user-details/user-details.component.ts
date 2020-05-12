@@ -10,6 +10,11 @@ import { MatDialog } from '@angular/material/dialog';
 import { EditUserDialogComponent } from './edit-user-dialog/edit-user-dialog.component';
 import { DeleteUserDialogComponent } from './delete-user-dialog/delete-user-dialog.component';
 import { ContentItem } from 'src/app/_modules/content/content-item.model';
+import { CertificatesService } from 'src/app/certificates/certificates.service';
+import { Certificate } from 'src/app/certificates/certificates.model';
+import { Observable } from 'rxjs';
+import { FormControl } from '@angular/forms';
+import { MatSelectionListChange } from '@angular/material/list';
 
 // tslint:disable-next-line: no-var-requires
 const content: ContentItem = require('./user-details.content.json');
@@ -22,10 +27,16 @@ const content: ContentItem = require('./user-details.content.json');
 export class UserDetailsComponent implements OnInit {
 
   public user: User;
+  public certificates$: Observable<Certificate[]>;
+  public userCertificates$: Observable<Certificate[]>;
+
+  public certificatesControl: FormControl;
+  public saving: boolean = false;
 
   public constructor(
     private readonly route: ActivatedRoute,
     private readonly usersService: UsersService,
+    private readonly certificatesService: CertificatesService,
     private readonly authService: AuthService,
     private readonly snackBar: MatSnackBar,
     private readonly contentService: ContentService,
@@ -40,11 +51,20 @@ export class UserDetailsComponent implements OnInit {
     this.usersService.getOne(id).subscribe({
       next: user => {
         this.user = user;
+        this.getCertificates();
       },
       error: () => {
         this.snackBar.open(this.contentService.get('user-details.not-found'), null, { duration: TOAST_DURATION });
         this.router.navigate(['users']);
       }
+    });
+  }
+
+  private getCertificates(): void {
+    this.certificates$ = this.certificatesService.getAllComplete();
+    this.userCertificates$ = this.certificatesService.getCertificatesFromUser(this.user.id);
+    this.userCertificates$.subscribe({
+      next: c => this.certificatesControl = new FormControl(c)
     });
   }
 
@@ -73,5 +93,27 @@ export class UserDetailsComponent implements OnInit {
         }
       }
     });
+  }
+
+  public onSelectionChange(change: MatSelectionListChange): void {
+    this.saving = true;
+    const cert: Certificate = change.option.value;
+    if (change.option.selected) {
+      // link the user and certificate
+      this.usersService.linkCertificate(this.user.id, cert.id).subscribe({
+        next: () => this.saving = false,
+        error: () => this.snackBar.open(this.contentService.get('user-details.certificates.error'), null, { duration: TOAST_DURATION })
+      });
+    } else {
+      // unlink the user and certificate
+      this.usersService.unlinkCertificate(this.user.id, cert.id).subscribe({
+        next: () => this.saving = false,
+        error: () => this.snackBar.open(this.contentService.get('user-details.certificates.error'), null, { duration: TOAST_DURATION })
+      });
+    }
+  }
+
+  public compareCertificates(o1: Certificate, o2: Certificate): boolean {
+    return o1 && o2 && o1.id == o2.id;
   }
 }

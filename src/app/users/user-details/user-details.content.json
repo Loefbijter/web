@@ -18,6 +18,10 @@
   "user-details.reset-password.error": "Er ging iets mis tijdens het resetten van het wachtwoord, probeer het later opnieuw.",
 
   "user-details.section.certificates.title": "Certificaten",
+  "user-details.certificates.no-certificates": "Er bestaan nog geen certificaten, voeg deze toe via 'Certificaten' in het zijmenu.",
+  "user-details.certificates.done-saving": "Alle wijzigingen opgeslagen",
+  "user-details.certificates.saving": "Bezig met opslaan",
+  "user-details.certificates.error": "Er ging iets mis tijdens het opslaan van de wijzigingen, probeer het later opnieuw.",
 
   "edit-user.title": "Gebruiker wijzigen",
   "edit-user.description": "Het wachtwoord kan hier niet worden gewijzigd. Dit proces kan worden gestart via de knop op de gebruiker's detailpagina.",

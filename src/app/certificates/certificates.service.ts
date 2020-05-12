@@ -25,6 +25,15 @@ export class CertificatesService {
     );
   }
 
+  public getCertificatesFromUser(userId: string): Observable<Certificate[]> {
+    return this.http.get<Paged<Certificate>>(`${environment.apiUrl}/users/${userId}/certificates`).pipe(
+      switchMap(res => {
+        return this.http.get<Paged<Certificate>>(`${environment.apiUrl}/users/${userId}/certificates?limit=${res.totalItems}`)
+          .pipe(map(r => r.items));
+      })
+    );
+  }
+
   public create(certificate: CreateCertificateDto): Observable<Certificate> {
     return this.http.post<Certificate>(`${environment.apiUrl}/certificates`, certificate);
   }
