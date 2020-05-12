@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Reservation, AcceptanceDto } from './reservations.model';
+import { Reservation, AcceptanceDto, Order } from './reservations.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { Paged } from '../app.model';
@@ -14,21 +14,24 @@ export class ReservationsService {
 
   public constructor(private readonly http: HttpClient) { }
 
-  public getAll(optionsParam?: { page?: number, limit?: number }): Observable<Reservation[]> {
-    const options: { page?: number, limit?: number } = { page: 1, limit: 10 };
+  public getAll(optionsParam?: { page?: number, limit?: number, order?: Order }): Observable<Reservation[]> {
+    const options: { page?: number, limit?: number, order: Order } = { page: 1, limit: 10, order: Order.ASC };
     Object.assign(options, optionsParam);
-    return this.http.get<Paged<Reservation>>(`${environment.apiUrl}/boat-reservations?page=${options.page}&limit=${options.limit}`)
+    return this.http
+      .get<Paged<Reservation>>(`${environment.apiUrl}/boat-reservations?page=${options.page}&limit=${options.limit}&order=${options.order}`)
       .pipe(map((res: Paged<Reservation>) => {
         this.itemsTotal = res.totalItems;
         return res.items;
       }));
   }
 
-  public getAllOpen(optionsParam?: { page?: number, limit?: number }): Observable<Reservation[]> {
-    const options: { page?: number, limit?: number } = { page: 1, limit: 10 };
+  public getAllOpen(optionsParam?: { page?: number, limit?: number, order?: Order }): Observable<Reservation[]> {
+    const options: { page?: number, limit?: number, order?: Order } = { page: 1, limit: 10, order: Order.ASC };
     Object.assign(options, optionsParam);
     return this.http
-      .get<Paged<Reservation>>(`${environment.apiUrl}/boat-reservations?page=${options.page}&limit=${options.limit}&notReviewed=true`)
+      .get<Paged<Reservation>>(
+        `${environment.apiUrl}/boat-reservations?page=${options.page}&limit=${options.limit}&order=${options.order}&notReviewed=true`
+      )
       .pipe(map((res: Paged<Reservation>) => {
         this.openItemsTotal = res.totalItems;
         return res.items;
@@ -40,6 +43,6 @@ export class ReservationsService {
   }
 
   public setAcceptanceOfReservation(id: string, boat: AcceptanceDto): Observable<Reservation> {
-    return this.http.put<Reservation>(`${environment.apiUrl}/boat-reservations/acceptance/${id}`, boat);
+    return this.http.post<Reservation>(`${environment.apiUrl}/boat-reservations/${id}/reviews`, boat);
   }
 }

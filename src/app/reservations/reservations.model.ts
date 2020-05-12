@@ -15,3 +15,8 @@ export interface Reservation {
 export interface AcceptanceDto {
   status: boolean;
 }
+
+export enum Order {
+  ASC = 'asc',
+  DESC = 'desc'
+}
