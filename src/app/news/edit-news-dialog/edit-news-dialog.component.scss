@@ -1,0 +1,16 @@
+mat-form-field {
+  width: 100%;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.form-actions > * {
+  margin: 0 5px;
+}
+
+.form-actions mat-spinner {
+  margin: auto;
+}

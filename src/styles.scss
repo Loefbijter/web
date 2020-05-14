@@ -159,3 +159,7 @@ $loefbijter-web-theme: mat-light-theme($loefbijter-web-primary, $loefbijter-web-
 .accent-color {
   color: mat-color($loefbijter-web-accent) !important;
 }
+
+mat-dialog-container {
+  max-height: 100vh !important;
+}

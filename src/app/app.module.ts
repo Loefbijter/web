@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, LOCALE_ID } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -26,6 +26,8 @@ import { UsersModule } from './users/users.module';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getDutchPaginatorIntl } from './paginator-dutch-intl';
+import { NewsModule } from './news/news.module';
+import { NgxMatMomentModule } from '@angular-material-components/moment-adapter';
 
 registerLocaleData(localeNl, 'nl-NL', localeNlExtra);
 
@@ -52,15 +54,18 @@ registerLocaleData(localeNl, 'nl-NL', localeNlExtra);
     ReservationsModule,
     UsersModule,
     FlexLayoutModule,
+    NewsModule,
+    NgxMatMomentModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: MatPaginatorIntl, useValue: getDutchPaginatorIntl() }
+    { provide: MatPaginatorIntl, useValue: getDutchPaginatorIntl() },
+    { provide: LOCALE_ID, useValue: 'nl-NL' },
   ],
   bootstrap: [AppComponent],
   exports: [
-    ContentModule
+    ContentModule,
   ]
 })
 export class AppModule { }

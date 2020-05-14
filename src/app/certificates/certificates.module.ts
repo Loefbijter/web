@@ -11,8 +11,7 @@ import { EditCertificateDialogComponent } from './edit-certificate-dialog/edit-c
 import { DeleteCertificateDialogComponent } from './delete-certificate-dialog/delete-certificate-dialog.component';
 
 const routes: Routes = [
-  { path: '', component: CertificatesComponent },
-  { path: ':id', component: CertificatesComponent }
+  { path: '', component: CertificatesComponent }
 ];
 
 @NgModule({

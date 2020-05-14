@@ -1,0 +1,15 @@
+table {
+  width: 100%;
+}
+
+button#new-news-button {
+  position: fixed;
+  right: 2rem;
+  bottom: 1.5rem;
+}
+
+.mat-column-delete,
+.mat-column-edit,
+.mat-column-show {
+  width: 0;
+}

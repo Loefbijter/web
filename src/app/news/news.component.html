@@ -1,0 +1,63 @@
+<h2 class="mat-h2">{{'news.title' | content}}</h2>
+
+<table mat-table [dataSource]="dataSource">
+
+  <ng-container matColumnDef="title">
+    <th mat-header-cell *matHeaderCellDef>{{'news.table.title.colname' | content}}</th>
+    <td mat-cell *matCellDef="let element">{{element.title | truncate:30}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="text">
+    <th mat-header-cell *matHeaderCellDef>{{'news.table.text.colname' | content}}</th>
+    <td mat-cell *matCellDef="let element">{{element.text | truncate:60}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="publishedAt">
+    <th mat-header-cell *matHeaderCellDef>{{'news.table.publishedAt.colname' | content}}</th>
+    <td mat-cell *matCellDef="let element">
+      <ng-container *ngIf="element.publishedAt; else noDate">
+        {{element.publishedAt * 1000 | date:'dd/MM/yyyy HH:mm'}}
+      </ng-container>
+      <ng-template #noDate>
+        -
+      </ng-template>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="show">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button (click)="showShowNewsDialog(element)">
+        <mat-icon aria-hidden="false">visibility</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="edit">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="primary" (click)="showEditNewsDialog(element)">
+        <mat-icon aria-hidden="false">edit</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef></th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="warn" (click)="showDeleteNewsDialog(element)">
+        <mat-icon aria-hidden="false">delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+</table>
+<mat-paginator #paginator [length]="totalItemsCount" [pageSizeOptions]="[5, 10, 50, 100]" [pageIndex]="0"
+  [pageSize]="defaultPageSize" showFirstLastButtons></mat-paginator>
+
+<button mat-fab id="new-news-button" (click)="showCreateNewsDialog()">
+  <mat-icon aria-hidden="false">add</mat-icon>
+</button>
