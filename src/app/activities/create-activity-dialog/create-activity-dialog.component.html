@@ -1,0 +1,134 @@
+<h2 class="mat-title">{{'create-activity.title' | content}}</h2>
+
+<form [formGroup]="createActivityForm" (submit)="onSubmit()" novalidate cdkScrollable>
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="{{'activity.title.placeholder' | content}}" formControlName="title">
+    </mat-form-field>
+    <app-form-errors [targetFormControl]="createActivityForm.controls.title" [messages]="errors.title"
+      (errorChanges)="updateErrors('title', $event)">
+    </app-form-errors>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="{{'activity.description.placeholder' | content}}"
+        formControlName="description">
+    </mat-form-field>
+    <app-form-errors [targetFormControl]="createActivityForm.controls.description" [messages]="errors.description"
+      (errorChanges)="updateErrors('description', $event)">
+    </app-form-errors>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="{{'activity.location.placeholder' | content}}"
+        formControlName="location">
+    </mat-form-field>
+    <app-form-errors [targetFormControl]="createActivityForm.controls.location" [messages]="errors.location"
+      (errorChanges)="updateErrors('location', $event)">
+    </app-form-errors>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <input type="imageUrl" matInput placeholder="{{'activity.imageUrl.placeholder' | content}}"
+        formControlName="imageUrl">
+    </mat-form-field>
+    <app-form-errors [targetFormControl]="createActivityForm.controls.imageUrl" [messages]="errors.imageUrl"
+      (errorChanges)="updateErrors('imageUrl', $event)">
+    </app-form-errors>
+    <img [src]="createActivityForm.controls.imageUrl.value" alt="{{'activity.image-preview.text' | content}}">
+  </p>
+
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="{{'activity.organiser.placeholder' | content}}"
+        formControlName="organiser">
+    </mat-form-field>
+    <app-form-errors [targetFormControl]="createActivityForm.controls.organiser" [messages]="errors.organiser"
+      (errorChanges)="updateErrors('organiser', $event)">
+    </app-form-errors>
+  </p>
+
+  <div>
+    <mat-form-field>
+      <input matInput [ngxMatDatetimePicker]="startTimePicker"
+        placeholder="{{'activity.startTime.placeholder' | content}}" formControlName="startTime">
+      <mat-datepicker-toggle matSuffix [for]="startTimePicker"></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #startTimePicker [showSpinners]="true"></ngx-mat-datetime-picker>
+    </mat-form-field>
+    <app-form-errors [targetFormControl]="createActivityForm.controls.startTime" [messages]="errors.startTime"
+      (errorChanges)="updateErrors('startTime', $event)">
+    </app-form-errors>
+  </div>
+
+  <p>
+    <mat-form-field>
+      <input matInput [ngxMatDatetimePicker]="endTimePicker" placeholder="{{'activity.endTime.placeholder' | content}}"
+        formControlName="endTime">
+      <mat-datepicker-toggle matSuffix [for]="endTimePicker"></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #endTimePicker [showSpinners]="true"></ngx-mat-datetime-picker>
+    </mat-form-field>
+    <app-form-errors [targetFormControl]="createActivityForm.controls.endTime" [messages]="errors.endTime"
+      (errorChanges)="updateErrors('endTime', $event)">
+    </app-form-errors>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <input matInput [ngxMatDatetimePicker]="activeFromPicker"
+        placeholder="{{'activity.activeFrom.placeholder' | content}}" formControlName="activeFrom">
+      <mat-datepicker-toggle matSuffix [for]="activeFromPicker"></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #activeFromPicker [showSpinners]="true"></ngx-mat-datetime-picker>
+    </mat-form-field>
+    <app-form-errors [targetFormControl]="createActivityForm.controls.activeFrom" [messages]="errors.activeFrom"
+      (errorChanges)="updateErrors('activeFrom', $event)">
+    </app-form-errors>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <input matInput [ngxMatDatetimePicker]="activeUntilPicker"
+        placeholder="{{'activity.activeUntil.placeholder' | content}}" formControlName="activeUntil">
+      <mat-datepicker-toggle matSuffix [for]="activeUntilPicker"></mat-datepicker-toggle>
+      <ngx-mat-datetime-picker #activeUntilPicker [showSpinners]="true"></ngx-mat-datetime-picker>
+    </mat-form-field>
+    <app-form-errors [targetFormControl]="createActivityForm.controls.activeUntil" [messages]="errors.activeUntil"
+      (errorChanges)="updateErrors('activeUntil', $event)">
+    </app-form-errors>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <input type="number" matInput placeholder="{{'activity.price.placeholder' | content}}" formControlName="price">
+    </mat-form-field>
+    <app-form-errors [targetFormControl]="createActivityForm.controls.price" [messages]="errors.price"
+      (errorChanges)="updateErrors('price', $event)">
+    </app-form-errors>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <input type="number" matInput placeholder="{{'activity.maxAttendees.placeholder' | content}}"
+        formControlName="maxAttendees">
+    </mat-form-field>
+    <app-form-errors [targetFormControl]="createActivityForm.controls.maxAttendees" [messages]="errors.maxAttendees"
+      (errorChanges)="updateErrors('maxAttendees', $event)">
+    </app-form-errors>
+  </p>
+
+  <app-form-errors *ngIf="createActivityForm.errors" [targetFormControl]="createActivityForm" [messages]="errors.form"
+    (errorChanges)="updateErrors('form', $event)"></app-form-errors>
+
+  <div class="form-actions">
+    <ng-container *ngIf="!loading; else spinner">
+      <button type="button" mat-button
+        (click)="this.dialogRef.close()">{{'create-activity.button.cancel.text' | content}}</button>
+      <button type="submit" mat-button>{{'create-activity.button.create.text' | content}}</button>
+    </ng-container>
+    <ng-template #spinner>
+      <mat-spinner diameter="30"></mat-spinner>
+    </ng-template>
+  </div>
+</form>

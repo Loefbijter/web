@@ -1,0 +1,9 @@
+<h2 class="mat-title">{{'delete-activity.title' | content}}</h2>
+
+<p>{{'delete-activity.message' | content:{ activityTitle: activity.title } }}</p>
+
+<div class="actions">
+  <button mat-button (click)="this.dialogRef.close()">{{'delete-activity.button.cancel.text' | content}}</button>
+  <button mat-flat-button color="warn" (click)="onConfirm()">{{'delete-activity.button.confirm.text' | content}}</button>
+</div>
+

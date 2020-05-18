@@ -28,6 +28,7 @@ import { MatPaginatorIntl } from '@angular/material/paginator';
 import { getDutchPaginatorIntl } from './paginator-dutch-intl';
 import { NewsModule } from './news/news.module';
 import { NgxMatMomentModule } from '@angular-material-components/moment-adapter';
+import { ActivitiesModule } from './activities/activities.module';
 
 registerLocaleData(localeNl, 'nl-NL', localeNlExtra);
 
@@ -56,6 +57,7 @@ registerLocaleData(localeNl, 'nl-NL', localeNlExtra);
     FlexLayoutModule,
     NewsModule,
     NgxMatMomentModule,
+    ActivitiesModule,
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

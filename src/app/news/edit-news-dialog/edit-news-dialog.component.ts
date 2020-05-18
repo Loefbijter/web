@@ -35,7 +35,7 @@ export class EditNewsDialogComponent implements OnInit {
       title: new FormControl(this.news.title, [Validators.required, Validators.maxLength(255)]),
       text: new FormControl(this.news.text, [Validators.required, Validators.maxLength(65535)]),
       image: new FormControl(this.news.image, [Validators.pattern(URL_REGEX), Validators.maxLength(2083)]),
-      publishedAt: new FormControl(moment(this.news.publishedAt * 1000))
+      publishedAt: new FormControl(this.news.publishedAt ? moment(this.news.publishedAt * 1000) : null)
     });
   }
 

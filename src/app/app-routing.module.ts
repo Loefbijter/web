@@ -36,6 +36,11 @@ const routes: Routes = [
     loadChildren: () => import('./news/news.module').then(m => m.NewsModule),
     canActivate: [AuthGuard]
   },
+  {
+    path: 'activities',
+    loadChildren: () => import('./activities/activities.module').then(m => m.ActivitiesModule),
+    canActivate: [AuthGuard]
+  },
 
   // wildcard route, default when nothing else matches
   { path: '**', redirectTo: 'home' }
