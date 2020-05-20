@@ -3,13 +3,13 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
-import { Paged, Damage, UpdateDamageDto } from './damage.model';
+import { Damage, UpdateDamageDto } from './damage.model';
+import { Paged } from '../app.model';
 
 @Injectable({ providedIn: 'root' })
 export class DamageService {
 
   public itemsTotal: number = undefined;
-  public openItemsTotal: number = undefined;
 
   public constructor(private readonly http: HttpClient) { }
 

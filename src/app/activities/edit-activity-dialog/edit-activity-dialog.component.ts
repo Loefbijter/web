@@ -101,7 +101,6 @@ export class EditActivityDialogComponent implements OnInit {
   }
 
   public updateErrors(fieldName: string, errors: ValidationErrors): void {
-    console.log(this.editActivityForm.controls.activeUntil.value);
     this.errors[fieldName] = Object.keys(errors).map(errorType => {
       return this.contentService.get(`activity.${fieldName}.error.${errorType}`);
     });

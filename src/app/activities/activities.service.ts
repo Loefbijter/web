@@ -10,7 +10,6 @@ import { Paged } from '../app.model';
 export class ActivitiesService {
 
   public itemsTotal: number = undefined;
-  public openItemsTotal: number = undefined;
 
   public constructor(private readonly http: HttpClient) { }
 
