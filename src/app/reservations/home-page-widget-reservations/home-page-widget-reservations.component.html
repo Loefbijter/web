@@ -3,7 +3,7 @@
   <div *ngFor="let reservation of reservations" class="reservation-row">
     <div class="row-container">
       <div class="reservation-info">
-        <h2 class="details-header">{{formatDate(reservation.startTimestamp, reservation.endTimestamp)}}</h2>
+        <h2 class="details-header">{{simpleDateService.advancedFormatSameDate(reservation.startTimestamp, reservation.endTimestamp)}}</h2>
         <!-- <h4>{{reservation.reason}}</h4> TODO change to the reason of a reservation when that is added to the backend. -->
         <h4>Reason</h4>
       </div>

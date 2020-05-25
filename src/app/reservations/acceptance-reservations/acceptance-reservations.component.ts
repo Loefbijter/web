@@ -6,6 +6,7 @@ import { ContentService } from '../../_modules/content/content.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TOAST_DURATION } from '../../constants';
 import { ContentItem } from '../../_modules/content/content-item.model';
+import { SimpleDateService } from '../../_helpers/simple-date.service';
 
 // tslint:disable-next-line: no-var-requires
 const content: ContentItem = require('../reservations.content.json');
@@ -22,19 +23,12 @@ export class AcceptanceReservationsComponent implements OnInit {
     public readonly dialogRef: MatDialogRef<AcceptanceReservationsComponent>,
     private readonly reservationsService: ReservationsService,
     private readonly contentService: ContentService,
-    private readonly snackBar: MatSnackBar
+    private readonly snackBar: MatSnackBar,
+    public readonly simpleDateService: SimpleDateService,
   ) { }
 
   public ngOnInit(): void {
     this.contentService.addContentItems(content);
-  }
-
-  public formatDate(unixTime: number): string {
-    return new Date(unixTime * 1000).toLocaleDateString();
-  }
-
-  public formatTime(unixTime: number): string {
-    return new Date(unixTime * 1000).toLocaleTimeString();
   }
 
   public acceptanceOfReservation(status: boolean): void {

@@ -12,6 +12,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { CreateActivityDialogComponent } from '../activities/create-activity-dialog/create-activity-dialog.component';
 import { EditActivityDialogComponent } from '../activities/edit-activity-dialog/edit-activity-dialog.component';
 import { DeleteActivityDialogComponent } from '../activities/delete-activity-dialog/delete-activity-dialog.component';
+import { QuestionManagementComponent } from './question-management/question-management.component';
 
 // tslint:disable-next-line: no-var-requires
 const content: ContentItem = require('./activities.content.json');
@@ -91,7 +92,7 @@ export class ActivitiesComponent implements OnInit, AfterViewInit {
   }
 
   public showEditActivityQuestionsDialog(activity: Activity): void {
-    // todo
+    this.dialog.open(QuestionManagementComponent, { width: '1000px', data: activity });
   }
 
   public showEditActivityDialog(activity: Activity): void {

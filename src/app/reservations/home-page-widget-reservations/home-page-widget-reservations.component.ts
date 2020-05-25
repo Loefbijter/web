@@ -7,6 +7,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ContentItem } from '../../_modules/content/content-item.model';
 import { AcceptanceReservationsComponent } from '../acceptance-reservations/acceptance-reservations.component';
 import { MatDialog } from '@angular/material/dialog';
+import { SimpleDateService } from '../../_helpers/simple-date.service';
 
 // tslint:disable-next-line: no-var-requires
 const content: ContentItem = require('../reservations.content.json');
@@ -25,7 +26,8 @@ export class HomePageWidgetReservationsComponent implements OnInit {
     private readonly reservationsService: ReservationsService,
     private readonly contentService: ContentService,
     private readonly snackBar: MatSnackBar,
-    private readonly dialog: MatDialog
+    private readonly dialog: MatDialog,
+  public readonly simpleDateService: SimpleDateService
   ) { }
 
   public ngOnInit(): void {
@@ -48,16 +50,5 @@ export class HomePageWidgetReservationsComponent implements OnInit {
         }
       }
     });
-  }
-
-  public formatDate(starTimeStamp: number, endTimeStamp: number): string {
-    const date: string = new Date(starTimeStamp * 1000).toLocaleDateString();
-    const startTime: string = new Date(starTimeStamp * 1000).toLocaleTimeString();
-    const endTime: string = new Date(endTimeStamp * 1000).toLocaleTimeString();
-    return (
-      date + ' ' + startTime.substring(0, startTime.lastIndexOf(':'))
-      + ' ' + this.contentService.get('reservations.review.until.text') + ' ' +
-      endTime.substring(0, endTime.lastIndexOf(':'))
-    );
   }
 }

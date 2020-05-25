@@ -16,6 +16,7 @@ import { MatSelectModule } from '@angular/material/select';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 
@@ -38,6 +39,7 @@ const MODULES: Type<object>[] = [
   MatPaginatorModule,
   MatGridListModule,
   MatTooltipModule,
+  MatCheckboxModule,
   MatDatepickerModule,
   MatNativeDateModule,
 ];

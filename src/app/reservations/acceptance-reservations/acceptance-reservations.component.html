@@ -1,11 +1,11 @@
 <h2>{{'reservations.details.title.text' | content}}</h2>
 
 <h3 class="details-header">
-  {{'reservations.details.date.text' | content}}: {{formatDate(reservation.startTimestamp)}}
+  {{'reservations.details.date.text' | content}}: {{simpleDateService.formatDate(reservation.startTimestamp)}}
 </h3>
 <p>
-  {{'reservations.details.from-time.text' | content}} {{formatTime(reservation.startTimestamp)}}
-  {{'reservations.details.until-time.text' | content}} {{formatTime(reservation.endTimestamp)}}
+  {{'reservations.details.from-time.text' | content}} {{simpleDateService.formatTime(reservation.startTimestamp)}}
+  {{'reservations.details.until-time.text' | content}} {{simpleDateService.formatTime(reservation.endTimestamp)}}
 </p>
 
 <h3 class="details-header">{{'reservations.details.reservation-by.text' | content}}: {{reservation.user.name}}</h3>

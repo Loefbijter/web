@@ -13,6 +13,9 @@ import { NgxMatDatetimePickerModule } from '@angular-material-components/datetim
 import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MomentDateAdapter, MAT_MOMENT_DATE_FORMATS } from '@angular/material-moment-adapter';
 import { TruncatePipe } from '../_helpers/truncate.pipe';
+import { QuestionManagementComponent } from './question-management/question-management.component';
+import { DeleteQuestionDialogComponent } from './question-management/delete-question-dialog/delete-question-dialog.component';
+import { DragDropModule } from '@angular/cdk/drag-drop';
 
 const routes: Routes = [
   { path: '', component: ActivitiesComponent },
@@ -26,17 +29,22 @@ const routes: Routes = [
     ContentModule,
     FormErrorsModule,
     NgxMatDatetimePickerModule,
+    DragDropModule,
   ],
   declarations: [
     ActivitiesComponent,
     CreateActivityDialogComponent,
     EditActivityDialogComponent,
     DeleteActivityDialogComponent,
+    QuestionManagementComponent,
+    DeleteQuestionDialogComponent
   ],
   entryComponents: [
     CreateActivityDialogComponent,
     EditActivityDialogComponent,
     DeleteActivityDialogComponent,
+    DeleteQuestionDialogComponent,
+    QuestionManagementComponent
   ],
   providers: [
     ActivitiesService,

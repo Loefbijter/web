@@ -1,0 +1,35 @@
+.question-row{
+  display: flex;
+  flex-direction: row;
+  margin: 1% 2.5%;
+}
+
+.actions {
+  display: flex;
+  justify-content: flex-end;
+  margin: 2%;
+}
+
+.action-btn{
+  margin-left: 10px;
+}
+
+.reorder-icon{
+  cursor: -webkit-grab;
+  cursor: grab;
+}
+
+.normal-line-height{
+  line-height: normal;
+}
+
+.question-input-margin{
+  margin: auto 2.5%;
+}
+
+.question-width{
+  width: 40%;
+}
+.question-select-width{
+  width: 20%;
+}
