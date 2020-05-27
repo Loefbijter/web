@@ -31,7 +31,8 @@ export class CreateCertificateDialogComponent implements OnInit {
 
   public ngOnInit(): void {
     this.createForm = this.fb.group({
-      name: new FormControl('', [Validators.required, Validators.maxLength(255)])
+      name: new FormControl('', [Validators.required, Validators.maxLength(255)]),
+      showInSkippersList: new FormControl(false, [Validators.required])
     });
   }
 
@@ -41,7 +42,8 @@ export class CreateCertificateDialogComponent implements OnInit {
       this.dialogRef.disableClose = false;
       this.formError = undefined;
       const newCertificate: CreateCertificateDto = {
-        name: this.createForm.controls.name.value
+        name: this.createForm.controls.name.value,
+        showInSkippersList: this.createForm.controls.showInSkippersList.value
       };
       this.certificatesService.create(newCertificate).subscribe({
         next: (cert: Certificate) => {

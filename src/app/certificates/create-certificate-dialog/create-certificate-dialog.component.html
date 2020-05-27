@@ -9,6 +9,12 @@
       (errorChanges)="updateErrors('name', $event)">
     </app-form-errors>
   </p>
+  <p>
+    <mat-checkbox formControlName="showInSkippersList">{{'create-certificate.name.showInSkippersList.label' | content}}</mat-checkbox>
+    <app-form-errors [targetFormControl]="createForm.controls.showInSkippersList" [messages]="errors.showInSkippersList"
+      (errorChanges)="updateErrors('showInSkippersList', $event)">
+    </app-form-errors>
+  </p>
 
   <p class="mat-warn-text" *ngIf="formError">{{formError}}</p>
 

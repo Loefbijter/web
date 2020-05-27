@@ -22,7 +22,7 @@ const content: ContentItem = require('./certificates.content.json');
 export class CertificatesComponent implements OnInit {
 
   public certificates: Observable<Certificate[]>;
-  public readonly displayedColumns: string[] = ['name', 'edit', 'delete'];
+  public readonly displayedColumns: string[] = ['name', 'showInSkippersList', 'edit', 'delete'];
 
   public constructor(
     private readonly contentService: ContentService,

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Certificate, CreateCertificateDto } from './certificates.model';
+import { Certificate, CreateCertificateDto, PatchCertificateDto } from './certificates.model';
 import { Observable } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
@@ -38,8 +38,8 @@ export class CertificatesService {
     return this.http.post<Certificate>(`${environment.apiUrl}/certificates`, certificate);
   }
 
-  public update(id: string, certificate: CreateCertificateDto): Observable<Certificate> {
-    return this.http.put<Certificate>(`${environment.apiUrl}/certificates/${id}`, certificate);
+  public update(id: string, certificate: PatchCertificateDto): Observable<Certificate> {
+    return this.http.patch<Certificate>(`${environment.apiUrl}/certificates/${id}`, certificate);
   }
 
   public remove(id: string): Observable<void> {

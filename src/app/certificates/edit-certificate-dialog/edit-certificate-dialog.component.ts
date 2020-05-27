@@ -1,12 +1,12 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { CertificatesService } from '../certificates.service';
+import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { TOAST_DURATION } from 'src/app/constants';
 import { ContentService } from '../../_modules/content/content.service';
 import { FormErrorsService } from '../../_modules/form-errors/form-errors.service';
-import { ValidationErrors, FormGroup, FormBuilder, FormControl, Validators } from '@angular/forms';
-import { CreateCertificateDto, Certificate } from '../certificates.model';
-import { TOAST_DURATION } from 'src/app/constants';
+import { Certificate, PatchCertificateDto } from '../certificates.model';
+import { CertificatesService } from '../certificates.service';
 
 @Component({
   selector: 'app-edit-certificate-dialog',
@@ -32,7 +32,8 @@ export class EditCertificateDialogComponent implements OnInit {
 
   public ngOnInit(): void {
     this.editForm = this.fb.group({
-      name: new FormControl(this.certificate.name, [Validators.required, Validators.maxLength(255)])
+      name: new FormControl(this.certificate.name, [Validators.required, Validators.maxLength(255)]),
+      showInSkippersList: new FormControl(this.certificate.showInSkippersList, [Validators.required])
     });
   }
 
@@ -40,9 +41,11 @@ export class EditCertificateDialogComponent implements OnInit {
     if (this.isValid()) {
       this.loading = true;
       this.dialogRef.disableClose = true;
-      const editedCertificate: CreateCertificateDto = {
-        name: this.editForm.controls.name.value
-      };
+      const editedCertificate: PatchCertificateDto = { };
+      if (this.editForm.controls.name.value !== this.certificate.name) editedCertificate.name = this.editForm.controls.name.value;
+      if (this.editForm.controls.showInSkippersList.value !== this.certificate.showInSkippersList) {
+        editedCertificate.showInSkippersList = this.editForm.controls.showInSkippersList.value;
+      }
       this.certificatesService.update(this.certificate.id, editedCertificate).subscribe({
         next: newValues => {
           this.snackBar.open(this.contentService.get('edit-certificate.success'), null, { duration: TOAST_DURATION });

@@ -1,6 +1,7 @@
 {
   "certificates.title": "Certificaten",
   "certificates.table.name.colname": "Naam",
+  "certificates.table.showInSkippersList.colname": "Schipperscertificaat",
   "certificates.error.loading": "Er ging iets mis bij het laden van de certificaten, probeer het later opnieuw.",
 
   "create-certificate.title": "Certificaat toevoegen",
@@ -8,6 +9,7 @@
   "create-certificate.name.error.required": "Naam is verplicht",
   "create-certificate.name.error.maxlength": "Naam is maximaal 255 tekens lang",
   "create-certificate.name.error.unique": "Certificaat met naam '${name}' bestaat al",
+  "create-certificate.name.showInSkippersList.label": "Is een schipperscertificaat",
   "create-certificate.button.cancel.text": "Annuleren",
   "create-certificate.button.create.text": "Toevoegen",
   "create-certificate.success": "Certificaat succesvol toegevoegd.",
@@ -25,6 +27,7 @@
   "edit-certificate.name.error.required": "Naam is verplicht",
   "edit-certificate.name.error.maxlength": "Naam is maximaal 255 tekens lang",
   "edit-certificate.name.error.unique": "De naam '${name}' is al in gebruik",
+  "edit-certificate.name.showInSkippersList.label": "Is een schipperscertificaat",
   "edit-certificate.button.cancel.text": "Annuleren",
   "edit-certificate.button.save.text": "Opslaan",
   "edit-certificate.success": "Certificaat succesvol bewerkt.",
