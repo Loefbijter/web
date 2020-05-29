@@ -51,9 +51,7 @@ export class EditNewsDialogComponent implements OnInit {
         title: this.f.title.value,
         text: this.f.text.value
       };
-      if (this.f.image.value) {
-        updatedNews.image = this.f.image.value;
-      }
+      updatedNews.image = this.f.image.value || null;
       if (this.f.publishedAt.value || this.news.publishedAt) {
         updatedNews.publishedAt = this.f.publishedAt.value / 1000 || null;
       }

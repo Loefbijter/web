@@ -57,7 +57,6 @@
     "no-shadowed-variable": {"severity": "error"},
     "no-string-throw": {"severity": "error"},
     "no-tautology-expression": {"severity": "error"},
-    "no-unbound-method": {"severity": "error"},
     "no-unsafe-finally": {"severity": "error"},
     "no-unused-expression": {"severity": "warning", "options":["allow-fast-null-checks"]},
     "no-unused-variable": {"severity": "warning"},
