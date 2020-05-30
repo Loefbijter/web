@@ -14,7 +14,7 @@ export class NewsService {
     private readonly http: HttpClient,
   ) { }
 
-  public getAll(limit: number = 10, page: number = 0): Observable<Paged<News>> {
+  public getAll(limit: number = 10, page: number = 1): Observable<Paged<News>> {
     return this.http.get<Paged<News>>(`${environment.apiUrl}/news?limit=${limit}&page=${page}`);
   }
 

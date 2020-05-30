@@ -1,15 +1,14 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { UsersService } from './users.service';
-import { MatTableDataSource } from '@angular/material/table';
-import { User } from './users.model';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
+import { TOAST_DURATION } from '../constants';
 import { ContentItem } from '../_modules/content/content-item.model';
 import { ContentService } from '../_modules/content/content.service';
-import { tap } from 'rxjs/operators';
-import { TOAST_DURATION } from '../constants';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { MatDialog } from '@angular/material/dialog';
 import { CreateUserDialogComponent } from './create-user-dialog/create-user-dialog.component';
+import { User } from './users.model';
+import { UsersService } from './users.service';
 
 // tslint:disable-next-line: no-var-requires
 const content: ContentItem = require('./users.content.json');
@@ -19,7 +18,7 @@ const content: ContentItem = require('./users.content.json');
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss']
 })
-export class UsersComponent implements OnInit, AfterViewInit {
+export class UsersComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) private readonly paginator: MatPaginator;
   public displayedColumns: string[] = ['name', 'email', 'role'];
@@ -35,18 +34,13 @@ export class UsersComponent implements OnInit, AfterViewInit {
   ) { }
 
   public ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<User>();
-    this.dataSource.paginator = this.paginator;
     this.contentService.addContentItems(content);
-    this.getUsers(this.defaultPageSize);
+    this.dataSource = new MatTableDataSource<User>();
+    this.getUsers(0, this.defaultPageSize);
   }
 
-  public ngAfterViewInit(): void {
-    this.paginator.page.pipe(tap(() => this.onLoadMore())).subscribe();
-  }
-
-  private getUsers(limit: number): void {
-    this.usersService.getAll({ limit }).subscribe({
+  private getUsers(page: number, limit: number): void {
+    this.usersService.getAll({ limit, page: page + 1 }).subscribe({
       next: users => {
         this.dataSource.data = users;
         this.totalItemsCount = this.usersService.itemsTotal;
@@ -56,20 +50,7 @@ export class UsersComponent implements OnInit, AfterViewInit {
   }
 
   public onLoadMore(): void {
-    if (
-      this.dataSource.data.length != this.usersService.itemsTotal &&
-      (this.paginator.pageIndex * this.paginator.pageSize) >= this.dataSource.data.length
-    ) {
-      this.usersService.getAll({ page: this.paginator.pageIndex + 1, limit: this.paginator.pageSize }).subscribe({
-        next: users => {
-          const newUsers: User[] = this.dataSource.data.slice();
-          newUsers.push(...users);
-          this.dataSource.data = newUsers;
-          this.totalItemsCount = this.usersService.itemsTotal;
-        },
-        error: () => this.snackBar.open(this.contentService.get('users.error.loading'), null, { duration: TOAST_DURATION })
-      });
-    }
+    this.getUsers(this.paginator.pageIndex, this.paginator.pageSize);
   }
 
   public onCreateUserClick(): void {

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../news.service';
 import { FormBuilder, FormGroup, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ContentService } from 'src/app/_modules/content/content.service';
-import { FormErrorsService } from 'src/app/_modules/form-errors/form-errors.service';
+import { ContentService } from '../../_modules/content/content.service';
+import { FormErrorsService } from '../../_modules/form-errors/form-errors.service';
 import { PostNewsDto } from '../news.model';
-import { URL_REGEX, TOAST_DURATION } from 'src/app/constants';
+import { URL_REGEX, TOAST_DURATION } from '../../constants';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import * as moment from 'moment';
 

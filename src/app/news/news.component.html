@@ -56,7 +56,7 @@
 
 </table>
 <mat-paginator #paginator [length]="totalItemsCount" [pageSizeOptions]="[5, 10, 50, 100]" [pageIndex]="0"
-  [pageSize]="defaultPageSize" showFirstLastButtons></mat-paginator>
+  [pageSize]="defaultPageSize" showFirstLastButtons (page)="onLoadMore()"></mat-paginator>
 
 <button mat-fab id="new-news-button" (click)="showCreateNewsDialog()">
   <mat-icon aria-hidden="false">add</mat-icon>

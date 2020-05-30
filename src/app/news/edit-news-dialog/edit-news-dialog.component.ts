@@ -2,10 +2,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, ValidationErrors, AbstractControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { News, PostNewsDto } from '../news.model';
-import { ContentService } from 'src/app/_modules/content/content.service';
-import { FormErrorsService } from 'src/app/_modules/form-errors/form-errors.service';
+import { ContentService } from '../../_modules/content/content.service';
+import { FormErrorsService } from '../../_modules/form-errors/form-errors.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { URL_REGEX, TOAST_DURATION } from 'src/app/constants';
+import { URL_REGEX, TOAST_DURATION } from '../../constants';
 import { NewsService } from '../news.service';
 import * as moment from 'moment';
 

@@ -13,7 +13,7 @@ export class DamageService {
 
   public constructor(private readonly http: HttpClient) { }
 
-  public getAll(id: string, page: number = 0, limit: number = 10): Observable<Damage[]> {
+  public getAll(id: string, page: number = 1, limit: number = 10): Observable<Damage[]> {
     return this.http.get<Paged<Damage>>(`${environment.apiUrl}/boats/${id}/damages?page=${page}&limit=${limit}`)
       .pipe(map((res: Paged<Damage>) => {
         this.itemsTotal = res.totalItems;

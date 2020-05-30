@@ -1,20 +1,19 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { BoatsService } from '../boats.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Boat } from '../boats.model';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { ContentService } from 'src/app/_modules/content/content.service';
-import { ContentItem } from 'src/app/_modules/content/content-item.model';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { DeleteBoatDialogComponent } from './delete-boat-dialog/delete-boat-dialog.component';
-import { EditBoatDialogComponent } from './edit-boat-dialog/edit-boat-dialog.component';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
+import { ActivatedRoute, Router } from '@angular/router';
 import { TOAST_DURATION } from '../../constants';
 import { Damage } from '../../damage/damage.model';
 import { DamageService } from '../../damage/damage.service';
 import { EditDamageDialogComponent } from '../../damage/edit-damage-dialog/edit-damage-dialog.component';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatPaginator } from '@angular/material/paginator';
-import { tap } from 'rxjs/operators';
+import { ContentItem } from '../../_modules/content/content-item.model';
+import { ContentService } from '../../_modules/content/content.service';
+import { Boat } from '../boats.model';
+import { BoatsService } from '../boats.service';
+import { DeleteBoatDialogComponent } from './delete-boat-dialog/delete-boat-dialog.component';
+import { EditBoatDialogComponent } from './edit-boat-dialog/edit-boat-dialog.component';
 
 // tslint:disable-next-line: no-var-requires
 const content: ContentItem = require('./boat-details.content.json');
@@ -24,7 +23,7 @@ const content: ContentItem = require('./boat-details.content.json');
   templateUrl: './boat-details.component.html',
   styleUrls: ['./boat-details.component.scss']
 })
-export class BoatDetailsComponent implements OnInit, AfterViewInit {
+export class BoatDetailsComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) private readonly paginator: MatPaginator;
 
@@ -46,26 +45,19 @@ export class BoatDetailsComponent implements OnInit, AfterViewInit {
   ) { }
 
   public ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<Damage>();
-    this.dataSource.paginator = this.paginator;
     this.contentService.addContentItems(content);
-    this.route.paramMap.subscribe(map => {
-      this.boatId = map.get('id');
-      this.boatsService.getOne(map.get('id')).subscribe({
-        next: boat => {
-          this.boat = boat;
-        },
-        error: () => {
-          this.snackBar.open(this.contentService.get('boat-details.not-found'), null, { duration: TOAST_DURATION });
-          this.router.navigate(['boats']);
-        }
-      });
+    this.dataSource = new MatTableDataSource<Damage>();
+    this.boatId = this.route.snapshot.params.id;
+    this.boatsService.getOne(this.boatId).subscribe({
+      next: boat => {
+        this.getDamages(0, 10);
+        this.boat = boat;
+      },
+      error: () => {
+        this.snackBar.open(this.contentService.get('boat-details.not-found'), null, { duration: TOAST_DURATION });
+        this.router.navigate(['boats']);
+      }
     });
-    this.getDamages();
-  }
-
-  public ngAfterViewInit(): void {
-    this.paginator.page.pipe(tap(() => this.onLoadMore())).subscribe();
   }
 
   public onEditClick(): void {
@@ -81,11 +73,11 @@ export class BoatDetailsComponent implements OnInit, AfterViewInit {
 
   public onDamageEditClick(damageData: Damage): void {
     this.dialog.open(EditDamageDialogComponent, { data: damageData, width: '500px' }).afterClosed().subscribe({
-        next: (changed: boolean) => {
-          if (changed) {
-            this.updateDamages(this.dataSource.data.length);
-          }
+      next: (changed: boolean) => {
+        if (changed) {
+          this.ngOnInit();
         }
+      }
     });
   }
 
@@ -99,31 +91,17 @@ export class BoatDetailsComponent implements OnInit, AfterViewInit {
     });
   }
 
-  private getDamages(): void {
-    this.updateDamages(10);
-  }
-
-  private updateDamages(limit: number): void {
-    this.damageService.getAll(this.boatId, undefined, limit).subscribe({
-      next: damages => { this.dataSource.data = damages; this.totalItemsCount = this.damageService.itemsTotal; },
+  private getDamages(page: number, limit: number): void {
+    this.damageService.getAll(this.boatId, page + 1, limit).subscribe({
+      next: damages => {
+        this.dataSource.data = damages;
+        this.totalItemsCount = this.damageService.itemsTotal;
+      },
       error: () => this.snackBar.open(this.contentService.get('boat-damage.error.loading'), null, { duration: TOAST_DURATION })
     });
   }
 
   public onLoadMore(): void {
-    if (
-      this.dataSource.data.length != this.damageService.itemsTotal &&
-      (this.paginator.pageIndex + 1 * this.paginator.pageSize) >= this.dataSource.data.length
-    ) {
-      this.damageService.getAll(this.boat.id, this.paginator.pageIndex + 1, this.paginator.pageSize).subscribe({
-        next: damages => {
-          const newData: Damage[] = this.dataSource.data.slice();
-          newData.push(...damages);
-          this.dataSource.data = newData;
-          this.totalItemsCount = this.damageService.itemsTotal;
-        },
-        error: () => this.snackBar.open(this.contentService.get('boat-damage.error.loading'), null, { duration: TOAST_DURATION })
-      });
-    }
+    this.getDamages(this.paginator.pageIndex, this.paginator.pageSize);
   }
 }

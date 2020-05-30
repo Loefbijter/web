@@ -3,8 +3,8 @@ import { News } from '../news.model';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { NewsService } from '../news.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { ContentService } from 'src/app/_modules/content/content.service';
-import { TOAST_DURATION } from 'src/app/constants';
+import { ContentService } from '../../_modules/content/content.service';
+import { TOAST_DURATION } from '../../constants';
 
 @Component({
   selector: 'app-delete-news-dialog',

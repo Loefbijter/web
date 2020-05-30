@@ -3,11 +3,11 @@ import { FormGroup, ValidationErrors, AbstractControl, FormBuilder, FormControl,
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { User, CreateUserDto } from '../../users.model';
 import { ContentService } from '../../../_modules/content/content.service';
-import { FormErrorsService } from 'src/app/_modules/form-errors/form-errors.service';
-import { UserRole } from 'src/app/_helpers/auth.model';
+import { FormErrorsService } from '../../../_modules/form-errors/form-errors.service';
+import { UserRole } from '../../../_helpers/auth.model';
 import { UsersService } from '../../users.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { TOAST_DURATION } from 'src/app/constants';
+import { TOAST_DURATION } from '../../../constants';
 
 @Component({
   selector: 'app-edit-user-dialog',

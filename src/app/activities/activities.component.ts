@@ -1,17 +1,16 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
-import { ContentItem } from '../_modules/content/content-item.model';
-import { MatPaginator } from '@angular/material/paginator';
-import { MatTableDataSource } from '@angular/material/table';
-import { Activity } from './activity.model';
-import { ActivitiesService } from './activities.service';
-import { ContentService } from '../_modules/content/content.service';
-import { TOAST_DURATION } from '../constants';
-import { tap } from 'rxjs/operators';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatPaginator } from '@angular/material/paginator';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatTableDataSource } from '@angular/material/table';
 import { CreateActivityDialogComponent } from '../activities/create-activity-dialog/create-activity-dialog.component';
-import { EditActivityDialogComponent } from '../activities/edit-activity-dialog/edit-activity-dialog.component';
 import { DeleteActivityDialogComponent } from '../activities/delete-activity-dialog/delete-activity-dialog.component';
+import { EditActivityDialogComponent } from '../activities/edit-activity-dialog/edit-activity-dialog.component';
+import { TOAST_DURATION } from '../constants';
+import { ContentItem } from '../_modules/content/content-item.model';
+import { ContentService } from '../_modules/content/content.service';
+import { ActivitiesService } from './activities.service';
+import { Activity } from './activity.model';
 import { QuestionManagementComponent } from './question-management/question-management.component';
 
 // tslint:disable-next-line: no-var-requires
@@ -23,7 +22,7 @@ const content: ContentItem = require('./activities.content.json');
   styleUrls: ['./activities.component.scss']
 })
 
-export class ActivitiesComponent implements OnInit, AfterViewInit {
+export class ActivitiesComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) private readonly paginator: MatPaginator;
 
@@ -39,22 +38,13 @@ export class ActivitiesComponent implements OnInit, AfterViewInit {
   ) { }
 
   public ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<Activity>();
-    this.dataSource.paginator = this.paginator;
     this.contentService.addContentItems(content);
-    this.getActivities();
+    this.dataSource = new MatTableDataSource<Activity>();
+    this.getActivities(0, 10);
   }
 
-  public ngAfterViewInit(): void {
-    this.paginator.page.pipe(tap(() => this.onLoadMore())).subscribe();
-  }
-
-  private getActivities(): void {
-    this.updateActivities(25);
-  }
-
-  private updateActivities(limit: number): void {
-    this.activitiesService.getAll(limit).subscribe({
+  private getActivities(page: number, limit: number): void {
+    this.activitiesService.getAll(limit, page + 1).subscribe({
       next: activities => {
         this.dataSource.data = activities;
         this.totalItemsCount = this.activitiesService.itemsTotal;
@@ -64,20 +54,7 @@ export class ActivitiesComponent implements OnInit, AfterViewInit {
   }
 
   public onLoadMore(): void {
-    if (
-      this.dataSource.data.length != this.totalItemsCount &&
-      (this.paginator.pageIndex + 1 * this.paginator.pageSize) >= this.dataSource.data.length
-    ) {
-      this.activitiesService.getAll().subscribe({
-        next: activities => {
-          const newData: Activity[] = this.dataSource.data.slice();
-          newData.push(...activities);
-          this.dataSource.data = newData;
-          this.totalItemsCount = this.activitiesService.itemsTotal;
-        },
-        error: () => this.snackBar.open(this.contentService.get('activities.error.loading'), null, { duration: TOAST_DURATION })
-      });
-    }
+    this.getActivities(this.paginator.pageIndex, this.paginator.pageSize);
   }
 
   public showCreateActivityDialog(): void {

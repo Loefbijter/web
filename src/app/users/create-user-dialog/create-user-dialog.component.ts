@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, FormControl, Validators, AbstractControl, ValidationErrors } from '@angular/forms';
-import { ContentService } from 'src/app/_modules/content/content.service';
+import { ContentService } from '../../_modules/content/content.service';
 import { MatDialogRef } from '@angular/material/dialog';
-import { FormErrorsService } from 'src/app/_modules/form-errors/form-errors.service';
+import { FormErrorsService } from '../../_modules/form-errors/form-errors.service';
 import { UsersService } from '../users.service';
 import { CreateUserDto, User } from '../users.model';
-import { CHARS, TOAST_DURATION } from 'src/app/constants';
-import { UserRole } from 'src/app/_helpers/auth.model';
+import { CHARS, TOAST_DURATION } from '../../constants';
+import { UserRole } from '../../_helpers/auth.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { AuthService } from 'src/app/_services/auth.service';
+import { AuthService } from '../../_services/auth.service';
 
 @Component({
   selector: 'app-create-user-dialog',

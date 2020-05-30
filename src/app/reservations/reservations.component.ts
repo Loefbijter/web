@@ -35,10 +35,9 @@ export class ReservationsComponent implements OnInit, AfterViewInit {
   ) { }
 
   public ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<Reservation>();
-    this.dataSource.paginator = this.paginator;
     this.contentService.addContentItems(content);
-    this.getReservations();
+    this.dataSource = new MatTableDataSource<Reservation>();
+    this.getReservations(0, 10);
   }
 
   public ngAfterViewInit(): void {
@@ -53,13 +52,12 @@ export class ReservationsComponent implements OnInit, AfterViewInit {
     return new Date(unixTime * 1000).toLocaleTimeString();
   }
 
-  private getReservations(): void {
-    this.updateReservations(25);
-  }
-
-  private updateReservations(limit: number): void {
-    this.reservationsService.getAll({ limit: limit }).subscribe({
-      next: reservations => { this.dataSource.data = reservations; this.totalItemsCount = this.reservationsService.itemsTotal; },
+  private getReservations(page: number, limit: number): void {
+    this.reservationsService.getAll({ limit: limit, page: page + 1 }).subscribe({
+      next: reservations => {
+        this.dataSource.data = reservations;
+        this.totalItemsCount = this.reservationsService.itemsTotal;
+      },
       error: () => this.snackBar.open(this.contentService.get('reservations.error.loading'), null, { duration: TOAST_DURATION })
     });
   }
@@ -68,26 +66,13 @@ export class ReservationsComponent implements OnInit, AfterViewInit {
     this.dialog.open(AcceptanceReservationsComponent, { data: reservationData, width: '500px' }).afterClosed().subscribe({
       next: (changed: boolean) => {
         if (changed) {
-          this.updateReservations(this.dataSource.data.length);
+          this.ngOnInit();
         }
       }
     });
   }
 
   public onLoadMore(): void {
-    if (
-      this.dataSource.data.length != this.reservationsService.itemsTotal &&
-      (this.paginator.pageIndex + 1 * this.paginator.pageSize) >= this.dataSource.data.length
-    ) {
-      this.reservationsService.getAll({ page: this.paginator.pageIndex + 1, limit: this.paginator.pageSize }).subscribe({
-        next: reservations => {
-          const newData: Reservation[] = this.dataSource.data.slice();
-          newData.push(...reservations);
-          this.dataSource.data = newData;
-          this.totalItemsCount = this.reservationsService.itemsTotal;
-        },
-        error: () => this.snackBar.open(this.contentService.get('reservations.error.loading'), null, { duration: TOAST_DURATION })
-      });
-    }
+    this.getReservations(this.paginator.pageIndex, this.paginator.pageSize);
   }
 }

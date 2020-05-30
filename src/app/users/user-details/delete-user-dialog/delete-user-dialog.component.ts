@@ -2,9 +2,9 @@ import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { User } from '../../users.model';
 import { UsersService } from '../../users.service';
-import { ContentService } from 'src/app/_modules/content/content.service';
+import { ContentService } from '../../../_modules/content/content.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { TOAST_DURATION } from 'src/app/constants';
+import { TOAST_DURATION } from '../../../constants';
 
 @Component({
   selector: 'app-delete-user-dialog',

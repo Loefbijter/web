@@ -37,14 +37,13 @@ export class NewsComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<News>();
-    this.dataSource.paginator = this.paginator;
     this.contentService.addContentItems(content);
-    this.getNews(this.defaultPageSize);
+    this.dataSource = new MatTableDataSource<News>();
+    this.getNews(this.defaultPageSize, 0);
   }
 
-  private getNews(limit: number): void {
-    this.newsService.getAll(limit).subscribe({
+  private getNews(limit: number, page: number): void {
+    this.newsService.getAll(limit, page + 1).subscribe({
       next: res => {
         this.dataSource.data = res.items;
         this.totalItemsCount = res.totalItems;
@@ -54,20 +53,7 @@ export class NewsComponent implements OnInit {
   }
 
   public onLoadMore(): void {
-    if (
-      this.dataSource.data.length != this.totalItemsCount &&
-      (this.paginator.pageIndex * this.paginator.pageSize) >= this.dataSource.data.length
-    ) {
-      this.newsService.getAll(this.paginator.pageSize, this.paginator.pageIndex + 1).subscribe({
-        next: res => {
-          const newNews: News[] = this.dataSource.data.slice();
-          newNews.push(...res.items);
-          this.dataSource.data = newNews;
-          this.totalItemsCount = res.totalItems;
-        },
-        error: () => this.snackBar.open(this.contentService.get('news.error.loading'), null, { duration: TOAST_DURATION })
-      });
-    }
+    this.getNews(this.paginator.pageSize, this.paginator.pageIndex);
   }
 
   public showCreateNewsDialog(): void {

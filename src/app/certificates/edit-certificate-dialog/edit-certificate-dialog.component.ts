@@ -2,7 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ValidationErrors, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { TOAST_DURATION } from 'src/app/constants';
+import { TOAST_DURATION } from '../../constants';
 import { ContentService } from '../../_modules/content/content.service';
 import { FormErrorsService } from '../../_modules/form-errors/form-errors.service';
 import { Certificate, PatchCertificateDto } from '../certificates.model';
