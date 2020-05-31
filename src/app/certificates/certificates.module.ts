@@ -4,7 +4,7 @@ import { CertificatesComponent } from './certificates.component';
 import { Routes, RouterModule } from '@angular/router';
 import { FormErrorsModule } from '../_modules/form-errors/form-errors.module';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../_helpers/material.module';
+import { MaterialDesignModule } from '../_helpers/material-design.module';
 import { ContentModule } from '../_modules/content/content.module';
 import { CreateCertificateDialogComponent } from './create-certificate-dialog/create-certificate-dialog.component';
 import { EditCertificateDialogComponent } from './edit-certificate-dialog/edit-certificate-dialog.component';
@@ -19,7 +19,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     CommonModule,
     FormErrorsModule,
-    MaterialModule,
+    MaterialDesignModule,
     ContentModule,
   ],
   entryComponents: [

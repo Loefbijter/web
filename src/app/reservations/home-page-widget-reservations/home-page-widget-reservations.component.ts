@@ -36,7 +36,7 @@ export class HomePageWidgetReservationsComponent implements OnInit {
   }
 
   private getReservations(): void {
-    this.reservationsService.getAllOpen({ limit: 9 }).subscribe({
+    this.reservationsService.getAllOpen({ limit: 10 }).subscribe({
       next: reservations => { this.reservations = reservations; this.totalOpenReservations = this.reservationsService.openItemsTotal; },
       error: () => this.snackBar.open(this.contentService.get('reservations.error.loading'), null, { duration: TOAST_DURATION })
     });

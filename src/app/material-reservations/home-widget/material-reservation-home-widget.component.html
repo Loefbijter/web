@@ -1,0 +1,29 @@
+<mat-card class="home-page-widget-container">
+  <h2>{{'material.reservations.widget.title' | content}}: {{materialReservations.length}} / {{totalReservations}}</h2>
+
+  <mat-select [(ngModel)]="status" class="status-selector" (selectionChange)="getReservations()">
+    <mat-option [value]="-1">{{'material.reservations.status-selector.everything' | content}}</mat-option>
+    <mat-option [value]="statusOptions.REQUESTED">{{'material.reservations.status.requested' | content}}</mat-option>
+    <mat-option [value]="statusOptions.CANCELLED">{{'material.reservations.status.cancelled' | content}}</mat-option>
+    <mat-option [value]="statusOptions.ACCEPTED">{{'material.reservations.status.accepted' | content}}</mat-option>
+    <mat-option [value]="statusOptions.DENIED">{{'material.reservations.status.denied' | content}}</mat-option>
+    <mat-option [value]="statusOptions.ISSUED">{{'material.reservations.status.issued' | content}}</mat-option>
+    <mat-option [value]="statusOptions.RETURNED">{{'material.reservations.status.returned' | content}}</mat-option>
+  </mat-select>
+
+  <mat-divider></mat-divider>
+
+  <div *ngFor="let reservation of materialReservations" class="reservation-row">
+    <div class="row-container">
+      <div class="reservation-info">
+        <h2 class="details-header">{{reservation.material.name}}</h2>
+        <p>{{simpleDateService.advancedFormatDate(reservation.startTimestamp, reservation.endTimestamp)}}</p>
+      </div>
+      <div class="review-btn">
+        <button mat-raised-button color="primary"
+                (click)="changeReservationStatus(reservation)">{{'material.reservations.button.status-update.text' | content}}</button>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+</mat-card>

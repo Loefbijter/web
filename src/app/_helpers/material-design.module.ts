@@ -52,4 +52,4 @@ const MODULES: Type<object>[] = [
   imports: MODULES,
   exports: MODULES
 })
-export class MaterialModule { }
+export class MaterialDesignModule { }

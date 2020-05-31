@@ -1,0 +1,19 @@
+.reservations-table {
+  min-width: 100%;
+}
+
+.status-selector {
+  padding-bottom: 25px;
+  display: flex;
+  flex-direction: row;
+  align-items: center
+}
+
+.status-selector-text {
+  padding-right: 15px;
+  margin: 0
+}
+
+.status-mat-selector {
+  width: 25%;
+}

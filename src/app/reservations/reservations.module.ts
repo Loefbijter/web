@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { Routes, RouterModule } from '@angular/router';
 import { ReservationsComponent } from './reservations.component';
 import { ReservationsService } from './reservations.service';
-import { MaterialModule } from '../_helpers/material.module';
+import { MaterialDesignModule } from '../_helpers/material-design.module';
 import { AcceptanceReservationsComponent } from './acceptance-reservations/acceptance-reservations.component';
 import { HomePageWidgetReservationsComponent } from './home-page-widget-reservations/home-page-widget-reservations.component';
 import { ContentModule } from '../_modules/content/content.module';
@@ -24,7 +24,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
-    MaterialModule,
+    MaterialDesignModule,
     ContentModule,
   ],
   providers: [ReservationsService],

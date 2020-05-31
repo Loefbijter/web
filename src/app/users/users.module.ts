@@ -5,7 +5,7 @@ import { UsersService } from './users.service';
 import { ContentModule } from '../_modules/content/content.module';
 import { CommonModule } from '@angular/common';
 import { FormErrorsModule } from '../_modules/form-errors/form-errors.module';
-import { MaterialModule } from '../_helpers/material.module';
+import { MaterialDesignModule } from '../_helpers/material-design.module';
 import { UserDetailsComponent } from './user-details/user-details.component';
 import { CreateUserDialogComponent } from './create-user-dialog/create-user-dialog.component';
 import { EditUserDialogComponent } from './user-details/edit-user-dialog/edit-user-dialog.component';
@@ -21,7 +21,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     CommonModule,
     FormErrorsModule,
-    MaterialModule,
+    MaterialDesignModule,
     ContentModule,
   ],
   entryComponents: [

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { MaterialModule } from '../_helpers/material.module';
+import { MaterialDesignModule } from '../_helpers/material-design.module';
 import { CommonModule } from '@angular/common';
 import { ContentModule } from '../_modules/content/content.module';
 import { MatDatepickerModule } from '@angular/material/datepicker';
@@ -12,7 +12,7 @@ import { DamageService } from './damage.service';
   imports: [
     CommonModule,
     FormErrorsModule,
-    MaterialModule,
+    MaterialDesignModule,
     ContentModule,
     MatDatepickerModule,
     MatNativeDateModule,

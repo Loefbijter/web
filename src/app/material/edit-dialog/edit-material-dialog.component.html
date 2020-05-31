@@ -1,0 +1,33 @@
+<h2>{{'material.update.title' | content}}</h2>
+
+<form [formGroup]="updateMaterialForm" (submit)="onSubmit()" novalidate>
+  <p>
+    <mat-form-field>
+      <input type="text" matInput placeholder="{{'material.update.name.placeholder' | content}}" formControlName="name">
+    </mat-form-field>
+    <app-form-errors [targetFormControl]="updateMaterialForm.controls.name" [messages]="errors.name"
+                     (errorChanges)="updateErrors('name', $event)">
+    </app-form-errors>
+  </p>
+
+  <p>
+    <mat-form-field>
+      <input type="url" matInput placeholder="{{'material.update.image.placeholder' | content}}" formControlName="image">
+    </mat-form-field>
+    <app-form-errors [targetFormControl]="updateMaterialForm.controls.image" [messages]="errors.image"
+                     (errorChanges)="updateErrors('image', $event)">
+    </app-form-errors>
+    <img [src]="updateMaterialForm.controls.image.value" alt="{{'material.update.image-preview.text' | content}}">
+  </p>
+
+  <div class="form-actions">
+    <ng-container *ngIf="!loading; else spinner">
+      <button type="button" mat-button
+              (click)="this.dialogRef.close()">{{'material.update.button.cancel.text' | content}}</button>
+      <button type="submit" mat-button>{{'material.update.button.save.text' | content}}</button>
+    </ng-container>
+    <ng-template #spinner>
+      <mat-spinner diameter="30"></mat-spinner>
+    </ng-template>
+  </div>
+</form>

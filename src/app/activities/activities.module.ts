@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { MaterialModule } from '../_helpers/material.module';
+import { MaterialDesignModule } from '../_helpers/material-design.module';
 import { CommonModule } from '@angular/common';
 import { ContentModule } from '../_modules/content/content.module';
 import { ActivitiesComponent } from './activities.component';
@@ -25,7 +25,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
-    MaterialModule,
+    MaterialDesignModule,
     ContentModule,
     FormErrorsModule,
     NgxMatDatetimePickerModule,

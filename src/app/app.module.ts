@@ -9,7 +9,7 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HomeComponent } from './home/home.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
 import { ErrorInterceptor } from './_helpers/error.interceptor';
-import { MaterialModule } from './_helpers/material.module';
+import { MaterialDesignModule } from './_helpers/material-design.module';
 import { FormErrorsModule } from './_modules/form-errors/form-errors.module';
 import { ContentModule } from './_modules/content/content.module';
 import { LoginComponent } from './login/login.component';
@@ -29,6 +29,8 @@ import { getDutchPaginatorIntl } from './paginator-dutch-intl';
 import { NewsModule } from './news/news.module';
 import { NgxMatMomentModule } from '@angular-material-components/moment-adapter';
 import { ActivitiesModule } from './activities/activities.module';
+import { MaterialsModule } from './material/materials.module';
+import { MaterialReservationsModule } from './material-reservations/material-reservations.module';
 
 registerLocaleData(localeNl, 'nl-NL', localeNlExtra);
 
@@ -42,7 +44,7 @@ registerLocaleData(localeNl, 'nl-NL', localeNlExtra);
   ],
   imports: [
     CommonModule,
-    MaterialModule,
+    MaterialDesignModule,
     BrowserModule,
     BrowserAnimationsModule,
     FormErrorsModule,
@@ -58,6 +60,8 @@ registerLocaleData(localeNl, 'nl-NL', localeNlExtra);
     NewsModule,
     NgxMatMomentModule,
     ActivitiesModule,
+    MaterialsModule,
+    MaterialReservationsModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },

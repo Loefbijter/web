@@ -7,7 +7,7 @@ import { NewsService } from './news.service';
 import { Routes, RouterModule } from '@angular/router';
 import { ContentModule } from '../_modules/content/content.module';
 import { CommonModule } from '@angular/common';
-import { MaterialModule } from '../_helpers/material.module';
+import { MaterialDesignModule } from '../_helpers/material-design.module';
 import { FormErrorsModule } from '../_modules/form-errors/form-errors.module';
 import { DateAdapter, MAT_DATE_LOCALE, MAT_DATE_FORMATS } from '@angular/material/core';
 import { MAT_MOMENT_DATE_FORMATS, MomentDateAdapter } from '@angular/material-moment-adapter';
@@ -23,7 +23,7 @@ const routes: Routes = [
   imports: [
     RouterModule.forChild(routes),
     CommonModule,
-    MaterialModule,
+    MaterialDesignModule,
     ContentModule,
     FormErrorsModule,
     NgxMatDatetimePickerModule,

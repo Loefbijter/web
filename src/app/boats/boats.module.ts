@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BoatsComponent } from './boats.component';
 import { RouterModule, Routes } from '@angular/router';
-import { MaterialModule } from '../_helpers/material.module';
+import { MaterialDesignModule } from '../_helpers/material-design.module';
 import { BoatDetailsComponent } from './boat-details/boat-details.component';
 import { BoatsService } from './boats.service';
 import { CommonModule } from '@angular/common';
@@ -21,7 +21,7 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     CommonModule,
     FormErrorsModule,
-    MaterialModule,
+    MaterialDesignModule,
     ContentModule,
   ],
   declarations: [

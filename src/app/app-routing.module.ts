@@ -22,7 +22,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'reservations',
+    path: 'boat-reservations',
     loadChildren: () => import('./reservations/reservations.module').then(m => m.ReservationsModule),
     canActivate: [AuthGuard]
   },
@@ -39,6 +39,16 @@ const routes: Routes = [
   {
     path: 'activities',
     loadChildren: () => import('./activities/activities.module').then(m => m.ActivitiesModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'materials',
+    loadChildren: () => import('./material/materials.module').then(m => m.MaterialsModule),
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'material-reservations',
+    loadChildren: () => import('./material-reservations/material-reservations.module').then(m => m.MaterialReservationsModule),
     canActivate: [AuthGuard]
   },
 

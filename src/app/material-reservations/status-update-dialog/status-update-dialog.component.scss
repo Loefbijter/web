@@ -1,0 +1,17 @@
+.actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.actions>* {
+  margin: 0 5px;
+}
+
+.details-header {
+  margin: 0 0 5px;
+  line-height: normal;
+}
+
+.status-selector {
+  padding-bottom: 25px
+}

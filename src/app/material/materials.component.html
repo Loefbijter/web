@@ -1,0 +1,17 @@
+<h2 class="mat-h2">{{'material.title' | content}}</h2>
+
+<ul class="cards" *ngIf="materials.length > 0">
+  <li *ngFor="let material of materials; let i = index">
+    <mat-card>
+      <img mat-card-image [src]="material.imageUrl" alt="{{'material.image.alt-text' | content}}">
+      <mat-card-title>{{material.name}}</mat-card-title>
+      <mat-card-actions>
+        <a mat-button [routerLink]="['details/'+material.id]">{{'material.button.show-details.text' | content}}</a>
+      </mat-card-actions>
+    </mat-card>
+  </li>
+</ul>
+
+<button mat-fab id="new-material-button" (click)="showCreateMaterialForm()">
+  <mat-icon aria-hidden="false">add</mat-icon>
+</button>
