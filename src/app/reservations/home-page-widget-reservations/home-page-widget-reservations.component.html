@@ -4,8 +4,7 @@
     <div class="row-container">
       <div class="reservation-info">
         <h2 class="details-header">{{simpleDateService.advancedFormatSameDate(reservation.startTimestamp, reservation.endTimestamp)}}</h2>
-        <!-- <h4>{{reservation.reason}}</h4> TODO change to the reason of a reservation when that is added to the backend. -->
-        <h4>Reason</h4>
+        <h4>{{'reservations.details.reason.text' | content}}: {{reservation.reason}}</h4>
       </div>
       <div class="review-btn">
         <button mat-raised-button color="primary"

@@ -10,6 +10,7 @@ export interface Reservation {
   endTimestamp: number;
   accepted?: boolean;
   finished: boolean;
+  reason: string;
 }
 
 export interface AcceptanceDto {

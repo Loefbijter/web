@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { tap } from 'rxjs/operators';
+import { SimpleDateService } from '../_helpers/simple-date.service';
 
 // tslint:disable-next-line: no-var-requires
 const content: ContentItem = require('./reservations.content.json');
@@ -23,7 +24,7 @@ export class ReservationsComponent implements OnInit, AfterViewInit {
 
   @ViewChild(MatPaginator, { static: true }) private readonly paginator: MatPaginator;
 
-  public displayedColumns: string[] = ['status', 'user', 'skipper', 'boat', 'date', 'startTime', 'endTime', 'action'];
+  public displayedColumns: string[] = ['status', 'user', 'skipper', 'boat', 'reason', 'date', 'action'];
   public dataSource: MatTableDataSource<Reservation>;
   public totalItemsCount: number;
 
@@ -32,6 +33,7 @@ export class ReservationsComponent implements OnInit, AfterViewInit {
     private readonly contentService: ContentService,
     private readonly snackBar: MatSnackBar,
     private readonly dialog: MatDialog,
+    public readonly simpleDateService: SimpleDateService,
   ) { }
 
   public ngOnInit(): void {
@@ -42,14 +44,6 @@ export class ReservationsComponent implements OnInit, AfterViewInit {
 
   public ngAfterViewInit(): void {
     this.paginator.page.pipe(tap(() => this.onLoadMore())).subscribe();
-  }
-
-  public formatDate(unixTime: number): string {
-    return new Date(unixTime * 1000).toLocaleDateString();
-  }
-
-  public formatTime(unixTime: number): string {
-    return new Date(unixTime * 1000).toLocaleTimeString();
   }
 
   private getReservations(page: number, limit: number): void {
