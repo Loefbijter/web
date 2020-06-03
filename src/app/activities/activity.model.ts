@@ -44,3 +44,18 @@ export interface UpdateActivityDto {
   price?: number;
   maxAttendees?: number;
 }
+
+export interface Registration {
+  id: string;
+  activityId: string;
+  userId: string;
+  user: User;
+  answers: Answer[];
+}
+
+export interface Answer {
+  id: string;
+  registrationId: string;
+  questionId: string;
+  text: string;
+}

@@ -16,6 +16,9 @@ import { TruncatePipe } from '../_helpers/truncate.pipe';
 import { QuestionManagementComponent } from './question-management/question-management.component';
 import { DeleteQuestionDialogComponent } from './question-management/delete-question-dialog/delete-question-dialog.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { EntriesDialogComponent } from './entries-dialog/entries-dialog.component';
+import { RegistrationQuestionsAnswersComponent } from './registration-questions-answers/registration-questions-answers.component';
+import { FormatAnswerPipe } from './format-answer.pipe';
 
 const routes: Routes = [
   { path: '', component: ActivitiesComponent },
@@ -37,20 +40,25 @@ const routes: Routes = [
     EditActivityDialogComponent,
     DeleteActivityDialogComponent,
     QuestionManagementComponent,
-    DeleteQuestionDialogComponent
+    DeleteQuestionDialogComponent,
+    EntriesDialogComponent,
+    RegistrationQuestionsAnswersComponent,
+    FormatAnswerPipe,
   ],
   entryComponents: [
     CreateActivityDialogComponent,
     EditActivityDialogComponent,
     DeleteActivityDialogComponent,
     DeleteQuestionDialogComponent,
-    QuestionManagementComponent
+    QuestionManagementComponent,
+    EntriesDialogComponent,
   ],
   providers: [
     ActivitiesService,
     { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
     { provide: MAT_DATE_FORMATS, useValue: MAT_MOMENT_DATE_FORMATS },
-    TruncatePipe
+    TruncatePipe,
+    FormatAnswerPipe,
   ],
   exports: [ActivitiesComponent]
 })

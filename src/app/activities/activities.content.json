@@ -68,5 +68,7 @@
   "delete-question.button.confirm.text": "Ja, verwijderen",
   "delete-question.button.cancel.text": "Annuleren",
   "delete-question.message": "Weet je zeker dat je de vraag: \"${question}\" wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
-  "delete-question.title": "Vraag verwijderen"
+  "delete-question.title": "Vraag verwijderen",
+  "entries-dialog.title": "Inschrijvingen",
+  "entries-dialog.no-registrations": "Geen inschrijvingen gevonden."
 }

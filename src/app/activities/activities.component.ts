@@ -12,6 +12,7 @@ import { ContentService } from '../_modules/content/content.service';
 import { ActivitiesService } from './activities.service';
 import { Activity } from './activity.model';
 import { QuestionManagementComponent } from './question-management/question-management.component';
+import { EntriesDialogComponent } from './entries-dialog/entries-dialog.component';
 
 // tslint:disable-next-line: no-var-requires
 const content: ContentItem = require('./activities.content.json');
@@ -26,7 +27,7 @@ export class ActivitiesComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) private readonly paginator: MatPaginator;
 
-  public columnsToDisplay: string[] = ['title', 'start', 'end', 'questions', 'edit', 'delete'];
+  public columnsToDisplay: string[] = ['title', 'start', 'end', 'entries', 'questions', 'edit', 'delete'];
   public dataSource: MatTableDataSource<Activity>;
   public totalItemsCount: number;
   private readonly snackBar: MatSnackBar;
@@ -66,6 +67,10 @@ export class ActivitiesComponent implements OnInit {
         }
       }
     });
+  }
+
+  public showActivityEntriesDialog(activity: Activity): void {
+    this.dialog.open(EntriesDialogComponent, { width: '1000px', height: '80vh', data: activity });
   }
 
   public showEditActivityQuestionsDialog(activity: Activity): void {
