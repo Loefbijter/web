@@ -5,6 +5,8 @@ import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './_helpers/auth.guard';
 import { SetPasswordComponent } from './set-password/set-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
+import { RoleGuard } from './_helpers/role.guard';
+import { UserRole } from './_helpers/auth.model';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
@@ -19,22 +21,26 @@ const routes: Routes = [
   {
     path: 'certificates',
     loadChildren: () => import('./certificates/certificates.module').then(m => m.CertificatesModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard],
+    data: { role: UserRole.BOARD}
   },
   {
     path: 'boat-reservations',
     loadChildren: () => import('./reservations/reservations.module').then(m => m.ReservationsModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard],
+    data: { role: UserRole.BOARD}
   },
   {
     path: 'users',
     loadChildren: () => import('./users/users.module').then(m => m.UsersModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard],
+    data: { role: UserRole.BOARD}
   },
   {
     path: 'news',
     loadChildren: () => import('./news/news.module').then(m => m.NewsModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard],
+    data: { role: UserRole.BOARD}
   },
   {
     path: 'activities',
@@ -44,12 +50,14 @@ const routes: Routes = [
   {
     path: 'materials',
     loadChildren: () => import('./material/materials.module').then(m => m.MaterialsModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard],
+    data: { role: UserRole.BOARD}
   },
   {
     path: 'material-reservations',
     loadChildren: () => import('./material-reservations/material-reservations.module').then(m => m.MaterialReservationsModule),
-    canActivate: [AuthGuard]
+    canActivate: [AuthGuard, RoleGuard],
+    data: { role: UserRole.BOARD}
   },
 
   // wildcard route, default when nothing else matches

@@ -7,6 +7,8 @@ import { ContentService } from '../_modules/content/content.service';
 import { CreateBoatDialogComponent } from './create-boat-dialog/create-boat-dialog.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { TOAST_DURATION } from '../constants';
+import { UserRole } from '../_helpers/auth.model';
+import { AuthService } from '../_services/auth.service';
 
 // tslint:disable-next-line: no-var-requires
 const content: ContentItem = require('./boats.content.json');
@@ -25,12 +27,17 @@ export class BoatsComponent implements OnInit {
     private readonly contentService: ContentService,
     private readonly snackBar: MatSnackBar,
     private readonly dialog: MatDialog,
-    private readonly boatsService: BoatsService
+    private readonly boatsService: BoatsService,
+    private readonly authService: AuthService
   ) { }
 
   public ngOnInit(): void {
     this.contentService.addContentItems(content);
     this.getBoats();
+  }
+
+  public hasMinRoleBoard(): boolean {
+    return this.authService.hasMinRole(UserRole.BOARD);
   }
 
   public get allItemsLoaded(): boolean {

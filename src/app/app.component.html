@@ -11,7 +11,7 @@
         <mat-icon color="primary">home</mat-icon>
         Home
       </a>
-      <a mat-list-item routerLink="/news" routerLinkActive="active">
+      <a mat-list-item routerLink="/news" routerLinkActive="active" *ngIf="hasMinRole(userRole.BOARD)">
         <mat-icon color="primary">feedback</mat-icon>
         Nieuwsberichten
       </a>
@@ -19,11 +19,11 @@
         <mat-icon color="primary">directions_boat</mat-icon>
         Boten
       </a>
-      <a mat-list-item routerLink="/certificates" routerLinkActive="active">
+      <a mat-list-item routerLink="/certificates" routerLinkActive="active" *ngIf="hasMinRole(userRole.BOARD)">
         <mat-icon color="primary">class</mat-icon>
         Certificaten
       </a>
-      <a mat-list-item routerLink="/users" routerLinkActive="active">
+      <a mat-list-item routerLink="/users" routerLinkActive="active" *ngIf="hasMinRole(userRole.BOARD)">
         <mat-icon color="primary">group</mat-icon>
         Gebruikers
       </a>
@@ -31,21 +31,23 @@
         <mat-icon color="primary">event_note</mat-icon>
         Activiteiten
       </a>
-      <a mat-list-item routerLink="/materials" routerLinkActive="active">
+      <a mat-list-item routerLink="/materials" routerLinkActive="active" *ngIf="hasMinRole(userRole.BOARD)">
         <mat-icon color="primary">watch</mat-icon>
         Materiaal
       </a>
 
-      <mat-divider></mat-divider>
-      <div mat-subheader>Reserveringen</div>
-      <a mat-list-item routerLink="/boat-reservations" routerLinkActive="active">
-        <mat-icon color="primary">receipt</mat-icon>
-        Boten
-      </a>
-      <a mat-list-item routerLink="/material-reservations" routerLinkActive="active">
-        <mat-icon color="primary">receipt</mat-icon>
-        Materiaal
-      </a>
+      <div *ngIf="hasMinRole(userRole.BOARD)">
+        <mat-divider></mat-divider>
+        <div mat-subheader>Reserveringen</div>
+        <a mat-list-item routerLink="/boat-reservations" routerLinkActive="active">
+          <mat-icon color="primary">receipt</mat-icon>
+          Boten
+        </a>
+        <a mat-list-item routerLink="/material-reservations" routerLinkActive="active">
+          <mat-icon color="primary">receipt</mat-icon>
+          Materiaal
+        </a>
+      </div>
 
       <mat-divider></mat-divider>
       <div mat-subheader>Account</div>

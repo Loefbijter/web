@@ -14,6 +14,8 @@ import { Boat } from '../boats.model';
 import { BoatsService } from '../boats.service';
 import { DeleteBoatDialogComponent } from './delete-boat-dialog/delete-boat-dialog.component';
 import { EditBoatDialogComponent } from './edit-boat-dialog/edit-boat-dialog.component';
+import { UserRole } from '../../_helpers/auth.model';
+import { AuthService } from '../../_services/auth.service';
 
 // tslint:disable-next-line: no-var-requires
 const content: ContentItem = require('./boat-details.content.json');
@@ -41,7 +43,8 @@ export class BoatDetailsComponent implements OnInit {
     private readonly router: Router,
     private readonly snackBar: MatSnackBar,
     private readonly contentService: ContentService,
-    private readonly dialog: MatDialog
+    private readonly dialog: MatDialog,
+    private readonly authService: AuthService
   ) { }
 
   public ngOnInit(): void {
@@ -58,6 +61,10 @@ export class BoatDetailsComponent implements OnInit {
         this.router.navigate(['boats']);
       }
     });
+  }
+
+  public hasMinRoleBoard(): boolean {
+    return this.authService.hasMinRole(UserRole.BOARD);
   }
 
   public onEditClick(): void {

@@ -1,6 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { AuthService } from './_services/auth.service';
 import { Router } from '@angular/router';
+import { UserRole } from './_helpers/auth.model';
 
 @Component({
   selector: 'app-root',
@@ -9,6 +10,9 @@ import { Router } from '@angular/router';
 })
 export class AppComponent implements OnInit, OnDestroy {
   public mobile: boolean = false;
+
+  // tslint:disable-next-line:typedef
+  public get userRole() { return UserRole; }
 
   public constructor(
     private readonly authService: AuthService,
@@ -31,6 +35,10 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public get loggedIn(): boolean {
     return this.authService.currentUserValue && typeof this.authService.currentUserValue === 'object';
+  }
+
+  public hasMinRole(role: UserRole): boolean {
+    return this.authService.hasMinRole(role);
   }
 
   public logout(): void {

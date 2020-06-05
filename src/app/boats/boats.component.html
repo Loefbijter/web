@@ -16,7 +16,7 @@
 
   <button *ngIf="!allItemsLoaded" mat-button (click)="onLoadMore()">{{'boats.button.load-more.text' | content}}</button>
 
-  <button mat-fab id="new-boat-button" (click)="showCreateBoatForm()">
+  <button mat-fab id="new-boat-button" (click)="showCreateBoatForm()" *ngIf="hasMinRoleBoard()">
     <mat-icon aria-hidden="false">add</mat-icon>
   </button>
 </ng-container>

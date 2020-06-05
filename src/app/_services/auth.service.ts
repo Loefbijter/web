@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
-import { Tokens, RefreshResponse, UserRole } from '../_helpers/auth.model';
+import { Tokens, RefreshResponse, UserRole, DecodedToken } from '../_helpers/auth.model';
 import * as jwtDecode from 'jwt-decode';
 import { SetPasswordDto } from '../set-password/set-password.model';
 
@@ -76,4 +76,10 @@ export class AuthService {
     const tokens: Tokens = JSON.parse(localStorage.getItem('authTokens'));
     return tokens || null;
   }
+
+  public hasMinRole(role: number): boolean {
+    const token: DecodedToken = jwtDecode(this.getTokensFromStorage().bearerToken);
+    return token.role <= role;
+  }
+
 }

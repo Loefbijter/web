@@ -1,6 +1,7 @@
 .actions {
-  display: flex;
-  justify-content: flex-end;
+  position: absolute;
+  right: 0.5rem;
+  top: 4.5rem;
 }
 
 .actions>* {
