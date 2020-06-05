@@ -13,6 +13,7 @@ import {
   checkIfActiveUntilAfterActiveFrom,
   checkIfStartTimeIsInPast,
   checkIfActiveFromIsInPast,
+  checkIfActiveUntilBeforeEndTime,
 } from '../activities.validators';
 
 @Component({
@@ -46,7 +47,7 @@ export class CreateActivityDialogComponent implements OnInit {
       endTime: new FormControl('', { validators: [Validators.required] }),
       activeFrom: new FormControl('', { validators: [Validators.required, checkIfActiveFromIsInPast ] }),
       activeUntil: new FormControl(''),
-      price: new FormControl('', { validators: Validators.min(1) }),
+      price: new FormControl('', { validators: Validators.min(0) }),
       maxAttendees: new FormControl('', { validators: Validators.min(1) }),
     },
       {
@@ -54,6 +55,7 @@ export class CreateActivityDialogComponent implements OnInit {
           checkIfEndTimeAfterStartTime,
           checkIfActiveFromBeforeStartTime,
           checkIfActiveUntilAfterActiveFrom,
+          checkIfActiveUntilBeforeEndTime,
         ]
       }
     );
@@ -72,8 +74,8 @@ export class CreateActivityDialogComponent implements OnInit {
         startTime: Math.round(this.createActivityForm.controls.startTime.value / 1000),
         endTime: Math.round(this.createActivityForm.controls.endTime.value / 1000),
         activeFrom: Math.round(this.createActivityForm.controls.activeFrom.value / 1000),
-        price: this.createActivityForm.controls.price.value ? this.createActivityForm.controls.price.value : null,
-        maxAttendees: this.createActivityForm.controls.maxAttendees.value ? this.createActivityForm.controls.maxAttendees.value : null,
+        price: this.createActivityForm.controls.price.value || null,
+        maxAttendees: this.createActivityForm.controls.maxAttendees.value || null,
       };
       if (this.createActivityForm.controls.activeUntil.value) {
         newActivity.activeUntil = Math.round(this.createActivityForm.controls.activeUntil.value / 1000);

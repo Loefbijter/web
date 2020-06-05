@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { FormGroup, ValidationErrors, FormBuilder, FormControl, Validators } from '@angular/forms';
+import { FormGroup, ValidationErrors, FormBuilder, FormControl, Validators, AbstractControl } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ContentService } from '../../_modules/content/content.service';
@@ -13,7 +13,8 @@ import {
   checkIfActiveFromBeforeStartTime,
   checkIfActiveUntilAfterActiveFrom,
   checkIfActiveFromIsInPast,
-  checkIfStartTimeIsInPast
+  checkIfStartTimeIsInPast,
+  checkIfActiveUntilBeforeEndTime,
 } from '../activities.validators';
 
 @Component({
@@ -49,7 +50,7 @@ export class EditActivityDialogComponent implements OnInit {
       activeFrom: new FormControl(moment(this.activity.activeFrom * 1000),
         { validators: [Validators.required, checkIfActiveFromIsInPast] }),
       activeUntil: new FormControl(this.activity.activeUntil ? moment(this.activity.activeUntil * 1000) : ''),
-      price: new FormControl(this.activity.price, { validators: Validators.min(1) }),
+      price: new FormControl(this.activity.price, { validators: Validators.min(0) }),
       maxAttendees: new FormControl(this.activity.maxAttendees, { validators: Validators.min(1) }),
     },
       {
@@ -57,6 +58,7 @@ export class EditActivityDialogComponent implements OnInit {
           checkIfEndTimeAfterStartTime,
           checkIfActiveFromBeforeStartTime,
           checkIfActiveUntilAfterActiveFrom,
+          checkIfActiveUntilBeforeEndTime,
         ]
       }
     );
@@ -66,21 +68,24 @@ export class EditActivityDialogComponent implements OnInit {
     if (this.isValid()) {
       this.loading = true;
       this.dialogRef.disableClose = true;
-      const updatedActivity: UpdateActivityDto = {
-        title: this.editActivityForm.controls.title.value,
-        description: this.editActivityForm.controls.description.value,
-        location: this.editActivityForm.controls.location.value,
-        imageUrl: this.editActivityForm.controls.imageUrl.value,
-        organiser: this.editActivityForm.controls.organiser.value,
-        startTime: Math.round(this.editActivityForm.controls.startTime.value / 1000),
-        endTime: Math.round(this.editActivityForm.controls.endTime.value / 1000),
-        activeFrom: Math.round(this.editActivityForm.controls.activeFrom.value / 1000),
-        price: this.editActivityForm.controls.price.value,
-        maxAttendees: this.editActivityForm.controls.maxAttendees.value,
-      };
-      if (this.editActivityForm.controls.activeUntil.value || this.activity.activeUntil) {
-        updatedActivity.activeUntil = Math.round(this.editActivityForm.controls.activeUntil.value / 1000) || null;
-      }
+      const controls: { [key: string]: AbstractControl; } = this.editActivityForm.controls;
+      const updatedActivity: UpdateActivityDto = { };
+      if (controls.title.value !== this.activity.title) updatedActivity.title = controls.title.value;
+      if (controls.description.value !== this.activity.description) updatedActivity.description = controls.description.value;
+      if (controls.location.value !== this.activity.location) updatedActivity.location = controls.location.value;
+      if (controls.imageUrl.value !== this.activity.imageUrl) updatedActivity.imageUrl = controls.imageUrl.value;
+      if (controls.organiser.value !== this.activity.organiser) updatedActivity.organiser = controls.organiser.value;
+      if (controls.price.value !== this.activity.price) updatedActivity.price = controls.price.value;
+      if (controls.maxAttendees.value !== this.activity.maxAttendees) updatedActivity.maxAttendees = controls.maxAttendees.value;
+      const newStartTime: number = Math.round(controls.startTime.value / 1000);
+      const newEndTime: number = Math.round(controls.endTime.value / 1000);
+      const newActiveFrom: number = Math.round(controls.activeFrom.value / 1000);
+      const newActiveUntil: number = controls.activeUntil.value ? Math.round(controls.activeUntil.value / 1000) : null;
+      if (newStartTime !== this.activity.startTime) updatedActivity.startTime = newStartTime;
+      if (newEndTime !== this.activity.endTime) updatedActivity.endTime = newEndTime;
+      if (newActiveFrom !== this.activity.activeFrom) updatedActivity.activeFrom = newActiveFrom;
+      if (newActiveUntil !== this.activity.activeUntil) updatedActivity.activeUntil = newActiveUntil;
+
       this.activityService.update(this.activity.id, updatedActivity).subscribe({
         next: (activity: Activity) => {
           this.snackBar.open(this.contentService.get('edit-activity.success'), null, { duration: TOAST_DURATION });

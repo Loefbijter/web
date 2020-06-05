@@ -36,3 +36,12 @@ export const checkIfActiveUntilAfterActiveFrom: ValidatorFn = (control: FormGrou
   }
   return activeUntil.value != '' && activeFrom.value >= activeUntil.value ? { activeUntilBeforeActiveFrom: true } : null;
 };
+
+export const checkIfActiveUntilBeforeEndTime: ValidatorFn = (control: FormGroup): ValidationErrors | null => {
+  const activeUntil: AbstractControl = control.get('activeUntil');
+  const endTime: AbstractControl = control.get('endTime');
+  if (!activeUntil.value) {
+    return null;
+  }
+  return activeUntil.value != '' && activeUntil.value > endTime.value ? { activeUntilAfterEndTime: true } : null;
+};

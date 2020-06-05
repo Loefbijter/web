@@ -32,14 +32,14 @@ export interface CreateActivityDto {
 }
 
 export interface UpdateActivityDto {
-  title: string;
-  description: string;
-  location: string;
-  imageUrl: string;
-  organiser: string;
-  startTime: number;
-  endTime: number;
-  activeFrom: number;
+  title?: string;
+  description?: string;
+  location?: string;
+  imageUrl?: string;
+  organiser?: string;
+  startTime?: number;
+  endTime?: number;
+  activeFrom?: number;
   activeUntil?: number;
   price?: number;
   maxAttendees?: number;
