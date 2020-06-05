@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { ContentItem } from '../_modules/content/content-item.model';
 import { ReservationsService } from './reservations.service';
 import { Reservation } from './reservations.model';
@@ -9,7 +9,6 @@ import { AcceptanceReservationsComponent } from './acceptance-reservations/accep
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
-import { tap } from 'rxjs/operators';
 import { SimpleDateService } from '../_helpers/simple-date.service';
 
 // tslint:disable-next-line: no-var-requires
@@ -20,7 +19,7 @@ const content: ContentItem = require('./reservations.content.json');
   templateUrl: './reservations.component.html',
   styleUrls: ['./reservations.component.scss']
 })
-export class ReservationsComponent implements OnInit, AfterViewInit {
+export class ReservationsComponent implements AfterViewInit {
 
   @ViewChild(MatPaginator, { static: true }) private readonly paginator: MatPaginator;
 
@@ -34,16 +33,13 @@ export class ReservationsComponent implements OnInit, AfterViewInit {
     private readonly snackBar: MatSnackBar,
     private readonly dialog: MatDialog,
     public readonly simpleDateService: SimpleDateService,
-  ) { }
-
-  public ngOnInit(): void {
+  ) {
     this.contentService.addContentItems(content);
-    this.dataSource = new MatTableDataSource<Reservation>();
-    this.getReservations(0, 10);
   }
 
   public ngAfterViewInit(): void {
-    this.paginator.page.pipe(tap(() => this.onLoadMore())).subscribe();
+    this.dataSource = new MatTableDataSource<Reservation>();
+    this.getReservations(this.paginator.pageIndex, this.paginator.pageSize);
   }
 
   private getReservations(page: number, limit: number): void {
@@ -60,7 +56,7 @@ export class ReservationsComponent implements OnInit, AfterViewInit {
     this.dialog.open(AcceptanceReservationsComponent, { data: reservationData, width: '500px' }).afterClosed().subscribe({
       next: (changed: boolean) => {
         if (changed) {
-          this.ngOnInit();
+          this.ngAfterViewInit();
         }
       }
     });

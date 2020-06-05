@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MaterialReservation, MaterialReservationStatus } from '../material/materials.model';
 import { SimpleDateService } from '../_helpers/simple-date.service';
@@ -19,7 +19,7 @@ const content: ContentItem = require('./material-reservations.content.json');
   templateUrl: './material-reservations.component.html',
   styleUrls: ['./material-reservations.component.scss']
 })
-export class MaterialReservationsComponent implements OnInit {
+export class MaterialReservationsComponent implements AfterViewInit {
 
   public status: number = -1;
   // tslint:disable-next-line:no-any
@@ -37,34 +37,39 @@ export class MaterialReservationsComponent implements OnInit {
     private readonly contentService: ContentService,
     private readonly snackBar: MatSnackBar,
     private readonly dialog: MatDialog,
-    ) { }
-
-  public ngOnInit(): void {
-    this.dataSource = new MatTableDataSource<MaterialReservation>();
+  ) {
     this.contentService.addContentItems(content);
-    this.getReservations(0, 10);
+  }
+
+  public ngAfterViewInit(): void {
+    this.dataSource = new MatTableDataSource<MaterialReservation>();
+    this.getReservations(this.paginator.pageIndex, this.paginator.pageSize);
   }
 
   public getReservations(page: number, limit: number): void {
     if (this.status == -1) {
       this.materialReservationService
-        .getList({ page: page + 1, limit: limit}).subscribe({
-        next: reservations => {
-          this.dataSource.data = reservations;
-          this.totalItemsCount = this.materialReservationService.itemsTotal;
-        },
-        error: () => this.snackBar.open(this.contentService.get('material.reservations.error.loading'), null, { duration: TOAST_DURATION})
-      });
+        .getList({ page: page + 1, limit: limit }).subscribe({
+          next: reservations => {
+            this.dataSource.data = reservations;
+            this.totalItemsCount = this.materialReservationService.itemsTotal;
+          },
+          error: () => {
+            this.snackBar.open(this.contentService.get('material.reservations.error.loading'), null, { duration: TOAST_DURATION });
+          }
+        });
     }
     else {
       this.materialReservationService
-        .getListForStatus(this.status, { page: page + 1, limit: limit}).subscribe({
-        next: reservations => {
-          this.dataSource.data = reservations;
-          this.totalItemsCount = this.materialReservationService.itemsTotal;
-        },
-        error: () => this.snackBar.open(this.contentService.get('material.reservations.error.loading'), null, { duration: TOAST_DURATION})
-      });
+        .getListForStatus(this.status, { page: page + 1, limit: limit }).subscribe({
+          next: reservations => {
+            this.dataSource.data = reservations;
+            this.totalItemsCount = this.materialReservationService.itemsTotal;
+          },
+          error: () => {
+            this.snackBar.open(this.contentService.get('material.reservations.error.loading'), null, { duration: TOAST_DURATION });
+          }
+        });
     }
   }
 

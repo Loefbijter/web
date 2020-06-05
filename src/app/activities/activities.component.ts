@@ -36,12 +36,13 @@ export class ActivitiesComponent implements OnInit {
     private readonly activitiesService: ActivitiesService,
     private readonly contentService: ContentService,
     private readonly dialog: MatDialog,
-  ) { }
+  ) {
+    this.contentService.addContentItems(content);
+  }
 
   public ngOnInit(): void {
-    this.contentService.addContentItems(content);
     this.dataSource = new MatTableDataSource<Activity>();
-    this.getActivities(0, 10);
+    this.onLoadMore();
   }
 
   private getActivities(page: number, limit: number): void {
@@ -59,7 +60,7 @@ export class ActivitiesComponent implements OnInit {
   }
 
   public showCreateActivityDialog(): void {
-    this.dialog.open(CreateActivityDialogComponent, { width: '1000px' }).afterClosed().subscribe({
+    this.dialog.open(CreateActivityDialogComponent, { width: '1000px', height: '80vh' }).afterClosed().subscribe({
       next: (newActivity) => {
         if (newActivity) {
           // Reload the data
@@ -78,7 +79,7 @@ export class ActivitiesComponent implements OnInit {
   }
 
   public showEditActivityDialog(activity: Activity): void {
-    this.dialog.open(EditActivityDialogComponent, { width: '1000px', data: activity }).afterClosed().subscribe({
+    this.dialog.open(EditActivityDialogComponent, { width: '1000px', height: '80vh', data: activity }).afterClosed().subscribe({
       next: (editedActivity) => {
         if (editedActivity) {
           // Reload the data

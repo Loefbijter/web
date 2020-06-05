@@ -53,7 +53,7 @@ export class BoatDetailsComponent implements OnInit {
     this.boatId = this.route.snapshot.params.id;
     this.boatsService.getOne(this.boatId).subscribe({
       next: boat => {
-        this.getDamages(0, 10);
+        this.getDamages(this.paginator.pageIndex, this.paginator.pageSize);
         this.boat = boat;
       },
       error: () => {

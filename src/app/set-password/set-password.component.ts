@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ValidationErrors, FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { ContentService } from '../_modules/content/content.service';
 import { ContentItem } from '../_modules/content/content-item.model';
@@ -32,6 +32,7 @@ export class SetPasswordComponent implements OnInit {
     private readonly formErrorsService: FormErrorsService,
     private readonly authService: AuthService,
     private readonly snackBar: MatSnackBar,
+    private readonly router: Router,
   ) { }
 
   public ngOnInit(): void {
@@ -62,6 +63,7 @@ export class SetPasswordComponent implements OnInit {
         next: () => {
           this.loading = false;
           this.snackBar.open(this.contentService.get('set-password.success'), null, { duration: TOAST_DURATION });
+          this.router.navigate(['login']);
         },
         error: () => {
           this.loading = false;

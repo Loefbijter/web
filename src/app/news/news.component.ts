@@ -39,7 +39,7 @@ export class NewsComponent implements OnInit {
   public ngOnInit(): void {
     this.contentService.addContentItems(content);
     this.dataSource = new MatTableDataSource<News>();
-    this.getNews(this.defaultPageSize, 0);
+    this.getNews(this.paginator.pageSize, this.paginator.pageIndex);
   }
 
   private getNews(limit: number, page: number): void {
