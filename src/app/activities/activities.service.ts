@@ -14,7 +14,13 @@ export class ActivitiesService {
   public constructor(private readonly http: HttpClient) { }
 
   public getAll(limit: number = 10, page: number = 0): Observable<Activity[]> {
-    return this.http.get<Paged<Activity>>(`${environment.apiUrl}/activities?page=${page}&limit=${limit}`)
+    return this.http.get<Paged<Activity>>(`${environment.apiUrl}/activities` +
+        `?page=${page}` +
+        `&limit=${limit}` +
+        '&showPast=true' +
+        '&showFuture=true' +
+        '&orderBy=startTime' +
+        '&sortOrder=DESC')
       .pipe(map((res: Paged<Activity>) => {
         this.itemsTotal = res.totalItems;
         return res.items;
