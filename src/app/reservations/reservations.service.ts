@@ -38,6 +38,20 @@ export class ReservationsService {
       }));
   }
 
+  public getAllFinished(id: string, optionsParam?: { page?: number, limit?: number, order?: Order }): Observable<Reservation[]> {
+    const options: { page?: number, limit?: number, order?: Order } = { page: 1, limit: 10, order: Order.DESC };
+    Object.assign(options, optionsParam);
+    return this.http
+      .get<Paged<Reservation>>(
+        `${environment.apiUrl}/boat-reservations?page=${options.page}&limit=${options.limit}&order=${options.order}&boatId=${id}&finished=true`
+      )
+      .pipe(map((res: Paged<Reservation>) => {
+        this.openItemsTotal = res.totalItems;
+        return res.items;
+      }));
+  }
+
+
   public getOne(id: string): Observable<Reservation> {
     return this.http.get<Reservation>(`${environment.apiUrl}/boats-reservations/${id}`);
   }

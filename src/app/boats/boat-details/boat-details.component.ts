@@ -16,6 +16,8 @@ import { DeleteBoatDialogComponent } from './delete-boat-dialog/delete-boat-dial
 import { EditBoatDialogComponent } from './edit-boat-dialog/edit-boat-dialog.component';
 import { UserRole } from '../../_helpers/auth.model';
 import { AuthService } from '../../_services/auth.service';
+import { Reservation } from '../../reservations/reservations.model';
+import { ReservationsService } from '../../reservations/reservations.service';
 
 // tslint:disable-next-line: no-var-requires
 const content: ContentItem = require('./boat-details.content.json');
@@ -32,12 +34,15 @@ export class BoatDetailsComponent implements OnInit {
   public boat: Boat;
   public boatId: string;
   public columns: string[];
-  public columnsToDisplay: string[] = ['description', 'createdAt', 'resolvedAt', 'createdByUser', 'lastUpdatedByUser', 'actions'];
-  public dataSource: MatTableDataSource<Damage>;
+  public damageColumnsToDisplay: string[] = ['description', 'createdAt', 'resolvedAt', 'createdByUser', 'lastUpdatedByUser', 'actions'];
+  public logsColumnsToDisplay: string[] = ['startTimestamp', 'user', 'skipper', 'reason', 'windForce', 'motorHours', 'sailUsed', 'hasBeenRefueled'];
+  public damageDataSource: MatTableDataSource<Damage>;
+  public reservationDataSource: MatTableDataSource<Reservation>;
   public totalItemsCount: number;
 
   public constructor(
     private readonly boatsService: BoatsService,
+    private readonly reservationService: ReservationsService,
     private readonly damageService: DamageService,
     private readonly route: ActivatedRoute,
     private readonly router: Router,
@@ -49,11 +54,13 @@ export class BoatDetailsComponent implements OnInit {
 
   public ngOnInit(): void {
     this.contentService.addContentItems(content);
-    this.dataSource = new MatTableDataSource<Damage>();
+    this.damageDataSource = new MatTableDataSource<Damage>();
+    this.reservationDataSource = new MatTableDataSource<Reservation>();
     this.boatId = this.route.snapshot.params.id;
     this.boatsService.getOne(this.boatId).subscribe({
       next: boat => {
         this.getDamages(this.paginator.pageIndex, this.paginator.pageSize);
+        this.getReservations(this.paginator.pageIndex, this.paginator.pageSize);
         this.boat = boat;
       },
       error: () => {
@@ -98,10 +105,20 @@ export class BoatDetailsComponent implements OnInit {
     });
   }
 
+  private getReservations(page: number, limit: number): void {
+    this.reservationService.getAllFinished(this.boatId, { page: page + 1, limit: limit }).subscribe({
+      next: reservations => {
+        this.reservationDataSource.data = reservations;
+        this.totalItemsCount = this.reservationService.itemsTotal;
+      },
+      error: () => this.snackBar.open(this.contentService.get('boot-log.error.loading'), null, { duration: TOAST_DURATION })
+    });
+  }
+
   private getDamages(page: number, limit: number): void {
     this.damageService.getAll(this.boatId, page + 1, limit).subscribe({
       next: damages => {
-        this.dataSource.data = damages;
+        this.damageDataSource.data = damages;
         this.totalItemsCount = this.damageService.itemsTotal;
       },
       error: () => this.snackBar.open(this.contentService.get('boat-damage.error.loading'), null, { duration: TOAST_DURATION })
