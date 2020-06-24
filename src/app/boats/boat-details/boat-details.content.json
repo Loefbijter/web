@@ -31,7 +31,7 @@
   "edit-boat.success": "Boat succesvol bewerkt.",
   "edit-boat.error": "Er ging iets mis bij het bewerken van de boot, probeer het later opnieuw.",
 
-  "boat-logs.title": "Logboek",
+  "boat-logs.title": "Reserveringsgeschiedenis",
   "boat-logs.date": "Reservering op",
   "boat-logs.reason": "Reden",
   "boat-logs.skipper": "Schipper",
