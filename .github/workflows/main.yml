@@ -1,0 +1,15 @@
+name: Build and Deploy
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: deploy web app
+        uses: AhsanAyaz/angular-deploy-gh-pages-actions
+        with:
+          github_access_token: ${{ secrets.ACCESS_TOKEN }} # see the Configuration section for how you can create secrets
+          deploy_branch: gh-pages # The branch the action should deploy to.
