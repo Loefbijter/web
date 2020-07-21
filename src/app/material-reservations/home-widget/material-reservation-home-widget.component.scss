@@ -1,0 +1,30 @@
+.details-header {
+  margin: 0;
+  line-height: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.review-btn {
+  display: flex;
+  align-items: center;
+  float: right;
+  margin: 5px, 25px;
+}
+
+.row-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.reservation-row {
+  padding: 5px 0;
+}
+
+.reservation-info {
+  width: 100%;
+}
+
+.status-selector {
+  padding-bottom: 25px
+}

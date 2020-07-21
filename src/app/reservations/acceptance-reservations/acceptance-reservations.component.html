@@ -1,0 +1,25 @@
+<h2>{{'reservations.details.title.text' | content}}</h2>
+
+<h3 class="details-header">
+  {{'reservations.details.date.text' | content}}: {{simpleDateService.formatDate(reservation.startTimestamp)}}
+</h3>
+<p>
+  {{'reservations.details.from-time.text' | content}} {{simpleDateService.formatTime(reservation.startTimestamp)}}
+  {{'reservations.details.until-time.text' | content}} {{simpleDateService.formatTime(reservation.endTimestamp)}}
+</p>
+
+<h3 class="details-header">{{'reservations.details.reservation-by.text' | content}}: {{reservation.user.name}}</h3>
+<p>
+  {{'reservations.details.skipper.text' | content}}:
+  {{reservation.skipper != null ? reservation.skipper : reservation.user.name}}
+</p>
+
+<h3 class="details-header">{{'reservations.details.reason.text' | content}}</h3>
+<p>{{reservation.reason}}</p>
+
+<div class="actions">
+  <button mat-raised-button color="warn" class="action-btn"
+    (click)="acceptanceOfReservation(false)">{{'accept-boat-reservation.button.cancel.text' | content}}</button>
+  <button mat-raised-button class="action-btn"
+    (click)="acceptanceOfReservation(true)">{{'accept-boat-reservation.button.confirm.text' | content}}</button>
+</div>

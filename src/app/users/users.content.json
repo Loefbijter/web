@@ -1,0 +1,35 @@
+{
+  "users.title": "Gebruikers",
+  "users.error.loading": "Er ging iets mis tijdens het ophalen van de gebruikers, probeer het later opnieuw.",
+
+  "users.table.name.colname": "Naam",
+  "users.table.email.colname": "Email",
+  "users.table.role.colname": "Rol",
+
+  "users.table.role.1.text": "Administrator",
+  "users.table.role.2.text": "Bestuur",
+  "users.table.role.3.text": "Commissie",
+  "users.table.role.4.text": "Lid",
+
+  "create-user.title": "Gebruiker toevoegen",
+  "create-user.description": "De nieuwe gebruiker kan zelf zijn/haar wachtwoord instellen, nadat het account is aangemaakt. Er wordt een email verstuurd naar de nieuwe gebruiker zodra deze is aangemaakt.",
+  "create-user.name.placeholder": "Naam",
+  "create-user.name.error.required": "Naam is verplicht",
+  "create-user.name.error.maxlength": "Naam is maximaal 255 tekens lang",
+  "create-user.email.placeholder": "Email",
+  "create-user.email.error.required": "Email is verplicht",
+  "create-user.email.error.maxlength": "Email is maximaal 255 tekens lang",
+  "create-user.email.error.email": "Email is geen geldig emailadres",
+  "create-user.email.error.unique": "Email '${email}' is al in gebruik",
+  "create-user.role.placeholder": "Rol",
+  "create-user.role.error.required": "Rol is verplicht",
+  "create-user.role.1.text": "Administrator",
+  "create-user.role.2.text": "Bestuur",
+  "create-user.role.3.text": "Commissie",
+  "create-user.role.4.text": "Lid",
+  "create-user.button.cancel.text": "Annuleren",
+  "create-user.button.create.text": "Toevoegen",
+  "create-user.success": "Gebruiker succesvol toegevoegd, er is een email verstuurd voor het aanmaken van een wachtwoord.",
+  "create-user.error": "Er ging iets mis tijdens het toevoegen van de gebruiker, probeer het later opnieuw.",
+  "create-user.error.mail": "Er ging iets mis bij het versturen van de wachtwoord email, probeer het later handmatig opnieuw. De gebruiker is wel succesvol aangemaakt."
+}

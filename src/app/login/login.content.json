@@ -1,0 +1,11 @@
+{
+  "login.title": "Loefbijter Login",
+  "login.button.login.text": "Log in",
+  "login.button.reset-password.text": "Wachtwoord vergeten",
+  "login.email.error.required": "Email is verplicht",
+  "login.email.error.email": "Vul een geldig email adres in",
+  "login.email.placeholder": "Email",
+  "login.password.error.required": "Wachtwoord is verplicht",
+  "login.password.placeholder": "Wachtwoord",
+  "login.failed": "Email of wachtwoord is incorrect"
+}

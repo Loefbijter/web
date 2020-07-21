@@ -1,0 +1,8 @@
+<h2 class="mat-title">{{'delete-certificate.title' | content}}</h2>
+
+<p>{{'delete-certificate.message' | content:{ certificateName: certificate.name } }}</p>
+
+<div class="actions">
+  <button mat-button (click)="this.dialogRef.close()">{{'delete-certificate.button.cancel.text' | content}}</button>
+  <button mat-flat-button color="warn" (click)="onConfirm()">{{'delete-certificate.button.confirm.text' | content}}</button>
+</div>

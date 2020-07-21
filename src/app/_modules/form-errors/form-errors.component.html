@@ -1,0 +1,5 @@
+<div class="form-errors" role="alert" aria-live="assertive" *ngIf="errorsArePresent">
+  <div class="form-error" *ngFor="let message of messages">
+    {{message}}
+  </div>
+</div>

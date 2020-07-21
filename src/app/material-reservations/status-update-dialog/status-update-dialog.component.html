@@ -1,0 +1,27 @@
+<h2>{{'material.reservations.update-status.title' | content}}</h2>
+
+<h2 class="details-header">{{'material.reservations.update-status.material.text' | content}}</h2>
+<p>{{'material.reservations.update-status.material.for-material.text' | content}} {{materialReservation.material.name}} </p>
+
+<h2 class="details-header">{{'material.reservations.update-status.user.text' | content}}</h2>
+<p>{{'material.reservations.update-status.user.by-user.text' | content}} {{materialReservation.user.name}}</p>
+
+<h2 class="details-header">{{'material.reservations.update-status.reservation.text' | content}}</h2>
+<p>{{simpleDateService.advancedFormatDate(materialReservation.startTimestamp, materialReservation.endTimestamp)}}</p>
+
+<mat-divider style="padding: 5px"></mat-divider>
+
+<h2 class="details-header">{{'material.reservations.update-status.new-status.text' | content}}</h2>
+<mat-select [(ngModel)]="status" class="status-selector">
+  <mat-option disabled [value]="statusOptions.REQUESTED">{{'material.reservations.status.requested' | content}}</mat-option>
+  <mat-option [value]="statusOptions.CANCELLED">{{'material.reservations.status.cancelled' | content}}</mat-option>
+  <mat-option [value]="statusOptions.ACCEPTED">{{'material.reservations.status.accepted' | content}}</mat-option>
+  <mat-option [value]="statusOptions.DENIED">{{'material.reservations.status.denied' | content}}</mat-option>
+  <mat-option [value]="statusOptions.ISSUED">{{'material.reservations.status.issued' | content}}</mat-option>
+  <mat-option [value]="statusOptions.RETURNED">{{'material.reservations.status.returned' | content}}</mat-option>
+</mat-select>
+
+<div class="actions">
+  <button mat-button (click)="this.dialogRef.close()">{{'material.reservations.update-status.button.cancel.text' | content}}</button>
+  <button mat-button (click)="onConfirm()">{{'material.reservations.update-status.button.update-status.text' | content}}</button>
+</div>

@@ -1,0 +1,30 @@
+<h2 class="mat-h2">{{'boats.title' | content}}</h2>
+
+<ng-container *ngIf="boats; else loading">
+  <ul class="cards" *ngIf="boats.length > 0; else noBoats">
+    <li *ngFor="let boat of boats">
+      <mat-card>
+        <img mat-card-image [src]="boat.image" alt="Foto van de boot.">
+        <mat-card-title>{{boat.name}}</mat-card-title>
+        <mat-card-subtitle>{{boat.type}}</mat-card-subtitle>
+        <mat-card-actions>
+          <a mat-button [routerLink]="[boat.id]">{{'boats.button.show-details.text' | content}}</a>
+        </mat-card-actions>
+      </mat-card>
+    </li>
+  </ul>
+
+  <button *ngIf="!allItemsLoaded" mat-button (click)="onLoadMore()">{{'boats.button.load-more.text' | content}}</button>
+
+  <button mat-fab id="new-boat-button" (click)="showCreateBoatForm()" *ngIf="hasMinRoleBoard()">
+    <mat-icon aria-hidden="false">add</mat-icon>
+  </button>
+</ng-container>
+
+<ng-template #noBoats>
+  <p class="mat-body">{{'boats.no-boats-found' | content}}</p>
+</ng-template>
+
+<ng-template #loading>
+  <mat-progress-spinner></mat-progress-spinner>
+</ng-template>

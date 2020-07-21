@@ -1,0 +1,29 @@
+<h2>{{'users.title' | content}}</h2>
+
+<mat-table [dataSource]="dataSource" class="reservations-table">
+
+  <ng-container matColumnDef="email">
+    <mat-header-cell *matHeaderCellDef>{{'users.table.email.colname' | content}}</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.email}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <mat-header-cell *matHeaderCellDef>{{'users.table.name.colname' | content}}</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="role">
+    <mat-header-cell *matHeaderCellDef>{{'users.table.role.colname' | content}}</mat-header-cell>
+    <mat-cell *matCellDef="let element">{{'users.table.role.' + element.role + '.text' | content}}</mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns" [routerLink]="[row.id]"></mat-row>
+
+</mat-table>
+<mat-paginator #paginator [length]="totalItemsCount" [pageSizeOptions]="[5, 10, 50, 100]" [pageIndex]="0" [pageSize]="defaultPageSize"
+  showFirstLastButtons (page)="onLoadMore()"></mat-paginator>
+
+<button mat-fab id="new-user-button" (click)="onCreateUserClick()">
+  <mat-icon aria-hidden="false">add</mat-icon>
+</button>

@@ -1,0 +1,38 @@
+<mat-card>
+  <mat-card-title>{{'login.title' | content}}</mat-card-title>
+  <mat-card-content>
+    <form [formGroup]="loginForm" (submit)="onSubmit($event)" novalidate>
+      <p>
+        <mat-form-field>
+          <input type="email" matInput placeholder="{{'Email' | content}}" formControlName="email">
+        </mat-form-field>
+        <app-form-errors [targetFormControl]="loginForm.controls.email" [messages]="errors.email"
+          (errorChanges)="updateErrors('email', $event)">
+        </app-form-errors>
+      </p>
+
+      <p>
+        <mat-form-field>
+          <input type="password" matInput placeholder="{{'Wachtwoord' | content}}" formControlName="password">
+        </mat-form-field>
+        <app-form-errors [targetFormControl]="loginForm.controls.password" [messages]="errors.password"
+          (errorChanges)="updateErrors('password', $event)">
+        </app-form-errors>
+      </p>
+
+      <p *ngIf="loginFailed" class="mat-warn-text">
+        {{'login.failed' | content}}
+      </p>
+
+      <div class="button">
+        <ng-container *ngIf="!loading; else spinner">
+          <a mat-button routerLink="/forgot-password">{{'login.button.reset-password.text' | content}}</a>
+          <button type="submit" color="primary" mat-flat-button>{{'login.button.login.text' | content}}</button>
+        </ng-container>
+        <ng-template #spinner>
+          <mat-spinner diameter="30"></mat-spinner>
+        </ng-template>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

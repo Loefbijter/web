@@ -1,0 +1,33 @@
+.actions {
+  position: absolute;
+  right: 0.5rem;
+  top: 4.5rem;
+}
+
+.actions>* {
+  margin: 0.5rem;
+}
+
+.key-value-holder {
+  display: flex;
+  justify-content: space-between;
+}
+
+.mat-cell,
+.mat-header-cell {
+  padding: 0px 8px;
+}
+
+.damages-table {
+  min-width: 100%;
+}
+
+.boat-information {
+  img {
+    width: 200px;
+  }
+
+  h2, h4 {
+    margin: 2px 0;
+  }
+}

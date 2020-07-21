@@ -1,0 +1,35 @@
+{
+  "certificates.title": "Certificaten",
+  "certificates.table.name.colname": "Naam",
+  "certificates.table.showInSkippersList.colname": "Schipperscertificaat",
+  "certificates.error.loading": "Er ging iets mis bij het laden van de certificaten, probeer het later opnieuw.",
+
+  "create-certificate.title": "Certificaat toevoegen",
+  "create-certificate.name.placeholder": "Naam",
+  "create-certificate.name.error.required": "Naam is verplicht",
+  "create-certificate.name.error.maxlength": "Naam is maximaal 255 tekens lang",
+  "create-certificate.name.error.unique": "Certificaat met naam '${name}' bestaat al",
+  "create-certificate.name.showInSkippersList.label": "Is een schipperscertificaat",
+  "create-certificate.button.cancel.text": "Annuleren",
+  "create-certificate.button.create.text": "Toevoegen",
+  "create-certificate.success": "Certificaat succesvol toegevoegd.",
+  "create-certificate.error": "Er ging iets mis bij het maken van het certificaat, probeer het later opnieuw.",
+
+  "delete-certificate.title": "Certificaat verwijderen",
+  "delete-certificate.message": "Weet je zeker dat je \"${certificateName}\" wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+  "delete-certificate.button.cancel.text": "Annuleren",
+  "delete-certificate.button.confirm.text": "Ja, verwijderen",
+  "delete-certificate.success": "Certificaat succesvol verwijderd.",
+  "delete-certificate.error.in-use": "Dit certificaat is in gebruik door een of meerdere boten en kon niet worden verwijderd.",
+
+  "edit-certificate.title": "Certificaat bewerken",
+  "edit-certificate.name.placeholder": "Naam",
+  "edit-certificate.name.error.required": "Naam is verplicht",
+  "edit-certificate.name.error.maxlength": "Naam is maximaal 255 tekens lang",
+  "edit-certificate.name.error.unique": "De naam '${name}' is al in gebruik",
+  "edit-certificate.name.showInSkippersList.label": "Is een schipperscertificaat",
+  "edit-certificate.button.cancel.text": "Annuleren",
+  "edit-certificate.button.save.text": "Opslaan",
+  "edit-certificate.success": "Certificaat succesvol bewerkt.",
+  "edit-certificate.error": "Er ging iets mis bij het bewerken van het certificaat, probeer het later opnieuw."
+}

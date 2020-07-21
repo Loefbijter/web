@@ -1,0 +1,9 @@
+<h2 class="mat-title">{{'delete-question.title' | content}}</h2>
+
+<p>{{'delete-question.message' | content:{ question: question.text } }}</p>
+
+<div class="actions">
+  <button mat-button (click)="this.dialogRef.close()">{{'delete-question.button.cancel.text' | content}}</button>
+  <button mat-flat-button color="warn"
+    (click)="onConfirm()">{{'delete-question.button.confirm.text' | content}}</button>
+</div>

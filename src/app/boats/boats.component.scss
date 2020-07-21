@@ -1,0 +1,48 @@
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+mat-card-title {
+  line-height: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.cards > li {
+  overflow: hidden;
+  box-sizing: border-box;
+  padding: 1rem;
+
+  @media (min-width: 45rem) {
+    // 2 wide
+    width: 50%;
+  }
+  @media (min-width: 65rem) {
+    // 3 wide
+    width: 33.3333%;
+  }
+  @media (min-width: 85rem) {
+    // 4 wide
+    width: 25%;
+  }
+}
+
+mat-card img {
+  object-fit: cover; /*this makes the image in src fit to the size specified below*/
+  object-position: center;
+  height: unset;
+
+  @media (min-width: 45rem) {
+    height: 250px;
+  }
+}
+
+button#new-boat-button {
+  position: fixed;
+  right: 2rem;
+  bottom: 1.5rem;
+}

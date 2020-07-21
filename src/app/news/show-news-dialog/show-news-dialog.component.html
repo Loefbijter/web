@@ -1,0 +1,7 @@
+<div cdkScrollable>
+  <h2 class="mat-title">{{news.title}}</h2>
+
+  <p>{{news.text}}</p>
+
+  <img *ngIf="news.image" mat-img [src]="news.image">
+</div>

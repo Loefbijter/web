@@ -1,0 +1,53 @@
+{
+  "user-details.title": "Gebruiker details",
+  "user-details.not-found": "Gebruiker niet gevonden.",
+  "user-details.name": "Naam",
+  "user-details.email": "Email",
+  "user-details.role": "Rol",
+
+  "user-details.role.1.text": "Administrator",
+  "user-details.role.2.text": "Bestuur",
+  "user-details.role.3.text": "Committee",
+  "user-details.role.4.text": "Lid",
+
+  "user-details.button.reset-password.tooltip": "Klik om het wachtwoord van deze gebruiker te resetten via een email",
+  "user-details.button.edit.tooltip": "Gebruiker bewerken",
+  "user-details.button.delete.tooltip": "Gebruiker verwijderen",
+
+  "user-details.reset-password.success": "Wachtwoord succesvol gereset, er is een email verstuurd naar de gebruiker.",
+  "user-details.reset-password.error": "Er ging iets mis tijdens het resetten van het wachtwoord, probeer het later opnieuw.",
+
+  "user-details.section.certificates.title": "Certificaten",
+  "user-details.certificates.no-certificates": "Er bestaan nog geen certificaten, voeg deze toe via 'Certificaten' in het zijmenu.",
+  "user-details.certificates.done-saving": "Alle wijzigingen opgeslagen",
+  "user-details.certificates.saving": "Bezig met opslaan",
+  "user-details.certificates.error": "Er ging iets mis tijdens het opslaan van de wijzigingen, probeer het later opnieuw.",
+
+  "edit-user.title": "Gebruiker wijzigen",
+  "edit-user.description": "Het wachtwoord kan hier niet worden gewijzigd. Dit proces kan worden gestart via de knop op de gebruiker's detailpagina.",
+  "edit-user.name.placeholder": "Naam",
+  "edit-user.name.error.required": "Naam is verplicht",
+  "edit-user.name.error.maxlength": "Naam is maximaal 255 tekens lang",
+  "edit-user.email.placeholder": "Email",
+  "edit-user.email.error.required": "Email is verplicht",
+  "edit-user.email.error.maxlength": "Email is maximaal 255 tekens lang",
+  "edit-user.email.error.email": "Email is geen geldig emailadres",
+  "edit-user.email.error.unique": "Email '${email}' is al in gebruik",
+  "edit-user.role.placeholder": "Rol",
+  "edit-user.role.error.required": "Rol is verplicht",
+  "edit-user.role.1.text": "Administrator",
+  "edit-user.role.2.text": "Bestuur",
+  "edit-user.role.3.text": "Committee",
+  "edit-user.role.4.text": "Lid",
+  "edit-user.button.cancel.text": "Annuleren",
+  "edit-user.button.save.text": "Opslaan",
+  "edit-user.success": "Gebruiker succesvol gewijzigd.",
+  "edit-user.error": "Er ging iets mis tijdens het wijzigen van de gebruiker, probeer het later opnieuw.",
+
+  "delete-user.title": "Gebruiker verwijderen",
+  "delete-user.message": "Weet je zeker dat je \"${userName}\" wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+  "delete-user.button.cancel.text": "Annuleren",
+  "delete-user.button.confirm.text": "Ja, verwijderen",
+  "delete-user.success": "Gebruiker succesvol verwijderd.",
+  "delete-user.error": "Er ging iets mis tijdens het verwijderen van de gebruiker, probeer het later opnieuw."
+}

@@ -1,0 +1,47 @@
+{
+  "material.title": "Materiaal",
+  "material.image.alt-text": "Foto van het materiaal.",
+  "material.button.show-details.text": "Details",
+
+  "material.create.title": "Materiaal aanmaken",
+  "material.create.name.placeholder": "Naam",
+  "material.create.image.placeholder": "Afbeelding URL",
+  "material.create.image-preview.text": "Afbeelding voorbeeld",
+  "material.create.button.cancel.text": "Annuleren",
+  "material.create.button.create.text": "Aanmaken",
+
+  "material.update.title": "Materiaal aanpassen",
+  "material.update.name.placeholder": "Naam",
+  "material.update.image.placeholder": "Afbeelding URL",
+  "material.update.image-preview.text": "Afbeelding voorbeeld",
+  "material.update.button.cancel.text": "Annuleren",
+  "material.update.button.save.text": "Opslaan",
+
+  "material.detail.title": "Materiaal info",
+  "material.detail.name": "Naam: ",
+  "material.detail.image": "Afbeelding:",
+
+  "material.error.loading": "Er ging iets mis gegaan bij het laden van het materiaal, probeer het later opnieuw.",
+  "material.detail.error.material.loading": "Er ging iets mis gegaan bij het laden van de materiaal informatie, probeer het later opnieuw.",
+  "material.delete.success": "Materiaal succesvol verwijderd.",
+  "material.delete.error": "Er ging iets mis bij het verwijderen van het materiaal, probeer het later opnieuw.",
+  "material.create.success": "Materiaal succesvol toegevoegd.",
+  "material.create.error": "Er ging iets mis bij het maken van het materiaal, probeer het later opnieuw.",
+  "material.update.success": "Materiaal succesvol bewerkt.",
+  "material.update.error": "Er ging iets mis bij het bewerken van het materiaal, probeer het later opnieuw.",
+
+  "material.create.name.error.required": "Naam is verplicht",
+  "material.create.name.error.maxlength": "Naam is maximaal 255 tekens lang",
+  "material.create.image.error.required": "Afbeelding URL is verplicht",
+  "material.create.image.error.pattern": "URL moet valide zijn, bijvoorbeeld: https://example.com/image.png",
+
+  "material.update.name.error.required": "Naam is verplicht",
+  "material.update.name.error.maxlength": "Naam is maximaal 255 tekens lang",
+  "material.update.image.error.required": "Afbeelding URL is verplicht",
+  "material.update.image.error.pattern": "URL moet valide zijn, bijvoorbeeld: https://example.com/image.png",
+
+  "material.delete.title": "Materiaal verwijderen",
+  "material.delete.message": "Weet je zeker dat je \"${materialName}\" wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+  "material.delete.button.cancel.text": "Annuleren",
+  "material.delete.button.confirm.text": "Verwijderen"
+}

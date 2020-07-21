@@ -1,0 +1,6 @@
+<h2>Dashboard</h2>
+<app-home-page-widget-reservations class="reservation-widget col-lg-4 col-md-6 col-xs-12" *ngIf="hasMinRole(userRole.BOARD)">
+</app-home-page-widget-reservations>
+<app-material-reservation-home-widget class="reservation-widget col-lg-4 col-md-6 col-xs-12" *ngIf="hasMinRole(userRole.BOARD)">
+</app-material-reservation-home-widget>
+

@@ -1,0 +1,52 @@
+{
+  "material.reservations.widget.title": "Snel overzicht materiaal reserveringen",
+
+  "material.reservations.title": "Materiaal reserveringen",
+  "material.reservations.button.status-update.text": "Verander status",
+
+  "material.reservations.material.title": "Materiaal info",
+  "material.reservations.material.details.name": "Naam: ",
+  "material.reservations.material.details.image": "Afbeelding",
+
+  "material.reservations.table.title": "Reserveringen",
+  "material.reservations.table.material.text": "Materiaal",
+  "material.reservations.table.status.text": "Status",
+  "material.reservations.table.user.text": "Door",
+  "material.reservations.table.amount.text": "Hoeveelheid",
+  "material.reservations.table.date.text": "Datum",
+  "material.reservations.table.time-start.text": "Start tijd",
+  "material.reservations.table.time-end.text": "Eind tijd",
+  "material.reservations.table.action.text": "Handelingen",
+
+  "material.reservations.status-selector.status": "Status",
+  "material.reservations.status-selector.everything": "Allemaal",
+
+  "material.reservations.status.requested": "Aangevraagd",
+  "material.reservations.status.cancelled": "Geannuleerd",
+  "material.reservations.status.accepted": "Geaccepteerd",
+  "material.reservations.status.denied": "Afgewezen",
+  "material.reservations.status.issued": "Uitgegeven",
+  "material.reservations.status.returned": "Teruggebracht",
+
+  "material.reservations.status.0": "Aangevraagd",
+  "material.reservations.status.1": "Geannuleerd",
+  "material.reservations.status.2": "Geaccepteerd",
+  "material.reservations.status.3": "Afgewezen",
+  "material.reservations.status.4": "Uitgegeven",
+  "material.reservations.status.5": "Teruggebracht",
+
+  "material.reservations.update-status.title": "Verander reservering status",
+  "material.reservations.update-status.material.text": "Materiaal",
+  "material.reservations.update-status.material.for-material.text": "Voor: ",
+  "material.reservations.update-status.user.text": "Gebruiker",
+  "material.reservations.update-status.user.by-user.text": "Door: ",
+  "material.reservations.update-status.reservation.text": "Voor datum",
+  "material.reservations.update-status.new-status.text": "Nieuwe status",
+  "material.reservations.update-status.button.cancel.text": "Annuleren",
+  "material.reservations.update-status.button.update-status.text": "Opslaan",
+
+  "material.reservations.error.loading": "Er ging iets mis gegaan bij het laden van de reserveringen, probeer het later opnieuw.",
+  "material.reservations.error.material.loading": "Er ging iets mis gegaan bij het laden van de materiaal informatie, probeer het later opnieuw.",
+  "material.reservations.update-status.success": "Succesvol de reservering status aangepast.",
+  "material.reservations.update-status.error": "Er ging iets mis gegaan bij het aanpassen van de status, probeer het later opnieuw."
+}

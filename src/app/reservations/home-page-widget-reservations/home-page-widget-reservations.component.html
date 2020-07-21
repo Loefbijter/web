@@ -1,0 +1,16 @@
+<mat-card class="home-page-widget-container">
+  <h2>{{'reservations.widget.title' | content}}: {{reservations.length}} / {{totalOpenReservations}}</h2>
+  <div *ngFor="let reservation of reservations" class="reservation-row">
+    <div class="row-container">
+      <div class="reservation-info">
+        <h2 class="details-header">{{simpleDateService.advancedFormatSameDate(reservation.startTimestamp, reservation.endTimestamp)}}</h2>
+        <h4>{{'reservations.details.reason.text' | content}}: {{reservation.reason}}</h4>
+      </div>
+      <div class="review-btn">
+        <button mat-raised-button color="primary"
+          (click)="reviewReservation(reservation)">{{'reservations.button.review.text' | content}}</button>
+      </div>
+    </div>
+    <mat-divider></mat-divider>
+  </div>
+</mat-card>

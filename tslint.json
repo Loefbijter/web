@@ -1,14 +1,139 @@
 {
-  "extends": "tslint:recommended",
+  "defaultSeverity": "error",
   "rules": {
-    "array-type": false,
-    "arrow-parens": false,
-    "deprecation": {
-      "severity": "warning"
-    },
-    "component-class-suffix": true,
-    "contextual-lifecycle": true,
-    "directive-class-suffix": true,
+    "adjacent-overload-signatures": {"severity": "warning"},
+    "ban-ts-ignore": {"severity": "error"},
+    "member-access": {"severity": "error", "options":[
+      "check-accessor",
+      "check-constructor"
+    ]},
+    "member-ordering": {"severity": "error", "options": [{
+      "order": [
+        "static-field",
+        "instance-field",
+        "constructor",
+        "static-method",
+        "instance-method"
+      ]
+    }]},
+    "no-any": {"severity": "error"},
+    "no-empty-interface": {"severity": "error"},
+    "no-for-in-array": {"severity": "error"},
+    "no-for-in": {"severity": "error"},
+    "no-internal-module": {"severity": "warning"},
+    "no-parameter-reassignment": {"severity": "warning"},
+    "no-var-requires": {"severity": "error"},
+    "only-arrow-functions": {"severity": "warning", "options": ["allow-declarations"]},
+    "typedef": {"severity": "error", "options": [
+      "call-signature",
+      "parameter",
+      "property-declaration",
+      "variable-declaration",
+      "member-variable-declaration",
+      "object-destructuring",
+      "array-destructuring"
+    ]},
+    "unified-signatures": {"severity": "warning"},
+    "await-promise": {"severity": "error"},
+    "ban-comma-operator": {"severity": "error"},
+    "curly": {"severity": "error", "options": ["ignore-same-line"]},
+    "label-position": {"severity": "error"},
+    "no-async-without-await": {"severity": "error"},
+    "no-bitwise": {"severity": "warning"},
+    "no-conditional-assignment": {"severity": "warning"},
+    "no-console": {"severity": "warning"},
+    "no-debugger": {"severity": "warning"},
+    "no-construct": {"severity": "error"},
+    "no-duplicate-super": {"severity": "error"},
+    "no-duplicate-switch-case": {"severity": "error"},
+    "no-dynamic-delete": {"severity": "error"},
+    "no-empty": {"severity": "error"},
+    "no-eval": {"severity": "error"},
+    "no-invalid-template-strings": {"severity": "error"},
+    "no-invalid-this": {"severity": "error"},
+    "no-misused-new": {"severity": "error"},
+    "no-object-literal-type-assertion": {"severity": "error"},
+    "no-return-await": {"severity": "warning"},
+    "no-shadowed-variable": {"severity": "error"},
+    "no-string-throw": {"severity": "error"},
+    "no-tautology-expression": {"severity": "error"},
+    "no-unsafe-finally": {"severity": "error"},
+    "no-unused-expression": {"severity": "warning", "options":["allow-fast-null-checks"]},
+    "no-unused-variable": {"severity": "warning"},
+    "no-var-keyword": {"severity": "error"},
+    "no-void-expression": {"severity": "error", "options": ["ignore-arrow-function-shorthand"]},
+    "prefer-conditional-expression": {"severity": "warning"},
+    "static-this": {"severity": "error"},
+    "strict-comparisons": {"severity": "error", "options": ["allow-string-order-comparison"]},
+    "use-isnan": {"severity": "error"},
+    "deprecation": {"severity": "warning"},
+    "invalid-void": {"severity": "error"},
+    "max-classes-per-file": {"severity": "error", "options": [1]},
+    "no-default-export": {"severity": "error"},
+    "no-duplicate-imports": {"severity": "warning"},
+    "prefer-const": {"severity": "warning"},
+    "prefer-readonly": {"severity": "warning"},
+    "array-type": {"severity": "error", "options": ["array"]},
+    "arrow-return-shorthand": {"severity": "warning"},
+    "class-name": {"severity": "error"},
+    "file-name-casing": [true, "kebab-case"],
+    "interface-over-type-literal": {"severity": "error"},
+    "no-angle-bracket-type-assertion": {"severity": "error"},
+    "no-boolean-literal-compare": {"severity": "error"},
+    "no-unnecessary-initializer": {"severity": "error"},
+    "prefer-switch": {"severity": "warning"},
+    "prefer-while": true,
+    "return-undefined": {"severity": "error"},
+    "space-before-function-paren": {"severity": "error", "options": [{
+      "anonymous": "always",
+      "asyncArrow": "always",
+      "method": "never",
+      "named": "never",
+      "constructor": "never"
+    }]},
+    "space-within-parens": {"severity": "error", "options":[0]},
+    "variable-name": {"severity": "error", "options":[
+      "ban-keywords",
+      "check-format",
+      "require-const-for-all-caps"
+    ]},
+    "align": {"severity": "error"},
+    "import-spacing": {"severity": "warning"},
+    "indent": {"severity": "error", "options": ["spaces", 2]},
+    "new-parens": {"severity": "error"},
+    "quotemark": {"severity": "error", "options": ["single", "avoid-escape", "avoid-template"]},
+    "no-consecutive-blank-lines": {"severity": "warning"},
+    "number-literal-format": {"severity": "error"},
+    "semicolon": {"severity": "error", "options": ["always"]},
+    "whitespace": {"severity": "error", "options": [
+      "check-branch",
+      "check-decl",
+      "check-operator",
+      "check-module",
+      "check-separator",
+      "check-rest-spread",
+      "check-type",
+      "check-typecast",
+      "check-type-operator",
+      "check-preblock",
+      "check-postbrace"
+    ]},
+    "typedef-whitespace": {"severity": "error", "options":[{
+      "call-signature": "nospace",
+      "index-signature": "nospace",
+      "parameter": "nospace",
+      "property-declaration": "nospace",
+      "variable-declaration": "nospace"
+    }, {
+      "call-signature": "onespace",
+      "index-signature": "onespace",
+      "parameter": "onespace",
+      "property-declaration": "onespace",
+      "variable-declaration": "onespace"
+    }]},
+    "component-class-suffix": {"severity": "error"},
+    "contextual-lifecycle": {"severity": "error"},
+    "directive-class-suffix": {"severity": "error"},
     "directive-selector": [
       true,
       "attribute",
@@ -25,65 +150,44 @@
       true,
       "rxjs/Rx"
     ],
-    "interface-name": false,
-    "max-classes-per-file": false,
     "max-line-length": [
       true,
       140
     ],
-    "member-access": false,
-    "member-ordering": [
-      true,
-      {
-        "order": [
-          "static-field",
-          "instance-field",
-          "static-method",
-          "instance-method"
+    "no-non-null-assertion": {"severity": "error"},
+    "no-redundant-jsdoc": {"severity": "error"},
+    "no-switch-case-fall-through": {"severity": "error"},
+    "object-literal-key-quotes": {"severity": "error", "options": ["as-needed"]},
+    "no-conflicting-lifecycle": {"severity": "error"},
+    "no-host-metadata-property": {"severity": "error"},
+    "no-input-rename": {"severity": "error"},
+    "no-inputs-metadata-property": {"severity": "error"},
+    "no-output-native": {"severity": "error"},
+    "no-output-on-prefix": {"severity": "error"},
+    "no-output-rename": {"severity": "error"},
+    "no-outputs-metadata-property": {"severity": "error"},
+    "template-banana-in-box": {"severity": "error"},
+    "template-no-negated-async": {"severity": "error"},
+    "use-lifecycle-interface": {"severity": "error"},
+    "use-pipe-transform-interface": {"severity": "error"},
+    "ban-types": {
+        "severity": "error",
+        "options": [
+            ["Object", "Avoid using the `Object` type. Did you mean `object`?"],
+            ["Function", "Avoid using the `Function` type. Prefer a specific function type, like `() => void`."],
+            ["Boolean", "Avoid using the `Boolean` type. Did you mean `boolean`?"],
+            ["Number", "Avoid using the `Number` type. Did you mean `number`?"],
+            ["String", "Avoid using the `String` type. Did you mean `string`?"],
+            ["Symbol", "Avoid using the `Symbol` type. Did you mean `symbol`?"]
         ]
-      }
-    ],
-    "no-consecutive-blank-lines": false,
-    "no-console": [
-      true,
-      "debug",
-      "info",
-      "time",
-      "timeEnd",
-      "trace"
-    ],
-    "no-empty": false,
-    "no-inferrable-types": [
-      true,
-      "ignore-params"
-    ],
-    "no-non-null-assertion": true,
-    "no-redundant-jsdoc": true,
-    "no-switch-case-fall-through": true,
-    "no-var-requires": false,
-    "object-literal-key-quotes": [
-      true,
-      "as-needed"
-    ],
-    "object-literal-sort-keys": false,
-    "ordered-imports": false,
-    "quotemark": [
-      true,
-      "single"
-    ],
-    "trailing-comma": false,
-    "no-conflicting-lifecycle": true,
-    "no-host-metadata-property": true,
-    "no-input-rename": true,
-    "no-inputs-metadata-property": true,
-    "no-output-native": true,
-    "no-output-on-prefix": true,
-    "no-output-rename": true,
-    "no-outputs-metadata-property": true,
-    "template-banana-in-box": true,
-    "template-no-negated-async": true,
-    "use-lifecycle-interface": true,
-    "use-pipe-transform-interface": true
+    },
+    "callable-types": {"severity": "error"},
+    "comment-format": { "severity": "warning", "options": ["check-space"]},
+    "no-arg": {"severity": "error"},
+    "no-namespace": {"severity": "error"},
+    "no-reference": {"severity": "error"},
+    "no-trailing-whitespace": {"severity": "warning"},
+    "prefer-for-of": {"severity": "error"}
   },
   "rulesDirectory": [
     "codelyzer"

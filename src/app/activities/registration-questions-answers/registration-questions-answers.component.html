@@ -1,0 +1,6 @@
+<mat-list *ngIf="(questions$ | async) as questions" dense>
+  <mat-list-item *ngFor="let question of questions">
+    <div mat-line>{{question.text}}</div>
+    <div mat-line><span class="answer">{{getAnswer(question.id) | formatAnswer:question.type}}</span></div>
+  </mat-list-item>
+</mat-list>

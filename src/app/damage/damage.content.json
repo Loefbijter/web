@@ -1,0 +1,11 @@
+{
+  "edit-damage.title": "Schade bewerken",
+  "edit-damage.description.placeholder": "Beschrijving",
+  "edit-damage.resolvedAt.placeholder": "Opgelost op",
+
+  "edit-damage.button.cancel.text": "Annuleren",
+  "edit-damage.button.save.text": "Opslaan",
+
+  "edit-damage.success": "Schade succesvol bewerkt.",
+  "edit-damage.error": "Er ging iets mis bij het bewerken van de schade, probeer het later opnieuw."
+}
