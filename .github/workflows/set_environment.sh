@@ -5,8 +5,9 @@
 
 echo "Executing script from: $PWD"
 ls -a
-ls $PWD/src/environments/ -a
+
 cp $PWD/src/environments/environment.example.ts $PWD/src/environments/environment.prod.ts
 sed -i 's/production\: false/production\: true/' $PWD/src/environments/environment.prod.ts
 SEDCMD="s|http\:\/\/api\.com\/api|$1|"
 sed -i $SEDCMD $PWD/src/environments/environment.prod.ts
+ls $PWD/src/environments/ -a
