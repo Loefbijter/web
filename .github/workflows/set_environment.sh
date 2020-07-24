@@ -3,6 +3,8 @@
 #
 # Copies the example environment file and sets the correct values through a string find and replace.
 
+echo "Executing script from:"
+echo $PWD
 cp ./src/environments/environment.example.ts ./src/environments/environment.prod.ts
 sed -i 's/production\: false/production\: true/' ./src/environments/environment.prod.ts
 SEDCMD="s|http\:\/\/api\.com\/api|$1|"
