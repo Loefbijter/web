@@ -17,4 +17,4 @@ jobs:
           deploy_branch: gh-pages # The branch the action should deploy to.
           build_configuration: "production"
           base_href: "/"
-          use_404_fallback: 'true'
+          use_404_fallback: true
