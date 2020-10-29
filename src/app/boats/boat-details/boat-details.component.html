@@ -16,8 +16,54 @@
   <img [src]="boat.image">
 </div>
 
+<h2 class="mat-title">{{'boat-logs.title' | content }}</h2>
+<table mat-table [dataSource]="reservationDataSource" class="logs-table">
+  <ng-container matColumnDef="startTimestamp">
+    <th mat-header-cell *matHeaderCellDef>{{'boat-logs.date' | content}}</th>
+    <td mat-cell *matCellDef="let element">{{(element.startTimestamp * 1000) | date:'dd/MM/yyyy HH:mm'}}</td>
+  </ng-container>
+  <ng-container matColumnDef="user">
+    <th mat-header-cell *matHeaderCellDef>{{'boat-logs.byUser' | content}}</th>
+    <td mat-cell *matCellDef="let element">{{element.user.name}}</td>
+  </ng-container>
+  <ng-container matColumnDef="skipper">
+    <th mat-header-cell *matHeaderCellDef>{{'boat-logs.skipper' | content}}</th>
+    <td mat-cell *matCellDef="let element">{{element.skipper}}</td>
+  </ng-container>
+  <ng-container matColumnDef="reason">
+    <th mat-header-cell *matHeaderCellDef>{{'boat-logs.reason' | content}}</th>
+    <td mat-cell *matCellDef="let element">{{element.reason}}</td>
+  </ng-container>
+  <ng-container matColumnDef="sailUsed">
+    <th mat-header-cell *matHeaderCellDef>{{'boat-logs.sailUsed' | content}}</th>
+    <td mat-cell *matCellDef="let element">{{element.sailUsed}}</td>
+  </ng-container>
+  <ng-container matColumnDef="windForce">
+    <th mat-header-cell *matHeaderCellDef>{{'boat-logs.windForce' | content}}</th>
+    <td mat-cell *matCellDef="let element">{{element.windForce}}</td>
+  </ng-container>
+  <ng-container matColumnDef="hasBeenRefueled">
+    <th mat-header-cell *matHeaderCellDef>{{'boat-logs.hasBeenRefueled' | content}}</th>
+    <td mat-cell *matCellDef="let element">
+      <mat-icon *ngIf="element.hasBeenRefueled; else notRefueled">check</mat-icon>
+      <ng-template #notRefueled>
+        <mat-icon>block</mat-icon>
+      </ng-template>
+    </td>
+  </ng-container>
+  <ng-container matColumnDef="motorHours">
+    <th mat-header-cell *matHeaderCellDef>{{'boat-logs.motorHours' | content}}</th>
+    <td mat-cell *matCellDef="let element">{{element.motorHours}}</td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="logsColumnsToDisplay; sticky: true"></tr>
+  <tr mat-row *matRowDef="let rows; columns: logsColumnsToDisplay"></tr>
+</table>
+
+<mat-paginator #paginator [length]="totalItemsCount" [pageSizeOptions]="[5, 10, 20]" [pageIndex]="0" [pageSize]="10"
+               showFirstLastButtons (page)="onLoadMore()"></mat-paginator>
+
 <h2 class="mat-title">{{'boat-damage.title' | content}}</h2>
-<table mat-table [dataSource]="dataSource" class="damages-table">
+<table mat-table [dataSource]="damageDataSource" class="damages-table">
   <ng-container matColumnDef="description">
     <th mat-header-cell *matHeaderCellDef>{{'boat-damage.description' | content}}</th>
     <td mat-cell *matCellDef="let element">{{element.description}}</td>
@@ -45,9 +91,9 @@
         <mat-icon aria-hidden="false">edit</mat-icon>
       </button> </td>
   </ng-container>
-  <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
-  <tr mat-row *matRowDef="let rows; columns: columnsToDisplay"></tr>
+  <tr mat-header-row *matHeaderRowDef="damageColumnsToDisplay; sticky: true"></tr>
+  <tr mat-row *matRowDef="let rows; columns: damageColumnsToDisplay"></tr>
 </table>
 
 <mat-paginator #paginator [length]="totalItemsCount" [pageSizeOptions]="[5, 10, 20]" [pageIndex]="0" [pageSize]="10"
-showFirstLastButtons (page)="onLoadMore()"></mat-paginator>
+               showFirstLastButtons (page)="onLoadMore()"></mat-paginator>

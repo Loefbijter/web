@@ -11,6 +11,10 @@ export interface Reservation {
   accepted?: boolean;
   finished: boolean;
   reason: string;
+  hasBeenRefueled: boolean;
+  motorHours: number;
+  sailUsed: string;
+  windForce: number;
 }
 
 export interface AcceptanceDto {
