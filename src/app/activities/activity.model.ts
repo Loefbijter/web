@@ -59,3 +59,8 @@ export interface Answer {
   questionId: string;
   text: string;
 }
+
+export interface RegistrationActivity {
+  registration: Registration;
+  activity: Activity;
+}

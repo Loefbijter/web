@@ -3,6 +3,7 @@
   "activities.error.loading": "Er ging iets mis bij het laden van de activiteiten, probeer het later opnieuw.",
   "activity.title": "Naam",
   "activity.description": "Beschrijving",
+  "activity.organiser": "Organisator",
   "activity.start": "Starttijd",
   "activity.end": "Eindtijd",
   "activity.actions": "Acties",
@@ -72,6 +73,13 @@
   "delete-question.button.cancel.text": "Annuleren",
   "delete-question.message": "Weet je zeker dat je de vraag: \"${question}\" wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
   "delete-question.title": "Vraag verwijderen",
-  "entries-dialog.title": "Inschrijvingen",
-  "entries-dialog.no-registrations": "Geen inschrijvingen gevonden."
+  "activity-entries.title": "Inschrijvingen",
+  "activity-entries.registrant": "Naam",
+  "activity-entries.email": "Email",
+  "entries-dialog.no-registrations": "Geen inschrijvingen gevonden.",
+  "entries-dialog.button.delete.text": "Registratie verwijderen",
+  "delete-entry.title": "Lid uitschrijven",
+  "delete-entry.success": "Het lid is succesvol uitgeschreven van de activiteit.",
+  "delete-entry.error": "Er ging iets mis bij het uitschrijven.",
+  "delete-entry.message": "Weet je zeker dat je \"${username}\" wilt uitschrijven bij \"${activityTitle}\"? Deze actie kan niet ongedaan worden gemaakt."
 }

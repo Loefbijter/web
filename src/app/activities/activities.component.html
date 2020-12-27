@@ -5,6 +5,10 @@
     <th mat-header-cell *matHeaderCellDef>{{'activity.title' | content}}</th>
     <td mat-cell *matCellDef="let element">{{element.title}}</td>
   </ng-container>
+  <ng-container matColumnDef="organiser">
+    <th mat-header-cell *matHeaderCellDef>{{'activity.organiser' | content}}</th>
+    <td mat-cell *matCellDef="let element">{{element.organiser}}</td>
+  </ng-container>
   <ng-container matColumnDef="start">
     <th mat-header-cell *matHeaderCellDef>{{'activity.start' | content}}</th>
     <td mat-cell *matCellDef="let element">{{element.startTime * 1000 | date:'dd/MM/yyyy HH:mm'}}</td>
@@ -13,11 +17,10 @@
     <th mat-header-cell *matHeaderCellDef>{{'activity.end' | content}}</th>
     <td mat-cell *matCellDef="let element">{{element.endTime * 1000 | date:'dd/MM/yyyy HH:mm'}}</td>
   </ng-container>
-
   <ng-container matColumnDef="entries">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
-      <button mat-icon-button (click)="showActivityEntriesDialog(element)">
+      <button mat-icon-button [routerLink]="element.id + '/entries'">
         <mat-icon aria-hidden="false">group</mat-icon>
       </button>
     </td>

@@ -3,16 +3,15 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatTableDataSource } from '@angular/material/table';
-import { CreateActivityDialogComponent } from '../activities/create-activity-dialog/create-activity-dialog.component';
-import { DeleteActivityDialogComponent } from '../activities/delete-activity-dialog/delete-activity-dialog.component';
-import { EditActivityDialogComponent } from '../activities/edit-activity-dialog/edit-activity-dialog.component';
+import { CreateActivityDialogComponent } from './create-activity-dialog/create-activity-dialog.component';
+import { DeleteActivityDialogComponent } from './delete-activity-dialog/delete-activity-dialog.component';
+import { EditActivityDialogComponent } from './edit-activity-dialog/edit-activity-dialog.component';
 import { TOAST_DURATION } from '../constants';
 import { ContentItem } from '../_modules/content/content-item.model';
 import { ContentService } from '../_modules/content/content.service';
 import { ActivitiesService } from './activities.service';
 import { Activity } from './activity.model';
 import { QuestionManagementComponent } from './question-management/question-management.component';
-import { EntriesDialogComponent } from './entries-dialog/entries-dialog.component';
 
 // tslint:disable-next-line: no-var-requires
 const content: ContentItem = require('./activities.content.json');
@@ -27,7 +26,7 @@ export class ActivitiesComponent implements OnInit {
 
   @ViewChild(MatPaginator, { static: true }) private readonly paginator: MatPaginator;
 
-  public columnsToDisplay: string[] = ['title', 'start', 'end', 'entries', 'questions', 'edit', 'delete'];
+  public columnsToDisplay: string[] = ['title', 'organiser', 'start', 'end', 'entries', 'questions', 'edit', 'delete'];
   public dataSource: MatTableDataSource<Activity>;
   public totalItemsCount: number;
   private readonly snackBar: MatSnackBar;
@@ -68,10 +67,6 @@ export class ActivitiesComponent implements OnInit {
         }
       }
     });
-  }
-
-  public showActivityEntriesDialog(activity: Activity): void {
-    this.dialog.open(EntriesDialogComponent, { width: '1000px', height: '80vh', data: activity });
   }
 
   public showEditActivityQuestionsDialog(activity: Activity): void {

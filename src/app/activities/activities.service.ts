@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { map, flatMap } from 'rxjs/operators';
 import { Paged } from '../app.model';
+import { Boat } from '../boats/boats.model';
 
 @Injectable({ providedIn: 'root' })
 export class ActivitiesService {
@@ -27,6 +28,10 @@ export class ActivitiesService {
       }));
   }
 
+  public getOne(id: string): Observable<Activity> {
+    return this.http.get<Activity>(`${environment.apiUrl}/activities/${id}`);
+  }
+
   public create(activity: CreateActivityDto): Observable<Activity> {
     return this.http.post<Activity>(`${environment.apiUrl}/activities`, activity);
   }
@@ -39,17 +44,22 @@ export class ActivitiesService {
     return this.http.delete<void>(`${environment.apiUrl}/activities/${id}`);
   }
 
-  public getRegistrations(id: string): Observable<Registration[]> {
-    return this.http.get<Paged<Registration>>(`${environment.apiUrl}/activity-registrations?activity=${id}&limit=0`)
-      .pipe(flatMap((res: Paged<Registration>) => {
-        return this.http.get<Paged<Registration>>(`${environment.apiUrl}/activity-registrations?activity=${id}&limit=${res.totalItems}`)
-          .pipe(map((resTotal: Paged<Registration>) => {
-            return resTotal.items;
-          }));
-      }));
+  public getRegistrations(id: string, limit: number = 10, page: number = 0): Observable<Registration[]> {
+    return this.http.get<Paged<Registration>>(`${environment.apiUrl}/activity-registrations?activity=${id}&page=${page}&limit=${limit}`).pipe(
+      map((res: Paged<Registration>) => {
+        this.itemsTotal = res.totalItems;
+        return res.items;
+      })
+    );
   }
 
   public getRegistration(id: string): Observable<Registration> {
     return this.http.get<Registration>(`${environment.apiUrl}/activity-registrations/${id}`);
   }
+
+  public deleteRegistration(id: string): Observable<void> {
+    console.log("Deleting from service: " + id);
+    return this.http.delete<void>(`${environment.apiUrl}/activity-registrations/${id}`);
+  }
+
 }
