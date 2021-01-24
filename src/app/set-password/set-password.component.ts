@@ -63,6 +63,7 @@ export class SetPasswordComponent implements OnInit {
         next: () => {
           this.loading = false;
           this.snackBar.open(this.contentService.get('set-password.success'), null, { duration: TOAST_DURATION });
+          // TODO: navigate to the password is set page so users can determine if they are an admin.
           this.router.navigate(['login']);
         },
         error: () => {
