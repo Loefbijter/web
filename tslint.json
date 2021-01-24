@@ -58,8 +58,12 @@
     "no-string-throw": {"severity": "error"},
     "no-tautology-expression": {"severity": "error"},
     "no-unsafe-finally": {"severity": "error"},
-    "no-unused-expression": {"severity": "warning", "options":["allow-fast-null-checks"]},
-    "no-unused-variable": {"severity": "warning"},
+    "no-unused-expression": {
+      "severity": "warning",
+      "options": [
+        "allow-fast-null-checks"
+      ]
+    },
     "no-var-keyword": {"severity": "error"},
     "no-void-expression": {"severity": "error", "options": ["ignore-arrow-function-shorthand"]},
     "prefer-conditional-expression": {"severity": "warning"},
