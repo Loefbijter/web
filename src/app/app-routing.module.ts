@@ -7,12 +7,14 @@ import { SetPasswordComponent } from './set-password/set-password.component';
 import { ForgotPasswordComponent } from './forgot-password/forgot-password.component';
 import { RoleGuard } from './_helpers/role.guard';
 import { UserRole } from './_helpers/auth.model';
+import {PasswordSetComponent} from "./password-set/password-set.component";
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard] },
   { path: 'login', component: LoginComponent },
   { path: 'forgot-password', component: ForgotPasswordComponent },
   { path: 'set-password/:token', component: SetPasswordComponent },
+  { path: 'password-set', component: PasswordSetComponent },
   {
     path: 'boats',
     loadChildren: () => import('./boats/boats.module').then(m => m.BoatsModule),
