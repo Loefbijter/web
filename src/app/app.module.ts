@@ -31,6 +31,7 @@ import { NgxMatMomentModule } from '@angular-material-components/moment-adapter'
 import { ActivitiesModule } from './activities/activities.module';
 import { MaterialsModule } from './material/materials.module';
 import { MaterialReservationsModule } from './material-reservations/material-reservations.module';
+import { PasswordSetComponent } from "./password-set/password-set.component";
 
 registerLocaleData(localeNl, 'nl-NL', localeNlExtra);
 
@@ -41,6 +42,7 @@ registerLocaleData(localeNl, 'nl-NL', localeNlExtra);
     HomeComponent,
     SetPasswordComponent,
     ForgotPasswordComponent,
+    PasswordSetComponent,
   ],
   imports: [
     CommonModule,

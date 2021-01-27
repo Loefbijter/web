@@ -63,7 +63,7 @@ export class SetPasswordComponent implements OnInit {
         next: () => {
           this.loading = false;
           this.snackBar.open(this.contentService.get('set-password.success'), null, { duration: TOAST_DURATION });
-          this.router.navigate(['login']);
+          this.router.navigate(['password-set']);
         },
         error: () => {
           this.loading = false;
