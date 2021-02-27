@@ -5,8 +5,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ContentService } from '../../_modules/content/content.service';
 import { FormErrorsService } from '../../_modules/form-errors/form-errors.service';
+import { ImagesService } from '../images.service';
 import { URL_REGEX, TOAST_DURATION } from '../../constants';
-import { Activity, CreateActivityDto } from '../activity.model';
+import { Activity, ActivityImage, CreateActivityDto } from '../activity.model';
 import {
   checkIfEndTimeAfterStartTime,
   checkIfActiveFromBeforeStartTime,
@@ -26,6 +27,7 @@ export class CreateActivityDialogComponent implements OnInit {
   public loading: boolean = false;
   public createActivityForm: FormGroup;
   public errors: ValidationErrors = { };
+  public images: ActivityImage[] = [];
 
   public constructor(
     public readonly dialogRef: MatDialogRef<CreateActivityDialogComponent>,
@@ -34,14 +36,23 @@ export class CreateActivityDialogComponent implements OnInit {
     private readonly contentService: ContentService,
     private readonly formErrorsService: FormErrorsService,
     private readonly activityService: ActivitiesService,
+    private readonly imagesService: ImagesService,
   ) { }
 
   public ngOnInit(): void {
+
+    this.imagesService.getImages().subscribe({
+      next: images => {
+        console.log(images);
+        this.images = images;
+      }
+    });
+
     this.createActivityForm = this.fb.group({
       title: new FormControl('', { validators: [Validators.required, Validators.maxLength(255)] }),
       description: new FormControl('', { validators: [Validators.required] }),
       location: new FormControl('', { validators: [Validators.required] }),
-      imageUrl: new FormControl('', { validators: [Validators.required, Validators.pattern(URL_REGEX)] }),
+      image: new FormControl('', { validators: [Validators.required] }),
       organiser: new FormControl(''),
       startTime: new FormControl('', { validators: [Validators.required, checkIfStartTimeIsInPast] }),
       endTime: new FormControl('', { validators: [Validators.required] }),
