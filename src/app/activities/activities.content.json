@@ -77,6 +77,7 @@
   "activity-entries.registrant": "Naam",
   "activity-entries.email": "Email",
   "activity-entries.delete-registration": "Inschrijving verwijderen",
+  "activity-entries.export": "Exporteren als CSV",
   "entries-dialog.no-registrations": "Geen inschrijvingen gevonden.",
   "entries-dialog.button.delete.text": "Registratie verwijderen",
   "delete-entry.title": "Lid uitschrijven",

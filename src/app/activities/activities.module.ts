@@ -20,6 +20,7 @@ import { RegistrationQuestionsAnswersComponent } from './registration-questions-
 import { FormatAnswerPipe } from './format-answer.pipe';
 import { ActivityEntriesComponent } from './activity-entries/activity-entries.component';
 import { DeleteEntryDialogComponent } from './activity-entries/delete-entry-dialog/delete-entry-dialog.component';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 const routes: Routes = [
   { path: '', component: ActivitiesComponent },
@@ -35,6 +36,7 @@ const routes: Routes = [
     FormErrorsModule,
     NgxMatDatetimePickerModule,
     DragDropModule,
+    MatTableExporterModule
   ],
   declarations: [
     ActivitiesComponent,
