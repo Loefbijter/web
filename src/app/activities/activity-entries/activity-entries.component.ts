@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivitiesService } from '../activities.service';
-import { Activity, Registration, Question } from '../activity.model';
+import { Activity, Registration, Question, Answer } from '../activity.model';
 import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { TOAST_DURATION } from '../../constants';
@@ -10,6 +10,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { ContentService } from '../../_modules/content/content.service';
 import { ContentItem } from '../../_modules/content/content-item.model';
 import { DeleteEntryDialogComponent } from './delete-entry-dialog/delete-entry-dialog.component';
+import { QuestionTypes } from '../question-management/question.model';
 
 // tslint:disable-next-line: no-var-requires
 const content: ContentItem = require('../activities.content.json');
@@ -56,7 +57,11 @@ export class ActivityEntriesComponent implements OnInit {
           this.columnsToDisplay.push(q.text);
         }
       },
-      complete: () => this.columnsToDisplay.push('delete')
+      complete: () => {
+        if (!this.columnsToDisplay.includes('delete')) {
+          this.columnsToDisplay.push('delete');
+        }
+      }
     });
     console.log(this.columnsToDisplay);
     this.dataSource = new MatTableDataSource<Registration>();
@@ -88,4 +93,22 @@ export class ActivityEntriesComponent implements OnInit {
     this.getRegistrations(this.paginator.pageIndex, this.paginator.pageSize);
   }
 
+  public getAnswer(question: Question, answers: Answer[]): string {
+    for (const ans of answers) {
+      if (ans.questionId == question.id) {
+        if (question.type == QuestionTypes.CHECKBOX) {
+          if (ans.text == '1') {
+            return 'Ja';
+          }
+          else {
+            return 'Nee';
+          }
+        }
+        else {
+          return ans.text;
+        }
+      }
+    }
+    return '-';
+  }
 }

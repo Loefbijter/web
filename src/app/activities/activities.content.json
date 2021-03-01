@@ -76,6 +76,7 @@
   "activity-entries.title": "Inschrijvingen",
   "activity-entries.registrant": "Naam",
   "activity-entries.email": "Email",
+  "activity-entries.delete-registration": "Inschrijving verwijderen",
   "entries-dialog.no-registrations": "Geen inschrijvingen gevonden.",
   "entries-dialog.button.delete.text": "Registratie verwijderen",
   "delete-entry.title": "Lid uitschrijven",
