@@ -7,6 +7,7 @@ import { MaterialDesignModule } from '../_helpers/material-design.module';
 import { AcceptanceReservationsComponent } from './acceptance-reservations/acceptance-reservations.component';
 import { HomePageWidgetReservationsComponent } from './home-page-widget-reservations/home-page-widget-reservations.component';
 import { ContentModule } from '../_modules/content/content.module';
+import {DeleteBoatReservationDialogComponent} from "./delete-boat-reservation-dialog/delete-boat-reservation-dialog.component";
 
 const routes: Routes = [
   { path: '', component: ReservationsComponent },
@@ -16,7 +17,8 @@ const routes: Routes = [
   declarations: [
     ReservationsComponent,
     AcceptanceReservationsComponent,
-    HomePageWidgetReservationsComponent
+    HomePageWidgetReservationsComponent,
+    DeleteBoatReservationDialogComponent,
   ],
   entryComponents: [
     AcceptanceReservationsComponent

@@ -33,7 +33,11 @@
     <th mat-header-cell *matHeaderCellDef>{{'reservations.overview-table.actions.text' | content}}</th>
     <td mat-cell *matCellDef="let element">
       <button *ngIf="element.accepted == null" mat-raised-button color="primary"
-        (click)="reviewReservation(element)">{{'reservations.button.review.text' | content}}</button> </td>
+        (click)="reviewReservation(element)">{{'reservations.button.review.text' | content}}</button>
+      <button *ngIf="element.accepted != null" mat-icon-button color="warn" (click)="showDeleteBoatReservationDialog(element)">
+        <mat-icon aria-hidden="false">delete</mat-icon>
+      </button>
+    </td>
   </ng-container>
 
   <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>

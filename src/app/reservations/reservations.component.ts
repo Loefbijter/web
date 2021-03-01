@@ -10,6 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { SimpleDateService } from '../_helpers/simple-date.service';
+import { DeleteBoatReservationDialogComponent } from "./delete-boat-reservation-dialog/delete-boat-reservation-dialog.component";
 
 // tslint:disable-next-line: no-var-requires
 const content: ContentItem = require('./reservations.content.json');
@@ -64,5 +65,16 @@ export class ReservationsComponent implements AfterViewInit {
 
   public onLoadMore(): void {
     this.getReservations(this.paginator.pageIndex, this.paginator.pageSize);
+  }
+
+  public showDeleteBoatReservationDialog(reservation: Reservation): void {
+    this.dialog.open(DeleteBoatReservationDialogComponent, { width: '500px', data: reservation }).afterClosed().subscribe({
+      next: (deleted) => {
+        if (deleted) {
+          // Reload the data
+          this.ngAfterViewInit();
+        }
+      }
+    });
   }
 }
