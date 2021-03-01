@@ -48,7 +48,7 @@ export class EditActivityDialogComponent implements OnInit {
       startTime: new FormControl(moment(this.activity.startTime * 1000), { validators: [Validators.required, checkIfStartTimeIsInPast] }),
       endTime: new FormControl(moment(this.activity.endTime * 1000), { validators: [Validators.required] }),
       activeFrom: new FormControl(moment(this.activity.activeFrom * 1000),
-        { validators: [Validators.required, checkIfActiveFromIsInPast] }),
+        { validators: [Validators.required] }),
       activeUntil: new FormControl(this.activity.activeUntil ? moment(this.activity.activeUntil * 1000) : ''),
       price: new FormControl(this.activity.price, { validators: Validators.min(0) }),
       maxAttendees: new FormControl(this.activity.maxAttendees, { validators: Validators.min(1) }),
@@ -62,6 +62,10 @@ export class EditActivityDialogComponent implements OnInit {
         ]
       }
     );
+    if (this.activity.activeFrom <= Date.now() / 1000 && this.activity.price != 0) {
+      console.log('Added new form control: ' + this.activity.price);
+      this.editActivityForm.addControl('price', new FormControl(this.activity.price, { validators: Validators.max(this.activity.price) }));
+    }
   }
 
   public onSubmit(): void {

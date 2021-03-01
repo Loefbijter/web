@@ -1,5 +1,6 @@
 <h2>{{'activity.question-management.title' | content}}</h2>
 <h3>{{activity.title}}: {{simpleDateService.advancedFormatDate(activity.startTime, activity.endTime)}}</h3>
+{{'activity.question-management.explanation' | content}}
 
 <div cdkDropList [cdkDropListData]="questions" (cdkDropListDropped)="drop($event)">
   <div *ngFor="let question of questions; let i = index" [attr.data-index]="i" class="question-row" cdkDrag>
@@ -14,7 +15,7 @@
       <mat-hint align="end">{{question.text != null ? question.text.length : "0"}} / 255</mat-hint>
     </mat-form-field>
 
-    <mat-select [(ngModel)]="question.type" class="question-input-margin question-select-width">
+    <mat-select [(ngModel)]="question.type" class="question-input-margin question-select-width" [disabled]="hasActivityStarted()">
       <mat-option [value]="questionTypes.OPEN">{{'activity.question-management.question-type-open.text' | content}}</mat-option>
       <mat-option [value]="questionTypes.SHORT">{{'activity.question-management.question-type-open-short.text' | content}}</mat-option>
       <mat-option [value]="questionTypes.NUMBER">{{'activity.question-management.question-type-number.text' | content}}</mat-option>
@@ -24,7 +25,7 @@
     <mat-checkbox [(ngModel)]="question.required" color="primary" class="question-input-margin">
       {{'activity.question-management.question-required.text' | content}}</mat-checkbox>
 
-    <button mat-icon-button class="question-input-margin" (click)="remove(i)">
+    <button mat-icon-button class="question-input-margin" (click)="remove(i)" *ngIf="!hasActivityStarted()">
       <mat-icon mat-list-icon color="warn">delete</mat-icon>
     </button>
   </div>
@@ -37,7 +38,7 @@
   <button mat-button color="warn" class="action-btn"
     (click)="cancel()">{{'activity.question-management.btn-cancel.text' | content}}</button>
   <button mat-button class="action-btn"
-    (click)="addNewQuestion()">{{'activity.question-management.btn-new.text' | content}}</button>
+    (click)="addNewQuestion()" [disabled]="hasActivityStarted()">{{'activity.question-management.btn-new.text' | content}}</button>
   <button mat-button class="action-btn"
     (click)="save()">{{'activity.question-management.btn-save.text' | content}}</button>
 </div>
