@@ -1,0 +1,9 @@
+<h2 class="mat-title">{{'delete-reservation.title' | content}}</h2>
+
+<p>{{'delete-reservation.message' | content:{ reservationUser: reservation.user.name, reservationBoat: reservation.boat.name} }}</p>
+
+<div class="actions">
+  <button mat-button (click)="this.dialogRef.close()">{{'delete-reservation.button.cancel.text' | content}}</button>
+  <button mat-flat-button color="warn" (click)="onConfirm()">{{'delete-reservation.button.confirm.text' | content}}</button>
+</div>
+

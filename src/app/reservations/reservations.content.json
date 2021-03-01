@@ -26,5 +26,11 @@
   "accept-boat-reservation.button.confirm.text": "Accepteren",
   "accept-boat-reservation.button.cancel.text": "Afwijzen",
   "update-reservation-acceptance.success": "succesvol de review status aan gepast",
-  "update-reservation-acceptance.error": "Er ging iets mis bij het aanpassen van de review status, probeer het later opnieuw."
+  "update-reservation-acceptance.error": "Er ging iets mis bij het aanpassen van de review status, probeer het later opnieuw.",
+  "delete-reservation.button.cancel.text": "Annuleer",
+  "delete-reservation.button.confirm.text": "Verwijder",
+  "delete-reservation.message": "Weet je zeker dat je de reservering van \"${reservationUser}\" voor \"${reservationBoat}\" wilt verwijderen? Deze actie kan niet ongedaan worden gemaakt.",
+  "delete-reservation.title": "Reservering verwijderen",
+  "delete-reservation.error": "Er ging iets fout bij het verwijderen van de reservering.",
+  "delete-reservation.success": "De reservering is successvol verwijderd"
 }

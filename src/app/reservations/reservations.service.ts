@@ -15,7 +15,7 @@ export class ReservationsService {
   public constructor(private readonly http: HttpClient) { }
 
   public getAll(optionsParam?: { page?: number, limit?: number, order?: Order }): Observable<Reservation[]> {
-    const options: { page?: number, limit?: number, order: Order } = { page: 1, limit: 10, order: Order.ASC };
+    const options: { page?: number, limit?: number, order: Order } = { page: 1, limit: 10, order: Order.DESC };
     Object.assign(options, optionsParam);
     return this.http
       .get<Paged<Reservation>>(`${environment.apiUrl}/boat-reservations?page=${options.page}&limit=${options.limit}&order=${options.order}`)
@@ -58,5 +58,9 @@ export class ReservationsService {
 
   public setAcceptanceOfReservation(id: string, boat: AcceptanceDto): Observable<Reservation> {
     return this.http.post<Reservation>(`${environment.apiUrl}/boat-reservations/${id}/reviews`, boat);
+  }
+
+  public remove(id: string): Observable<void> {
+    return this.http.delete<void>(`${environment.apiUrl}/boat-reservations/${id}`);
   }
 }
