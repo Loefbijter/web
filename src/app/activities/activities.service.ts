@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Activity, CreateActivityDto, UpdateActivityDto, Registration } from './activity.model';
+import { Activity, CreateActivityDto, UpdateActivityDto, Registration, Question } from './activity.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { map, flatMap } from 'rxjs/operators';
 import { Paged } from '../app.model';
-import { Boat } from '../boats/boats.model';
 
 @Injectable({ providedIn: 'root' })
 export class ActivitiesService {
@@ -45,7 +44,7 @@ export class ActivitiesService {
   }
 
   public getRegistrations(id: string, limit: number = 10, page: number = 0): Observable<Registration[]> {
-    return this.http.get<Paged<Registration>>(`${environment.apiUrl}/activity-registrations?activity=${id}&page=${page}&limit=${limit}`).pipe(
+    return this.http.get<Paged<Registration>>(`${environment.apiUrl}/activity-registrations?activity=${id}&page=${page}&limit=${limit}&loadAnswers=true`).pipe(
       map((res: Paged<Registration>) => {
         this.itemsTotal = res.totalItems;
         return res.items;
@@ -60,6 +59,14 @@ export class ActivitiesService {
   public deleteRegistration(id: string): Observable<void> {
     console.log("Deleting from service: " + id);
     return this.http.delete<void>(`${environment.apiUrl}/activity-registrations/${id}`);
+  }
+
+  public getQuestions(id: string): Observable<Question[]> {
+    return this.http.get<Paged<Question>>(`${environment.apiUrl}/activity-questions?activity=${id}&limit=100`).pipe(
+      map((res: Paged<Question>) => {
+        return res.items;
+      })
+    );
   }
 
 }

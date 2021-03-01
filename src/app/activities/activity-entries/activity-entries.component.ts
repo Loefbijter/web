@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivitiesService } from '../activities.service';
-import { Activity, Registration } from '../activity.model';
+import { Activity, Registration, Question } from '../activity.model';
 import { ActivatedRoute } from '@angular/router';
 import { MatTableDataSource } from '@angular/material/table';
 import { TOAST_DURATION } from '../../constants';
@@ -25,8 +25,9 @@ export class ActivityEntriesComponent implements OnInit {
 
   public activityId: string;
   public activity: Activity;
+  public questions: Question[] = [];
 
-  public columnsToDisplay: string[] = ['username', 'email', 'delete'];
+  public columnsToDisplay: string[] = ['username', 'email'];
   public dataSource: MatTableDataSource<Registration>;
   public totalItemsCount: number;
 
@@ -47,6 +48,17 @@ export class ActivityEntriesComponent implements OnInit {
         this.activity = activity;
       }
     });
+    this.activitiesService.getQuestions(this.activityId).subscribe({
+      next: questions => {
+        console.log(questions);
+        this.questions.push(...questions);
+        for (const q of this.questions) {
+          this.columnsToDisplay.push(q.text);
+        }
+      },
+      complete: () => this.columnsToDisplay.push('delete')
+    });
+    console.log(this.columnsToDisplay);
     this.dataSource = new MatTableDataSource<Registration>();
     this.getRegistrations(0, 50);
   }
@@ -64,10 +76,8 @@ export class ActivityEntriesComponent implements OnInit {
   private getRegistrations(page: number, limit: number): void {
     this.activitiesService.getRegistrations(this.activityId, limit, page).subscribe({
       next: registrations => {
-        this.dataSource.data = registrations;
         console.log(registrations);
-
-        
+        this.dataSource.data = registrations;
         this.totalItemsCount = this.activitiesService.itemsTotal;
       },
       error: () => this.snackBar.open(this.contentService.get('activities.error.loading'), null, { duration: TOAST_DURATION })

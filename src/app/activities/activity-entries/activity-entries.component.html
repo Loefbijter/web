@@ -1,4 +1,4 @@
-<h2 class="mat-h2">{{'activity-entries.title' | content}} {{ activity.title }} ({{activity.startTime * 1000 | date:'dd/MM/yyyy'}})</h2>
+<h2 class="mat-h2">{{'activity-entries.title' | content}} {{ activity.title }} op {{activity.startTime * 1000 | date:'dd-MM-yyyy'}} ({{ totalItemsCount }})</h2>
 
 <table mat-table [dataSource]="dataSource">
   <ng-container matColumnDef="username">
@@ -9,6 +9,11 @@
   <ng-container matColumnDef="email">
     <th mat-header-cell *matHeaderCellDef>{{'activity-entries.email' | content}}</th>
     <td mat-cell *matCellDef="let element">{{element.user.email}}</td>
+  </ng-container>
+
+  <ng-container *ngFor="let q of questions" matColumnDef="{{ q.text }}">
+    <th mat-header-cell *matHeaderCellDef>{{ q.text }}</th>
+    <td mat-cell *matCellDef="let element">{{element.answers[q.order].text}}</td>
   </ng-container>
 
   <ng-container matColumnDef="delete">
