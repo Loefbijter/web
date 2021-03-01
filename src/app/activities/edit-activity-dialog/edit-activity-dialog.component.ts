@@ -62,9 +62,9 @@ export class EditActivityDialogComponent implements OnInit {
         ]
       }
     );
-    if (this.activity.activeFrom <= Date.now() / 1000 && this.activity.price != 0) {
-      console.log('Added new form control: ' + this.activity.price);
-      this.editActivityForm.addControl('price', new FormControl(this.activity.price, { validators: Validators.max(this.activity.price) }));
+    if (this.activity.activeFrom <= Date.now() / 1000) {
+      this.editActivityForm.controls['activeFrom'].disable();
+      this.editActivityForm.controls['price'].disable();
     }
   }
 
