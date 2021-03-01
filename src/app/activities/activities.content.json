@@ -34,7 +34,6 @@
   "activity.activeFrom.error.required": "Zichtbaar vanaf is verplicht",
   "activity.activeFrom.error.inThePast": "Zichtbaar vanaf kan niet in het verleden zijn",
   "activity.price.error.min": "De prijs van een activiteit moet minimaal 0 zijn.",
-  "activity.price.error.min": "De prijs van een activiteit mag maximaal .",
   "activity.maxAttendees.error.min": "De maximale hoeveelheid gasten moet minimaal 1 zijn.",
   "activity.form.error.endTimeAfterBeginTime": "De eindtijd moet na de begintijd liggen.",
   "activity.form.error.activeUntilBeforeActiveFrom": "De zichtbaarheid eindtijd moet na de zichtbaarheid starttijd liggen.",
