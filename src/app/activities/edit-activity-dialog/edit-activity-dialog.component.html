@@ -79,7 +79,6 @@
     <mat-form-field>
       <input matInput [ngxMatDatetimePicker]="activeFromPicker"
         placeholder="{{'activity.activeFrom.placeholder' | content}}" formControlName="activeFrom">
-      <mat-hint>{{'activity.activeFrom.editWarning' | content}}</mat-hint>
       <mat-datepicker-toggle matSuffix [for]="activeFromPicker"></mat-datepicker-toggle>
       <ngx-mat-datetime-picker #activeFromPicker [showSpinners]="true"></ngx-mat-datetime-picker>
     </mat-form-field>

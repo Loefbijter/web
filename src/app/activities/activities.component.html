@@ -26,7 +26,7 @@
   <ng-container matColumnDef="questions">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
-      <button mat-icon-button (click)="showEditActivityQuestionsDialog(element)" [disabled]="hasStarted(element)">
+      <button mat-icon-button (click)="showEditActivityQuestionsDialog(element)">
         <mat-icon aria-hidden="false">description</mat-icon>
       </button>
     </td>
@@ -35,7 +35,7 @@
   <ng-container matColumnDef="edit">
     <th mat-header-cell *matHeaderCellDef></th>
     <td mat-cell *matCellDef="let element">
-      <button mat-icon-button color="primary" (click)="showEditActivityDialog(element)" [disabled]="hasStarted(element)">
+      <button mat-icon-button color="primary" (click)="showEditActivityDialog(element)">
         <mat-icon aria-hidden="false">edit</mat-icon>
       </button>
     </td>

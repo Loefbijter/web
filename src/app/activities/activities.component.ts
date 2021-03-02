@@ -99,8 +99,4 @@ export class ActivitiesComponent implements OnInit {
       }
     });
   }
-
-  public hasStarted(activity: Activity): boolean {
-    return activity.activeFrom <= Date.now() / 1000;
-  }
 }

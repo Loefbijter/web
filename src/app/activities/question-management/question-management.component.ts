@@ -48,17 +48,29 @@ export class QuestionManagementComponent implements OnInit {
   }
 
   public remove(index: number): void {
-    this.dialog.open(DeleteQuestionDialogComponent, { width: '750px', data: this.questions[index] }).afterClosed().subscribe({
-      next: (deleted) => {
-        if (deleted) {
-          this.questions.splice(index, 1);
+    if (!this.hasActivityStarted()) {
+      this.dialog.open(DeleteQuestionDialogComponent, {width: '750px', data: this.questions[index]}).afterClosed().subscribe({
+        next: (deleted) => {
+          if (deleted) {
+            this.questions.splice(index, 1);
+          }
         }
-      }
-    });
+      });
+    }
+    else {
+      this.snackBar
+        .open(this.contentService.get('activity.question-management.activity-started-new-question'), null, { duration: TOAST_DURATION });
+    }
   }
 
   public addNewQuestion(): void {
-    this.questions.push({ text: '', required: false, type: QuestionTypes.OPEN, order: this.questions.length });
+    if (!this.hasActivityStarted()) {
+      this.questions.push({ text: '', required: false, type: QuestionTypes.OPEN, order: this.questions.length});
+    }
+    else {
+      this.snackBar
+        .open(this.contentService.get('activity.question-management.activity-started-new-question'), null, { duration: TOAST_DURATION });
+    }
   }
 
   public cancel(): void {
@@ -114,6 +126,10 @@ export class QuestionManagementComponent implements OnInit {
       }
     });
     return hasEmptyQuestions;
+  }
+
+  public hasActivityStarted(): boolean {
+    return this.activity.activeFrom <= Date.now() / 1000;
   }
 
 }
