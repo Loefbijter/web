@@ -16,12 +16,15 @@ import { TruncatePipe } from '../_helpers/truncate.pipe';
 import { QuestionManagementComponent } from './question-management/question-management.component';
 import { DeleteQuestionDialogComponent } from './question-management/delete-question-dialog/delete-question-dialog.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
-import { EntriesDialogComponent } from './entries-dialog/entries-dialog.component';
 import { RegistrationQuestionsAnswersComponent } from './registration-questions-answers/registration-questions-answers.component';
 import { FormatAnswerPipe } from './format-answer.pipe';
+import { ActivityEntriesComponent } from './activity-entries/activity-entries.component';
+import { DeleteEntryDialogComponent } from './activity-entries/delete-entry-dialog/delete-entry-dialog.component';
+import { MatTableExporterModule } from 'mat-table-exporter';
 
 const routes: Routes = [
   { path: '', component: ActivitiesComponent },
+  { path: ':id/entries', component: ActivityEntriesComponent}
 ];
 
 @NgModule({
@@ -33,6 +36,7 @@ const routes: Routes = [
     FormErrorsModule,
     NgxMatDatetimePickerModule,
     DragDropModule,
+    MatTableExporterModule
   ],
   declarations: [
     ActivitiesComponent,
@@ -41,9 +45,10 @@ const routes: Routes = [
     DeleteActivityDialogComponent,
     QuestionManagementComponent,
     DeleteQuestionDialogComponent,
-    EntriesDialogComponent,
     RegistrationQuestionsAnswersComponent,
     FormatAnswerPipe,
+    ActivityEntriesComponent,
+    DeleteEntryDialogComponent,
   ],
   entryComponents: [
     CreateActivityDialogComponent,
@@ -51,7 +56,6 @@ const routes: Routes = [
     DeleteActivityDialogComponent,
     DeleteQuestionDialogComponent,
     QuestionManagementComponent,
-    EntriesDialogComponent,
   ],
   providers: [
     ActivitiesService,

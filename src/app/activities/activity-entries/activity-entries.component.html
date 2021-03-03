@@ -1,0 +1,41 @@
+<div class="wrapper">
+  <h2 class="mat-h2">
+    {{'activity-entries.title' | content}} {{ activity.title }} op
+    {{activity.startTime * 1000 | date:'dd-MM-yyyy'}} ({{ totalItemsCount }})
+  </h2>
+  <button class="export" mat-mini-fab (click)="exporter.exportTable('csv', {'fileName': 'inschrijvingen-' + activity.title})"
+          matTooltip="{{'activity-entries.export' | content}}">
+    <mat-icon>download</mat-icon>
+  </button>
+</div>
+
+<table mat-table matTableExporter [dataSource]="dataSource" #exporter="matTableExporter" [hiddenColumns]="[questions.length + 2]">
+  <ng-container matColumnDef="username">
+    <th mat-header-cell *matHeaderCellDef>{{'activity-entries.registrant' | content}}</th>
+    <td mat-cell *matCellDef="let element">{{element.user.name}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="email">
+    <th mat-header-cell *matHeaderCellDef>{{'activity-entries.email' | content}}</th>
+    <td mat-cell *matCellDef="let element">{{element.user.email}}</td>
+  </ng-container>
+
+  <ng-container *ngFor="let q of questions" matColumnDef="{{ q.text }}">
+    <th mat-header-cell *matHeaderCellDef>{{ q.text }}</th>
+    <td mat-cell *matCellDef="let element">{{ getAnswer(q, element.answers) }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="delete">
+    <th mat-header-cell *matHeaderCellDef>{{'activity-entries.delete-registration' | content}}</th>
+    <td mat-cell *matCellDef="let element">
+      <button mat-icon-button color="warn">
+        <mat-icon aria-hidden="false" (click)="showDeleteEntryDialog(element)">delete</mat-icon>
+      </button>
+    </td>
+  </ng-container>
+  <tr mat-header-row *matHeaderRowDef="columnsToDisplay; sticky: true"></tr>
+  <tr mat-row *matRowDef="let rows; columns: columnsToDisplay"></tr>
+</table>
+
+<mat-paginator #paginator [length]="totalItemsCount" [pageSizeOptions]="[50, 100, 250]" [pageIndex]="0" [pageSize]="50"
+               showFirstLastButtons (page)="onLoadMore()"></mat-paginator>

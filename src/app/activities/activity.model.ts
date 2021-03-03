@@ -53,9 +53,23 @@ export interface Registration {
   answers: Answer[];
 }
 
+export interface Question {
+  id: string;
+  text: string;
+  required: boolean;
+  type: number;
+  order: number;
+  activityId: string;
+}
+
 export interface Answer {
   id: string;
   registrationId: string;
   questionId: string;
   text: string;
+}
+
+export interface RegistrationActivity {
+  registration: Registration;
+  activity: Activity;
 }

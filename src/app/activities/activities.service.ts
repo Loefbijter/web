@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Activity, CreateActivityDto, UpdateActivityDto, Registration } from './activity.model';
+import { Activity, CreateActivityDto, UpdateActivityDto, Registration, Question } from './activity.model';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 import { map, flatMap } from 'rxjs/operators';
@@ -27,6 +27,10 @@ export class ActivitiesService {
       }));
   }
 
+  public getOne(id: string): Observable<Activity> {
+    return this.http.get<Activity>(`${environment.apiUrl}/activities/${id}`);
+  }
+
   public create(activity: CreateActivityDto): Observable<Activity> {
     return this.http.post<Activity>(`${environment.apiUrl}/activities`, activity);
   }
@@ -39,17 +43,30 @@ export class ActivitiesService {
     return this.http.delete<void>(`${environment.apiUrl}/activities/${id}`);
   }
 
-  public getRegistrations(id: string): Observable<Registration[]> {
-    return this.http.get<Paged<Registration>>(`${environment.apiUrl}/activity-registrations?activity=${id}&limit=0`)
-      .pipe(flatMap((res: Paged<Registration>) => {
-        return this.http.get<Paged<Registration>>(`${environment.apiUrl}/activity-registrations?activity=${id}&limit=${res.totalItems}`)
-          .pipe(map((resTotal: Paged<Registration>) => {
-            return resTotal.items;
-          }));
-      }));
+  public getRegistrations(id: string, limit: number = 10, page: number = 0): Observable<Registration[]> {
+    return this.http.get<Paged<Registration>>(`${environment.apiUrl}/activity-registrations?activity=${id}&page=${page}&limit=${limit}&loadAnswers=true`).pipe(
+      map((res: Paged<Registration>) => {
+        this.itemsTotal = res.totalItems;
+        return res.items;
+      })
+    );
   }
 
   public getRegistration(id: string): Observable<Registration> {
     return this.http.get<Registration>(`${environment.apiUrl}/activity-registrations/${id}`);
   }
+
+  public deleteRegistration(id: string): Observable<void> {
+    console.log("Deleting from service: " + id);
+    return this.http.delete<void>(`${environment.apiUrl}/activity-registrations/${id}`);
+  }
+
+  public getQuestions(id: string): Observable<Question[]> {
+    return this.http.get<Paged<Question>>(`${environment.apiUrl}/activity-questions?activity=${id}&limit=100`).pipe(
+      map((res: Paged<Question>) => {
+        return res.items;
+      })
+    );
+  }
+
 }
