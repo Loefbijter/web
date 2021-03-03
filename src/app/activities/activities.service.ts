@@ -57,7 +57,6 @@ export class ActivitiesService {
   }
 
   public deleteRegistration(id: string): Observable<void> {
-    console.log("Deleting from service: " + id);
     return this.http.delete<void>(`${environment.apiUrl}/activity-registrations/${id}`);
   }
 
