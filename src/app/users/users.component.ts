@@ -49,8 +49,8 @@ export class UsersComponent implements OnInit {
     });
   }
 
-  public onLoadMore(): void {
-    this.getUsers(this.paginator.pageIndex, this.paginator.pageSize);
+  public onLoadMore(pageIndex= this.paginator.pageIndex,pageSize= this.paginator.pageSize): void {
+    this.getUsers(pageIndex, pageSize);
   }
 
   public onCreateUserClick(): void {
@@ -61,5 +61,15 @@ export class UsersComponent implements OnInit {
         }
       }
     });
+  }
+
+  public applyFilter(filterValue: string) {
+    if (filterValue.length > 0) {
+      this.getUsers(null, 0);
+    }
+    else {
+      this.onLoadMore();
+    }
+    this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 }

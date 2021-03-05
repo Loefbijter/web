@@ -1,4 +1,8 @@
 <h2>{{'users.title' | content}}</h2>
+<mat-form-field>
+  <input (keyup)="applyFilter($event.target.value)"  matInput placeholder="Zoek naar gebruiker">
+  <mat-icon matSuffix>search</mat-icon>
+</mat-form-field>
 
 <mat-table [dataSource]="dataSource" class="reservations-table">
 
