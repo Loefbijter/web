@@ -12,8 +12,8 @@
 
   <p>
     <mat-form-field>
-      <input type="text" matInput placeholder="{{'activity.description.placeholder' | content}}"
-        formControlName="description">
+      <textarea matInput placeholder="{{'activity.description.placeholder' | content}}"
+                formControlName="description"></textarea>
     </mat-form-field>
     <app-form-errors [targetFormControl]="createActivityForm.controls.description" [messages]="errors.description"
       (errorChanges)="updateErrors('description', $event)">
@@ -32,8 +32,9 @@
 
   <p>
     <mat-form-field>
+      <mat-label>{{'activity.imageUrl.placeholder' | content}}</mat-label>
       <mat-select formControlName="image">
-        <mat-option *ngFor="let image of images">{{ image.name }}</mat-option>
+        <mat-option *ngFor="let image of images" [value]="image.url">{{ image.name }}</mat-option>
       </mat-select>
     </mat-form-field>
     <app-form-errors [targetFormControl]="createActivityForm.controls.image" [messages]="errors.image"
@@ -55,9 +56,9 @@
   <div>
     <mat-form-field>
       <input matInput [ngxMatDatetimePicker]="startTimePicker"
-        placeholder="{{'activity.startTime.placeholder' | content}}" formControlName="startTime">
+        placeholder="{{'activity.startTime.placeholder' | content}}" formControlName="startTime" (dateChange)="patchDate()">
       <mat-datepicker-toggle matSuffix [for]="startTimePicker"></mat-datepicker-toggle>
-      <ngx-mat-datetime-picker #startTimePicker [showSpinners]="true"></ngx-mat-datetime-picker>
+      <ngx-mat-datetime-picker #startTimePicker [showSpinners]="true" [showSeconds]="false"></ngx-mat-datetime-picker>
     </mat-form-field>
     <app-form-errors [targetFormControl]="createActivityForm.controls.startTime" [messages]="errors.startTime"
       (errorChanges)="updateErrors('startTime', $event)">
