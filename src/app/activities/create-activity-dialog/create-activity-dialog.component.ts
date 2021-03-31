@@ -45,7 +45,6 @@ export class CreateActivityDialogComponent implements OnInit {
 
     this.imagesService.getImages().subscribe({
       next: images => {
-        console.log(images);
         this.images = images['images'];
       }
     });
@@ -109,7 +108,6 @@ export class CreateActivityDialogComponent implements OnInit {
   }
 
   public patchDate(): void {
-    console.log('We do be patching!');
     const seconds: moment.Duration = moment.duration(this.createActivityForm.controls.startTime.value.seconds(), 's');
     this.createActivityForm.controls.startTime.value.subtract(seconds);
     this.createActivityForm.controls.startTime.patchValue(this.createActivityForm.controls.startTime.value);
