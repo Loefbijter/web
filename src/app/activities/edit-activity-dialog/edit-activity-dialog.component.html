@@ -12,8 +12,7 @@
 
   <p>
     <mat-form-field>
-      <input type="text" matInput placeholder="{{'activity.description.placeholder' | content}}"
-        formControlName="description">
+      <textarea matInput placeholder="{{'activity.description.placeholder' | content}}" formControlName="description"></textarea>
     </mat-form-field>
     <app-form-errors [targetFormControl]="editActivityForm.controls.description" [messages]="errors.description"
       (errorChanges)="updateErrors('description', $event)">
