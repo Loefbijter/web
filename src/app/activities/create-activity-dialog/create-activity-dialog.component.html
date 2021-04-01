@@ -56,7 +56,7 @@
   <div>
     <mat-form-field>
       <input matInput [ngxMatDatetimePicker]="startTimePicker"
-        placeholder="{{'activity.startTime.placeholder' | content}}" formControlName="startTime" (dateChange)="patchDate()">
+        placeholder="{{'activity.startTime.placeholder' | content}}" formControlName="startTime" (dateChange)="patchDate('startTime')">
       <mat-datepicker-toggle matSuffix [for]="startTimePicker"></mat-datepicker-toggle>
       <ngx-mat-datetime-picker #startTimePicker [showSpinners]="true" [showSeconds]="false"></ngx-mat-datetime-picker>
     </mat-form-field>
@@ -76,11 +76,10 @@
       (errorChanges)="updateErrors('endTime', $event)">
     </app-form-errors>
   </p>
-
   <p>
     <mat-form-field>
       <input matInput [ngxMatDatetimePicker]="activeFromPicker"
-        placeholder="{{'activity.activeFrom.placeholder' | content}}" formControlName="activeFrom">
+        placeholder="{{'activity.activeFrom.placeholder' | content}}" formControlName="activeFrom" (dateChange)="patchDate('activeFrom')">
       <mat-hint>{{'activity.activeFrom.editWarning' | content}}</mat-hint>
       <mat-datepicker-toggle matSuffix [for]="activeFromPicker"></mat-datepicker-toggle>
       <ngx-mat-datetime-picker #activeFromPicker [showSpinners]="true"></ngx-mat-datetime-picker>

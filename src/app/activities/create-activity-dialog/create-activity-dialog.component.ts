@@ -81,7 +81,7 @@ export class CreateActivityDialogComponent implements OnInit {
         title: this.createActivityForm.controls.title.value,
         description: this.createActivityForm.controls.description.value,
         location: this.createActivityForm.controls.location.value,
-        imageUrl: this.createActivityForm.controls.imageUrl.value,
+        imageUrl: this.createActivityForm.controls.image.value,
         organiser: this.createActivityForm.controls.organiser.value,
         startTime: Math.round(this.createActivityForm.controls.startTime.value / 1000),
         endTime: Math.round(this.createActivityForm.controls.endTime.value / 1000),
@@ -107,11 +107,13 @@ export class CreateActivityDialogComponent implements OnInit {
     }
   }
 
-  public patchDate(): void {
-    const seconds: moment.Duration = moment.duration(this.createActivityForm.controls.startTime.value.seconds(), 's');
-    this.createActivityForm.controls.startTime.value.subtract(seconds);
-    this.createActivityForm.controls.startTime.patchValue(this.createActivityForm.controls.startTime.value);
-    if (this.createActivityForm.controls.endTime.value == '') {
+  public patchDate(dateField: string): void {
+    const seconds: moment.Duration = moment.duration(this.createActivityForm.controls[dateField].value.seconds(), 's');
+    this.createActivityForm.controls[dateField].value.subtract(seconds);
+    const milliseconds: moment.Duration = moment.duration(this.createActivityForm.controls[dateField].value.milliseconds(), 'ms');
+    this.createActivityForm.controls[dateField].value.subtract(milliseconds);
+    this.createActivityForm.controls[dateField].patchValue(this.createActivityForm.controls[dateField].value);
+    if (dateField == 'startTime' && this.createActivityForm.controls.endTime.value == '') {
       const oneHour: moment.Duration = moment.duration(1, 'h');
       const endTime: moment.Moment = this.createActivityForm.controls.startTime.value.clone();
       endTime.add(oneHour);

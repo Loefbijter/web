@@ -32,8 +32,10 @@
 
   <p>
     <mat-form-field>
-      <input type="imageUrl" matInput placeholder="{{'activity.imageUrl.placeholder' | content}}"
-        formControlName="imageUrl">
+      <mat-label>{{'activity.imageUrl.placeholder' | content}}</mat-label>
+      <mat-select formControlName="imageUrl">
+        <mat-option *ngFor="let image of images" [value]="image.url">{{ image.name }}</mat-option>
+      </mat-select>
     </mat-form-field>
     <app-form-errors [targetFormControl]="editActivityForm.controls.imageUrl" [messages]="errors.imageUrl"
       (errorChanges)="updateErrors('imageUrl', $event)">
