@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
+import { Injectable, Testability } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { empty, Observable } from 'rxjs';
 import { User, CreateUserDto } from './users.model';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Paged } from '../app.model';
 
@@ -13,10 +13,10 @@ export class UsersService {
 
   public constructor(private readonly http: HttpClient) { }
 
-  public getAll(optionsParam?: { page?: number, limit?: number }): Observable<User[]> {
-    const options: { page?: number, limit?: number } = { page: 1, limit: 10 };
+  public getAll(optionsParam?: { page?: number, limit?: number, filter?: string}): Observable<User[]> {
+    const options: { page?: number, limit?: number, filter? } = { page: 1, limit: 10, filter: '' };
     Object.assign(options, optionsParam);
-    return this.http.get<Paged<User>>(`${environment.apiUrl}/users?page=${options.page}&limit=${options.limit}`)
+    return this.http.get<Paged<User>>(`${environment.apiUrl}/users?page=${options.page}&limit=${options.limit}&name-contains=${options.filter}`)
       .pipe(map((res: Paged<User>) => {
         this.itemsTotal = res.totalItems;
         return res.items;
