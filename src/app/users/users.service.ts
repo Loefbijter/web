@@ -1,8 +1,8 @@
-import { Injectable, Testability } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { empty, Observable } from 'rxjs';
+import { Observable } from 'rxjs';
 import { User, CreateUserDto } from './users.model';
-import { filter, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Paged } from '../app.model';
 
