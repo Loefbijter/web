@@ -13,10 +13,10 @@ export class UsersService {
 
   public constructor(private readonly http: HttpClient) { }
 
-  public getAll(optionsParam?: { page?: number, limit?: number }): Observable<User[]> {
-    const options: { page?: number, limit?: number } = { page: 1, limit: 10 };
+  public getAll(optionsParam?: { page?: number, limit?: number, filter?: string}): Observable<User[]> {
+    const options: { page?: number, limit?: number, filter? } = { page: 1, limit: 10, filter: '' };
     Object.assign(options, optionsParam);
-    return this.http.get<Paged<User>>(`${environment.apiUrl}/users?page=${options.page}&limit=${options.limit}`)
+    return this.http.get<Paged<User>>(`${environment.apiUrl}/users?page=${options.page}&limit=${options.limit}&name-contains=${options.filter}`)
       .pipe(map((res: Paged<User>) => {
         this.itemsTotal = res.totalItems;
         return res.items;

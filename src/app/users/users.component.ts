@@ -25,6 +25,7 @@ export class UsersComponent implements OnInit {
   public dataSource: MatTableDataSource<User>;
   public totalItemsCount: number;
   public readonly defaultPageSize: number = 10;
+  public filterValue: string = '';
 
   public constructor(
     private readonly usersService: UsersService,
@@ -40,7 +41,7 @@ export class UsersComponent implements OnInit {
   }
 
   private getUsers(page: number, limit: number): void {
-    this.usersService.getAll({ limit, page: page + 1 }).subscribe({
+    this.usersService.getAll({ limit, page: page + 1, filter:this.filterValue }).subscribe({
       next: users => {
         this.dataSource.data = users;
         this.totalItemsCount = this.usersService.itemsTotal;
@@ -61,5 +62,11 @@ export class UsersComponent implements OnInit {
         }
       }
     });
+  }
+
+  public applyFilter(filterValue: string) {
+    this.filterValue=filterValue;
+    this.paginator.pageIndex=0;
+    this.getUsers(this.paginator.pageIndex, this.paginator.pageSize);
   }
 }
