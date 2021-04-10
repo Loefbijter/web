@@ -5,8 +5,9 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ContentService } from '../../_modules/content/content.service';
 import { FormErrorsService } from '../../_modules/form-errors/form-errors.service';
+import { ImagesService } from '../images.service';
 import { URL_REGEX, TOAST_DURATION } from '../../constants';
-import { Activity, CreateActivityDto } from '../activity.model';
+import { Activity, ActivityImage, CreateActivityDto } from '../activity.model';
 import {
   checkIfEndTimeAfterStartTime,
   checkIfActiveFromBeforeStartTime,
@@ -15,6 +16,8 @@ import {
   checkIfActiveFromIsInPast,
   checkIfActiveUntilBeforeEndTime,
 } from '../activities.validators';
+import { isMoment } from 'moment';
+import * as moment from 'moment/moment';
 
 @Component({
   selector: 'app-create-activity-dialog',
@@ -26,6 +29,7 @@ export class CreateActivityDialogComponent implements OnInit {
   public loading: boolean = false;
   public createActivityForm: FormGroup;
   public errors: ValidationErrors = { };
+  public images: ActivityImage[] = [];
 
   public constructor(
     public readonly dialogRef: MatDialogRef<CreateActivityDialogComponent>,
@@ -34,14 +38,22 @@ export class CreateActivityDialogComponent implements OnInit {
     private readonly contentService: ContentService,
     private readonly formErrorsService: FormErrorsService,
     private readonly activityService: ActivitiesService,
+    private readonly imagesService: ImagesService,
   ) { }
 
   public ngOnInit(): void {
+
+    this.imagesService.getImages().subscribe({
+      next: images => {
+        this.images = images['images'];
+      }
+    });
+
     this.createActivityForm = this.fb.group({
       title: new FormControl('', { validators: [Validators.required, Validators.maxLength(255)] }),
       description: new FormControl('', { validators: [Validators.required] }),
       location: new FormControl('', { validators: [Validators.required] }),
-      imageUrl: new FormControl('', { validators: [Validators.required, Validators.pattern(URL_REGEX)] }),
+      image: new FormControl('', { validators: [Validators.required] }),
       organiser: new FormControl(''),
       startTime: new FormControl('', { validators: [Validators.required, checkIfStartTimeIsInPast] }),
       endTime: new FormControl('', { validators: [Validators.required] }),
@@ -69,7 +81,7 @@ export class CreateActivityDialogComponent implements OnInit {
         title: this.createActivityForm.controls.title.value,
         description: this.createActivityForm.controls.description.value,
         location: this.createActivityForm.controls.location.value,
-        imageUrl: this.createActivityForm.controls.imageUrl.value,
+        imageUrl: this.createActivityForm.controls.image.value,
         organiser: this.createActivityForm.controls.organiser.value,
         startTime: Math.round(this.createActivityForm.controls.startTime.value / 1000),
         endTime: Math.round(this.createActivityForm.controls.endTime.value / 1000),
@@ -92,6 +104,20 @@ export class CreateActivityDialogComponent implements OnInit {
           this.dialogRef.disableClose = false;
         }
       });
+    }
+  }
+
+  public patchDate(dateField: string): void {
+    const seconds: moment.Duration = moment.duration(this.createActivityForm.controls[dateField].value.seconds(), 's');
+    this.createActivityForm.controls[dateField].value.subtract(seconds);
+    const milliseconds: moment.Duration = moment.duration(this.createActivityForm.controls[dateField].value.milliseconds(), 'ms');
+    this.createActivityForm.controls[dateField].value.subtract(milliseconds);
+    this.createActivityForm.controls[dateField].patchValue(this.createActivityForm.controls[dateField].value);
+    if (dateField == 'startTime' && this.createActivityForm.controls.endTime.value == '') {
+      const oneHour: moment.Duration = moment.duration(1, 'h');
+      const endTime: moment.Moment = this.createActivityForm.controls.startTime.value.clone();
+      endTime.add(oneHour);
+      this.createActivityForm.controls.endTime.patchValue(endTime);
     }
   }
 

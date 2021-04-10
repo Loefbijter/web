@@ -73,3 +73,8 @@ export interface RegistrationActivity {
   registration: Registration;
   activity: Activity;
 }
+
+export interface ActivityImage {
+  name: string;
+  url: string;
+}

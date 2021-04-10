@@ -6,7 +6,7 @@ import { ContentService } from '../../_modules/content/content.service';
 import { FormErrorsService } from '../../_modules/form-errors/form-errors.service';
 import { ActivitiesService } from '../activities.service';
 import { URL_REGEX, TOAST_DURATION } from '../../constants';
-import { Activity, UpdateActivityDto } from '../activity.model';
+import { Activity, ActivityImage, UpdateActivityDto } from '../activity.model';
 import * as moment from 'moment';
 import {
   checkIfEndTimeAfterStartTime,
@@ -16,6 +16,7 @@ import {
   checkIfStartTimeIsInPast,
   checkIfActiveUntilBeforeEndTime,
 } from '../activities.validators';
+import { ImagesService } from '../images.service';
 
 @Component({
   selector: 'app-edit-activity-dialog',
@@ -27,6 +28,7 @@ export class EditActivityDialogComponent implements OnInit {
   public loading: boolean = false;
   public editActivityForm: FormGroup;
   public errors: ValidationErrors = { };
+  public images: ActivityImage[] = [];
 
   public constructor(
     @Inject(MAT_DIALOG_DATA) public activity: Activity,
@@ -36,9 +38,17 @@ export class EditActivityDialogComponent implements OnInit {
     private readonly contentService: ContentService,
     private readonly formErrorsService: FormErrorsService,
     private readonly activityService: ActivitiesService,
+    private readonly imagesService: ImagesService
   ) { }
 
   public ngOnInit(): void {
+
+    this.imagesService.getImages().subscribe({
+      next: images => {
+        this.images = images['images'];
+      }
+    });
+
     this.editActivityForm = this.fb.group({
       title: new FormControl(this.activity.title, { validators: [Validators.required, Validators.maxLength(255)] }),
       description: new FormControl(this.activity.description, { validators: [Validators.required] }),

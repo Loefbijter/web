@@ -12,8 +12,7 @@
 
   <p>
     <mat-form-field>
-      <input type="text" matInput placeholder="{{'activity.description.placeholder' | content}}"
-        formControlName="description">
+      <textarea matInput placeholder="{{'activity.description.placeholder' | content}}" formControlName="description"></textarea>
     </mat-form-field>
     <app-form-errors [targetFormControl]="editActivityForm.controls.description" [messages]="errors.description"
       (errorChanges)="updateErrors('description', $event)">
@@ -32,8 +31,10 @@
 
   <p>
     <mat-form-field>
-      <input type="imageUrl" matInput placeholder="{{'activity.imageUrl.placeholder' | content}}"
-        formControlName="imageUrl">
+      <mat-label>{{'activity.imageUrl.placeholder' | content}}</mat-label>
+      <mat-select formControlName="imageUrl">
+        <mat-option *ngFor="let image of images" [value]="image.url">{{ image.name }}</mat-option>
+      </mat-select>
     </mat-form-field>
     <app-form-errors [targetFormControl]="editActivityForm.controls.imageUrl" [messages]="errors.imageUrl"
       (errorChanges)="updateErrors('imageUrl', $event)">
