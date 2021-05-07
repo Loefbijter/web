@@ -1,7 +1,7 @@
 import { Component, ViewChild, AfterViewInit } from '@angular/core';
 import { ContentItem } from '../_modules/content/content-item.model';
 import { ReservationsService } from './reservations.service';
-import { Reservation } from './reservations.model';
+import { Reservation, Order } from './reservations.model';
 import { ContentService } from '../_modules/content/content.service';
 import { TOAST_DURATION } from '../constants';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -25,6 +25,9 @@ export class ReservationsComponent implements AfterViewInit {
   @ViewChild(MatPaginator, { static: true }) private readonly paginator: MatPaginator;
 
   public displayedColumns: string[] = ['status', 'user', 'skipper', 'boat', 'reason', 'date', 'action'];
+  public dbColumns: string[] = ['accepted', 'userId', 'skipper', 'boatId', 'reason', 'startTimestamp']; //missing: user.name & boat.name instead of IdReferences
+  public currentOrderBy: number;
+  public currentSortOrder: Order;
   public dataSource: MatTableDataSource<Reservation>;
   public totalItemsCount: number;
 
@@ -36,6 +39,8 @@ export class ReservationsComponent implements AfterViewInit {
     public readonly simpleDateService: SimpleDateService,
   ) {
     this.contentService.addContentItems(content);
+    this.currentOrderBy = 5;
+    this.currentSortOrder=Order.DESC;
   }
 
   public ngAfterViewInit(): void {
@@ -44,7 +49,7 @@ export class ReservationsComponent implements AfterViewInit {
   }
 
   private getReservations(page: number, limit: number): void {
-    this.reservationsService.getAll({ limit: limit, page: page + 1 }).subscribe({
+    this.reservationsService.getAll({ limit: limit, page: page + 1, orderBy: this.dbColumns[this.currentOrderBy], order: this.currentSortOrder}).subscribe({
       next: reservations => {
         this.dataSource.data = reservations;
         this.totalItemsCount = this.reservationsService.itemsTotal;
@@ -76,5 +81,19 @@ export class ReservationsComponent implements AfterViewInit {
         }
       }
     });
+  }
+
+  public orderColumn(columnNumber: number): void{
+    if(columnNumber === this.currentOrderBy) {
+      if(this.currentSortOrder === Order.DESC) {
+        this.currentSortOrder = Order.ASC;
+      } 
+      else {
+        this.currentSortOrder = Order.DESC;}
+    }
+    else {
+      this.currentOrderBy = columnNumber;
+    }
+    this.onLoadMore();
   }
 }

@@ -14,11 +14,11 @@ export class ReservationsService {
 
   public constructor(private readonly http: HttpClient) { }
 
-  public getAll(optionsParam?: { page?: number, limit?: number, order?: Order }): Observable<Reservation[]> {
-    const options: { page?: number, limit?: number, order: Order } = { page: 1, limit: 10, order: Order.DESC };
+  public getAll(optionsParam?: { page?: number, limit?: number, order?: Order, orderBy?: string}): Observable<Reservation[]> {
+    const options: { page?: number, limit?: number, order?: Order, orderBy?: string } = { page: 1, limit: 10, order: Order.DESC, orderBy: 'startTimestamp'};
     Object.assign(options, optionsParam);
     return this.http
-      .get<Paged<Reservation>>(`${environment.apiUrl}/boat-reservations?page=${options.page}&limit=${options.limit}&order=${options.order}`)
+      .get<Paged<Reservation>>(`${environment.apiUrl}/boat-reservations?page=${options.page}&limit=${options.limit}&order=${options.order}&orderBy=${options.orderBy}`)
       .pipe(map((res: Paged<Reservation>) => {
         this.itemsTotal = res.totalItems;
         return res.items;
