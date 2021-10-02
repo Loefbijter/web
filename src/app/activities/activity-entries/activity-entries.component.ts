@@ -51,7 +51,6 @@ export class ActivityEntriesComponent implements OnInit {
     });
     this.activitiesService.getQuestions(this.activityId).subscribe({
       next: questions => {
-        console.log(questions);
         this.questions.push(...questions);
         for (const q of this.questions) {
           this.columnsToDisplay.push(q.text);
@@ -63,7 +62,6 @@ export class ActivityEntriesComponent implements OnInit {
         }
       }
     });
-    console.log(this.columnsToDisplay);
     this.dataSource = new MatTableDataSource<Registration>();
     this.getRegistrations(0, 50);
   }
@@ -81,7 +79,6 @@ export class ActivityEntriesComponent implements OnInit {
   private getRegistrations(page: number, limit: number): void {
     this.activitiesService.getRegistrations(this.activityId, limit, page).subscribe({
       next: registrations => {
-        console.log(registrations);
         this.dataSource.data = registrations;
         this.totalItemsCount = this.activitiesService.itemsTotal;
       },

@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
 import { SimpleDateService } from '../_helpers/simple-date.service';
-import { DeleteBoatReservationDialogComponent } from "./delete-boat-reservation-dialog/delete-boat-reservation-dialog.component";
+import { DeleteBoatReservationDialogComponent } from './delete-boat-reservation-dialog/delete-boat-reservation-dialog.component';
 
 // tslint:disable-next-line: no-var-requires
 const content: ContentItem = require('./reservations.content.json');
@@ -76,5 +76,9 @@ export class ReservationsComponent implements AfterViewInit {
         }
       }
     });
+  }
+
+  public getPageSizeOptions(): number[] {
+    return [10, 20, Math.floor(this.totalItemsCount / 100) * 100 + 100];
   }
 }

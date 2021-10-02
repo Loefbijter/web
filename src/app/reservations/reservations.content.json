@@ -23,6 +23,7 @@
   "reservations.overview-table.reason.text": "Reden",
   "reservations.overview-table.date.text": "Datum en tijd",
   "reservations.overview-table.actions.text": "Handelingen",
+  "reservations.download-button": "Reserveringen in de onderstaande tabel downloaden.",
   "accept-boat-reservation.button.confirm.text": "Accepteren",
   "accept-boat-reservation.button.cancel.text": "Afwijzen",
   "update-reservation-acceptance.success": "succesvol de review status aan gepast",
