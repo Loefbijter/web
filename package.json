@@ -27,7 +27,7 @@
     "@angular/router": "~11.1.0",
     "jwt-decode": "^2.2.0",
     "mat-table-exporter": "^9.1.0",
-    "moment": "^2.25.3",
+    "moment": "^2.29.2",
     "rxjs": "~6.5.4",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
